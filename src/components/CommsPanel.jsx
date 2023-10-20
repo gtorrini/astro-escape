@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { blue, green, grey, red, yellow } from '@mui/material/colors';
-import { Box, Fab, Grid} from '@mui/material'; 
+import { Box, Fab, Grid, Typography } from '@mui/material'; 
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import SensorOccupiedIcon from '@mui/icons-material/SensorOccupied';
@@ -44,9 +44,14 @@ export default function Controls(props) {
 
     return (
         <>
-            <h4>How Does This Thing Work?</h4>
-            <p> You need to send out a distress signal, but you misplaced your user manual. </p>
-            <p> Play around with the controls to activate the communications panel. </p>
+            <Box sx={{my: 5}}>
+                <Typography variant="h6" gutterBottom>
+                    How Does This Thing Work?
+                </Typography>
+                <Typography variant="body1">
+                    You want to send out a distress signal, but you misplaced your user manual! <br/> Play around with the control panel below to activate the correct subsystem.
+                </Typography>
+            </Box>
             <Box 
                 sx={{
                     backgroundColor: screen,
