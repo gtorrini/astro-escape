@@ -1,7 +1,9 @@
 import { React, useState } from 'react';
-import { Box, Button, Fade, TextField } from '@mui/material';
+import PropTypes from 'prop-types';
+import { Box, Button, Grid, TextField, Typography } from '@mui/material';
+import { BackButton, NextButton } from './NavButtons.jsx';
 
-export default function Clue1() {
+export default function Signal(props) {
     const [message, setMessage] = useState(null);
     const [error, setError] = useState(null);
     const [attempts, setAttempts] = useState(0)
@@ -26,34 +28,53 @@ export default function Clue1() {
 
     return (
         <>
-            <h4>Send out an effective distress signal. </h4>
-            <TextField 
-                error={error !== null}
-                id="distress-signal"
-                label="Message"
-                inputProps={{
-                    maxLength: 25,
-                }}
-                helperText = {error}
-                onChange={e => {
-                    setMessage(e.target.value)
-                    setError(null);
-                }}
-            ></TextField>
-            {message !== null &&
-                <Button 
-                    id="distress-submit"
-                    label="Submit"
-                    variant="contained"
-                    onClick={() => {handleSubmit(message)}}
-                    sx={{ ml: 2 , mt: 1}}
-                >Submit</Button>
-            }
-            {message !== null && send===true &&
+            <Box sx={{my: 5}}>
+                <Typography variant="h6" gutterBottom>
+                    Send out an effective distress signal.
+                </Typography>
+                <TextField 
+                    error={error !== null}
+                    id="distress-signal"
+                    label="Message"
+                    inputProps={{
+                        maxLength: 25,
+                    }}
+                    helperText = {error}
+                    onChange={e => {
+                        setMessage(e.target.value)
+                        setError(null);
+                    }}
+                ></TextField>
+                {message !== null &&
+                    <Button 
+                        id="distress-submit"
+                        label="Submit"
+                        variant="contained"
+                        onClick={() => {handleSubmit(message)}}
+                        sx={{ ml: 2 , mt: 1}}
+                    >Submit</Button>
+                }
+            </Box>
+            {/* {message !== null && send===true &&
                 <Box>
                     <Fade in={send} timeout={10}><p>Distress signal sent!</p></Fade>
                 </Box>
-            }
+            } */}
+            <Grid container>
+                <Grid item xs={6}>
+                    <BackButton handleClick={props.back}></BackButton>
+                </Grid>
+                <Grid item xs={6}>
+                    {send &&
+                        <NextButton handleClick={props.next}></NextButton>
+                    }
+                </Grid>
+            </Grid>
         </>
     )
 }
+
+Signal.propTypes = {
+    back: PropTypes.func.isRequired,
+    next: PropTypes.func.isRequired
+};
