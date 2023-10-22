@@ -64,6 +64,9 @@ export default function HorizontalLinearStepper() {
                         <Step key={steps[2]}>
                             <StepLabel></StepLabel>
                         </Step>
+                        <Step key={steps[3]}>
+                            <StepLabel></StepLabel>
+                        </Step>
                     </Stepper>
                     {handleContent()}
                 </ThemeProvider>
