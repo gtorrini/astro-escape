@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Box, Button, ButtonGroup, Grid, IconButton, Typography } from '@mui/material';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import ClearIcon from '@mui/icons-material/Clear';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import { red, orange, yellow, green, grey, blue, indigo, purple } from '@mui/material/colors';
 import { BackButton, NextButton } from './NavButtons.jsx';
 
@@ -36,7 +36,34 @@ const rainbow = createTheme({
             main: purple[500]
         },
     },
+    components: {
+        // Name of the component
+        MuiButtonGroup: {
+            styleOverrides: {
+                // Name of the slot
+                root: {
+                    // Some CSS
+                    borderColor: frame,
+                },
+                firstButton: {
+                    borderColor: frame,
+                },
+                middleButton: {
+                    borderColor: frame,
+                }
+            },
+        },
+    },
 });
+
+const ModifiedIcons = styled(IconButton) (() => ({
+    marginLeft: 1,
+    display: 'inline-block',
+    color: screen,
+    '&.Mui-disabled': {
+        color: '#616161',
+    },
+}));
 
 const cipherKey = () => {
     return (
@@ -209,22 +236,22 @@ export default function Cipher(props) {
                     ></Button>
                 </ButtonGroup>
             </ThemeProvider>
-            <IconButton
+            <ModifiedIcons
                 aria-label="backspace"
                 disabled={display.length === 0}
                 onClick={() => handleBackspace(display)}
-                sx={{ml: 1, display: "inline-block", color: screen}}
+
             >
                 <BackspaceIcon fontSize="medium"></BackspaceIcon>
-            </IconButton>
-            <IconButton 
+            </ModifiedIcons>
+            <ModifiedIcons 
                 aria-label="clear"
                 disabled={display.length === 0}
                 onClick={() => handleClear()}
-                sx={{ml: 1, display: "inline-block", color: screen}}
+
             >
                 <ClearIcon fontSize="large"></ClearIcon>
-            </IconButton>
+            </ModifiedIcons>
             </Box>
             <Grid container>
                 <Grid item xs={6}>
