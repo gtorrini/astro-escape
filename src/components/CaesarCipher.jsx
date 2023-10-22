@@ -7,9 +7,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { red, orange, yellow, green, grey, blue, indigo, purple } from '@mui/material/colors';
 import { BackButton, NextButton } from './NavButtons.jsx';
 
+/* Set up screen colors */
 const screen = grey[900];
 const frame = grey[400];
 
+/* Set up button colors */
 const rainbow = createTheme({
     palette: {
         red: {
@@ -36,15 +38,86 @@ const rainbow = createTheme({
     },
 });
 
+const cipherKey = () => {
+    return (
+        <table className="screen cipher">
+            <tr>
+                <td>A</td>
+                <td>B</td>
+                <td>C</td>
+                <td>D</td>
+                <td>E</td>
+                <td>F</td>
+                <td>G</td>
+                <td>H</td>
+                <td>I</td>
+                <td>J</td>
+                <td>K</td>
+                <td>L</td>
+                <td>M</td>
+                <td>N</td>
+                <td>O</td>
+                <td>P</td>
+                <td>Q</td>
+                <td>R</td>
+                <td>S</td>
+                <td>T</td>
+                <td>U</td>
+                <td>V</td>
+                <td>W</td>
+                <td>X</td>
+                <td>Y</td>
+                <td>Z</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>M</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>U</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>B</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    );
+}
+
 export default function Cipher(props) {
-    // const [decoded, setDecoded] = useState(false);
+    const [decoded, setDecoded] = useState(false);
     const [display, setDisplay] = useState('SEND RESPONSE');
-    // const [error, setError] = useState(null)
+
+    const validateResponse = (message) => {
+        if (message === 'GROOVY') {
+            setDecoded(true);
+        } else {
+            setDecoded(false);
+        }
+    }
 
     const handleKey = (message, letter) => {
         if (message.length < 20) {
             const nextMessage = message.concat(letter);
             setDisplay(nextMessage);
+            validateResponse(nextMessage);
         } 
     }
 
@@ -54,10 +127,14 @@ export default function Cipher(props) {
         } else {
             const nextMessage = message.slice(0, -1);
             setDisplay(nextMessage);
+            validateResponse(nextMessage);
         }
     }
 
-    
+    const handleClear = () => {
+        setDisplay('');
+    }
+
     return (
         <>
             <Box sx={{my: 5}}>
@@ -80,7 +157,9 @@ export default function Cipher(props) {
                     width: '60%'
                 }}
             >
-                <p className='screen'>{display}</p>
+                <p className='screen'> 	MSHZO NYVVCF JVSVYZ AV HJJLWA VBY HPK  </p>
+                {cipherKey()}
+                <p className='screen'> &gt;&gt;&gt;  {display}</p>
             </Box>
             <Box
                 sx={{
@@ -92,21 +171,59 @@ export default function Cipher(props) {
                 }}
             >
             <ThemeProvider theme={rainbow}>
-                <ButtonGroup variant="contained" aria-label="color buttons" sx={{my: 2}}>
-                    <Button color="red" onClick={() => handleKey(display, 'R')}>Red</Button>
-                    <Button color="orange" onClick={() => handleKey(display, 'O')}>Orange</Button>
-                    <Button color="yellow" onClick={() => handleKey(display, 'Y')}>Yellow</Button>
-                    <Button color="green" onClick={() => handleKey(display, 'G')}>Green</Button>
-                    <Button color="blue" onClick={() => handleKey(display, 'B')}>Blue</Button>
-                    <Button color="indigo" onClick={() => handleKey(display, 'I')}>Indigo</Button>
-                    <Button color="violet" onClick={() => handleKey(display, 'V')}>Violet</Button>
+                <ButtonGroup variant="contained" aria-label="color buttons" sx={{my: 2, display: "inline-block"}}>
+                    <Button 
+                        color="red" 
+                        onClick={() => handleKey(display, 'R')} 
+                        sx={{height: 40, width: 80}}
+                    ></Button>
+                    <Button
+                        color="orange"
+                        onClick={() => handleKey(display, 'O')}
+                        sx={{height: 40, width: 80}}
+                    ></Button>
+                    <Button
+                        color="yellow"
+                        onClick={() => handleKey(display, 'Y')}
+                        sx={{height: 40, width: 80}}
+                    ></Button>
+                    <Button
+                        color="green"
+                        onClick={() => handleKey(display, 'G')}
+                        sx={{height: 40, width: 80}}
+                    ></Button>
+                    <Button
+                        color="blue"
+                        onClick={() => handleKey(display, 'B')}
+                        sx={{height: 40, width: 80}}
+                    ></Button>
+                    <Button
+                        color="indigo"
+                        onClick={() => handleKey(display, 'I')}
+                        sx={{height: 40, width: 80}}
+                    ></Button>
+                    <Button
+                        color="violet"
+                        onClick={() => handleKey(display, 'V')}
+                        sx={{height: 40, width: 80}}
+                    ></Button>
                 </ButtonGroup>
             </ThemeProvider>
-            <IconButton aria-label="backspace" sx={{ml: 1}} onClick={() => handleBackspace(display)} disabled={display.length === 0}>
-                <BackspaceIcon></BackspaceIcon>
+            <IconButton
+                aria-label="backspace"
+                disabled={display.length === 0}
+                onClick={() => handleBackspace(display)}
+                sx={{ml: 1, display: "inline-block", color: screen}}
+            >
+                <BackspaceIcon fontSize="medium"></BackspaceIcon>
             </IconButton>
-            <IconButton aria-label="clear" sx={{ml: 1}} disabled={display.length === 0}>
-                <ClearIcon></ClearIcon>
+            <IconButton 
+                aria-label="clear"
+                disabled={display.length === 0}
+                onClick={() => handleClear()}
+                sx={{ml: 1, display: "inline-block", color: screen}}
+            >
+                <ClearIcon fontSize="large"></ClearIcon>
             </IconButton>
             </Box>
             <Grid container>
@@ -114,7 +231,9 @@ export default function Cipher(props) {
                     <BackButton handleClick={props.back}></BackButton>
                 </Grid>
                 <Grid item xs={6}>
-                    <NextButton handleClick={props.next}></NextButton>
+                    {decoded &&
+                        <NextButton handleClick={props.next}></NextButton>
+                    }
                 </Grid>
             </Grid>
         </>
