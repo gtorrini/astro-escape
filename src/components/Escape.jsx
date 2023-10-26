@@ -2,9 +2,11 @@ import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Box, Step, Stepper, StepLabel } from '@mui/material';
 import Intro from './Intro.jsx';
+import ImageHunt from './ImageHunt.jsx';
 import Controls from './CommsPanel.jsx';
 import Signal from './DistressSignal.jsx';
 import Cipher from './CaesarCipher.jsx';
+
 
 const darkTheme = createTheme({
     palette: {
@@ -12,7 +14,7 @@ const darkTheme = createTheme({
     },
   });
 
-const steps = ['Intro', 'Clue 1', 'Clue 2', 'Clue 3']
+const steps = ['Intro', 'Clue 1', 'Clue 2', 'Clue 3', 'Clue 4']
 
 export default function HorizontalLinearStepper() {
     const [activeStep, setActiveStep] = React.useState(0);
@@ -35,15 +37,19 @@ export default function HorizontalLinearStepper() {
                 return(
                     <Intro next={handleNext}></Intro>
                 );
-            case(1):
+            case(1): 
                 return(
-                    <Controls back={handleBack} next={handleNext}></Controls>
+                    <ImageHunt back={handleBack} next={handleNext}></ImageHunt>
                 );
             case(2):
                 return(
+                    <Controls back={handleBack} next={handleNext}></Controls>
+                );
+            case(3):
+                return(
                     <Signal back={handleBack} next={handleNext}></Signal>
                 )
-            case(3):
+            case(4):
                 return(
                     <Cipher back={handleBack} next={handleNext}></Cipher>
                 )
@@ -65,6 +71,9 @@ export default function HorizontalLinearStepper() {
                             <StepLabel></StepLabel>
                         </Step>
                         <Step key={steps[3]}>
+                            <StepLabel></StepLabel>
+                        </Step>
+                        <Step key={steps[4]}>
                             <StepLabel></StepLabel>
                         </Step>
                     </Stepper>
