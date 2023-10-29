@@ -3,7 +3,6 @@ import { Box, Step, Stepper, StepLabel } from '@mui/material';
 import ImageHunt from './ImageHunt.jsx';
 import Protocol from './ProtocolEval.jsx';
 import Controls from './CommsPanel.jsx';
-import Signal from './DistressSignal.jsx';
 import Cipher from './CaesarCipher.jsx';
 
 
@@ -38,10 +37,6 @@ export default function Escape() {
                 );
             case(3):
                 return(
-                    <Signal back={handleBack} next={handleNext}></Signal>
-                )
-            case(4):
-                return(
                     <Cipher back={handleBack} next={handleNext}></Cipher>
                 )
         }
@@ -61,9 +56,6 @@ export default function Escape() {
                         <StepLabel></StepLabel>
                     </Step>
                     <Step key="puzzle-4">
-                        <StepLabel></StepLabel>
-                    </Step>
-                    <Step key="puzzle-5">
                         <StepLabel></StepLabel>
                     </Step>
                 </Stepper>
