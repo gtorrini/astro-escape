@@ -12,7 +12,7 @@ export default function Intro() {
                     Your spaceship has just entered the sphere of influence of a black hole. Can you escape?
                 </Typography>
                 <Button href="/play" variant="contained" sx={{mx: 2}}>Play Now</Button>
-                {/* <Button variant="contained" sx={{mt: 2, mx: 2}}>About</Button> */}
+                <Button href="/about" variant="contained" sx={{mx: 2}}>About</Button>
             </Box>
         </>
     );
