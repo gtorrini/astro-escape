@@ -1,31 +1,19 @@
 import { React } from 'react';
-import PropTypes from 'prop-types';
-import { Box, Grid, Typography } from '@mui/material';
-import { NextButton } from './NavButtons.jsx';
+import { Box, Button, Typography } from '@mui/material';
 
-export default function Intro(props) {
+export default function Intro() {
     return (
         <>
             <Box sx={{my: 5}}>
                 <Typography variant="h4">
-                    Welcome to Astro Escape
+                    ASTRO {'\u2726'} ESCAPE
                 </Typography>
-                <Typography variant="subtitle1" sx={{mb: 3}}>
-                    An Astronomy-Themed Online Escape Room
-                </Typography>
-                <Typography variant="body1">
+                <Typography variant="body1" sx={{my: 3}}>
                     Your spaceship has just entered the sphere of influence of a black hole. Can you escape?
                 </Typography>
+                <Button href="/play" variant="contained" sx={{mx: 2}}>Play Now</Button>
+                {/* <Button variant="contained" sx={{mt: 2, mx: 2}}>About</Button> */}
             </Box>
-            <Grid container>
-                <Grid item xs={12}>
-                    <NextButton handleClick={props.next}></NextButton>
-                </Grid>
-            </Grid>
         </>
     );
 }
-
-Intro.propTypes = {
-    next: PropTypes.func.isRequired
-};
