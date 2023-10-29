@@ -6,14 +6,24 @@
   margin: 30px;
 }
 
-h3, h4, h5, h6, p {
+h3, h5, h6, p, span {
   color: #ffffff;
   /* font-family: 'Consolas', 'Courier New', monospace */
+}
+
+h4, h6 {
+  color: #ffc107;
+  text-shadow: 2px 2px #b71c1c;
 }
 
 .screen {
   color: #00ff00;
   font-family: 'Consolas', 'Courier New', monospace;
+}
+
+.page {
+  color: #000000;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 table, tr, td {
