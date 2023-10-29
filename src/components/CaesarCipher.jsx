@@ -165,8 +165,8 @@ export default function Cipher(props) {
     return (
         <>
             <Box sx={{my: 5}}>
-                <Typography variant="h6">
-                    A Sign from Above
+                <Typography variant="h6" gutterBottom>
+                    Challenge #4
                 </Typography>
                 <Typography variant="body1">
                     You received a message, but it seems to be encoded. Decode it and send the appropriate response.
@@ -178,8 +178,7 @@ export default function Cipher(props) {
                     border: 20,
                     borderColor: frame,
                     mx: 'auto',
-                    mt: 5,
-                    mb: 2,
+                    mb: 3,
                     textAlign: 'center',
                     width: '60%'
                 }}
@@ -197,61 +196,61 @@ export default function Cipher(props) {
                     width: '60%'
                 }}
             >
-            <ThemeProvider theme={rainbow}>
-                <ButtonGroup variant="contained" aria-label="color buttons" sx={{my: 2, display: "inline-block"}}>
-                    <Button 
-                        color="red" 
-                        onClick={() => handleKey(display, 'R')} 
-                        sx={{height: 40, width: 80}}
-                    ></Button>
-                    <Button
-                        color="orange"
-                        onClick={() => handleKey(display, 'O')}
-                        sx={{height: 40, width: 80}}
-                    ></Button>
-                    <Button
-                        color="yellow"
-                        onClick={() => handleKey(display, 'Y')}
-                        sx={{height: 40, width: 80}}
-                    ></Button>
-                    <Button
-                        color="green"
-                        onClick={() => handleKey(display, 'G')}
-                        sx={{height: 40, width: 80}}
-                    ></Button>
-                    <Button
-                        color="blue"
-                        onClick={() => handleKey(display, 'B')}
-                        sx={{height: 40, width: 80}}
-                    ></Button>
-                    <Button
-                        color="indigo"
-                        onClick={() => handleKey(display, 'I')}
-                        sx={{height: 40, width: 80}}
-                    ></Button>
-                    <Button
-                        color="violet"
-                        onClick={() => handleKey(display, 'V')}
-                        sx={{height: 40, width: 80}}
-                    ></Button>
-                </ButtonGroup>
-            </ThemeProvider>
-            <ModifiedIcons
-                aria-label="backspace"
-                disabled={display.length === 0}
-                onClick={() => handleBackspace(display)}
+                <ThemeProvider theme={rainbow}>
+                    <ButtonGroup variant="contained" aria-label="color buttons" sx={{my: 2, display: "inline-block"}}>
+                        <Button 
+                            color="red" 
+                            onClick={() => handleKey(display, 'R')} 
+                            sx={{height: 40, width: 80}}
+                        ></Button>
+                        <Button
+                            color="orange"
+                            onClick={() => handleKey(display, 'O')}
+                            sx={{height: 40, width: 80}}
+                        ></Button>
+                        <Button
+                            color="yellow"
+                            onClick={() => handleKey(display, 'Y')}
+                            sx={{height: 40, width: 80}}
+                        ></Button>
+                        <Button
+                            color="green"
+                            onClick={() => handleKey(display, 'G')}
+                            sx={{height: 40, width: 80}}
+                        ></Button>
+                        <Button
+                            color="blue"
+                            onClick={() => handleKey(display, 'B')}
+                            sx={{height: 40, width: 80}}
+                        ></Button>
+                        <Button
+                            color="indigo"
+                            onClick={() => handleKey(display, 'I')}
+                            sx={{height: 40, width: 80}}
+                        ></Button>
+                        <Button
+                            color="violet"
+                            onClick={() => handleKey(display, 'V')}
+                            sx={{height: 40, width: 80}}
+                        ></Button>
+                    </ButtonGroup>
+                </ThemeProvider>
+                <ModifiedIcons
+                    aria-label="backspace"
+                    disabled={display.length === 0}
+                    onClick={() => handleBackspace(display)}
 
-            >
-                <BackspaceIcon fontSize="medium"></BackspaceIcon>
-            </ModifiedIcons>
-            <ModifiedIcons 
-                aria-label="clear"
-                disabled={display.length === 0}
-                onClick={() => handleClear()}
+                >
+                    <BackspaceIcon fontSize="medium"></BackspaceIcon>
+                </ModifiedIcons>
+                <ModifiedIcons 
+                    aria-label="clear"
+                    disabled={display.length === 0}
+                    onClick={() => handleClear()}
 
-            >
-                <ClearIcon fontSize="large"></ClearIcon>
-            </ModifiedIcons>
+                >
+                    <ClearIcon fontSize="large"></ClearIcon>
+                </ModifiedIcons>
             </Box>
             <Grid container>
                 <Grid item xs={6}>
