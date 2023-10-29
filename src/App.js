@@ -5,6 +5,7 @@ import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Intro from './components/Intro.jsx';
 import Escape from './components/Escape.jsx';
+import About from './components/About.jsx';
 
 const darkTheme = createTheme({
   palette: {
@@ -28,7 +29,7 @@ function App() {
               <Routes>
                 <Route path='/' element={<Intro></Intro>}></Route>
                 <Route path='/play' element={<Escape></Escape>}></Route>
-                {/* <Route path='/about'></Route> */}
+                <Route path='/about' element={<About></About>}></Route>
               </Routes>
             </Router>
           </div>
