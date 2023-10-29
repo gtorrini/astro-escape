@@ -55,11 +55,6 @@ export default function Signal(props) {
                     >Submit</Button>
                 }
             </Box>
-            {/* {message !== null && send===true &&
-                <Box>
-                    <Fade in={send} timeout={10}><p>Distress signal sent!</p></Fade>
-                </Box>
-            } */}
             <Grid container>
                 <Grid item xs={6}>
                     <BackButton handleClick={props.back}></BackButton>
