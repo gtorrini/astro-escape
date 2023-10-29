@@ -1,23 +1,14 @@
-import React from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { React, useState } from 'react';
 import { Box, Step, Stepper, StepLabel } from '@mui/material';
-import Intro from './Intro.jsx';
 import ImageHunt from './ImageHunt.jsx';
+import Protocol from './ProtocolEval.jsx';
 import Controls from './CommsPanel.jsx';
 import Signal from './DistressSignal.jsx';
 import Cipher from './CaesarCipher.jsx';
 
 
-const darkTheme = createTheme({
-    palette: {
-      mode: 'dark',
-    },
-  });
-
-const steps = ['Intro', 'Clue 1', 'Clue 2', 'Clue 3', 'Clue 4']
-
-export default function HorizontalLinearStepper() {
-    const [activeStep, setActiveStep] = React.useState(0);
+export default function Escape() {
+    const [activeStep, setActiveStep] = useState(0);
   
     const handleNext = () => {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -33,13 +24,13 @@ export default function HorizontalLinearStepper() {
 
     const handleContent = () => {
         switch(activeStep) {
-            case(0):
+            case(0): 
                 return(
-                    <Intro next={handleNext}></Intro>
+                    <ImageHunt next={handleNext}></ImageHunt>
                 );
-            case(1): 
+            case(1):
                 return(
-                    <ImageHunt back={handleBack} next={handleNext}></ImageHunt>
+                    <Protocol back={handleBack} next={handleNext}></Protocol>
                 );
             case(2):
                 return(
@@ -59,27 +50,25 @@ export default function HorizontalLinearStepper() {
     return (
         <>
             <Box sx={{ mx: 2, my: 2}}>
-                <ThemeProvider theme={darkTheme}>
-                    <Stepper activeStep={activeStep}>
-                        <Step key={steps[0]}>
-                            <StepLabel></StepLabel>
-                        </Step>
-                        <Step key={steps[1]}>
-                            <StepLabel></StepLabel>
-                        </Step>
-                        <Step key={steps[2]}>
-                            <StepLabel></StepLabel>
-                        </Step>
-                        <Step key={steps[3]}>
-                            <StepLabel></StepLabel>
-                        </Step>
-                        <Step key={steps[4]}>
-                            <StepLabel></StepLabel>
-                        </Step>
-                    </Stepper>
-                    {handleContent()}
-                </ThemeProvider>
+                <Stepper activeStep={activeStep}>
+                    <Step key="puzzle-1">
+                        <StepLabel></StepLabel>
+                    </Step>
+                    <Step key="puzzle-2">
+                        <StepLabel></StepLabel>
+                    </Step>
+                    <Step key="puzzle-3">
+                        <StepLabel></StepLabel>
+                    </Step>
+                    <Step key="puzzle-4">
+                        <StepLabel></StepLabel>
+                    </Step>
+                    <Step key="puzzle-5">
+                        <StepLabel></StepLabel>
+                    </Step>
+                </Stepper>
+                {handleContent()}
             </Box>
         </>
     );
-  }
+}
