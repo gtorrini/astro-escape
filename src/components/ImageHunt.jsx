@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Grid, Typography } from '@mui/material'; 
-import { BackButton, NextButton } from './NavButtons.jsx';
+import { NextButton } from './NavButtons.jsx';
 import ppk from '../ppk.png';
 
 export default function ImageHunt(props) {
@@ -14,6 +14,7 @@ export default function ImageHunt(props) {
     const calcCoords = () => {
         const width = window.innerWidth;
 
+        // Coords for phones
         if (width <= 480) {
             return "75, 85, 110, 90, 105, 130, 65, 120";
         }
@@ -37,12 +38,12 @@ export default function ImageHunt(props) {
 
     return (
         <>
-            <Box sx={{my: 5}}>
+            <Box sx={{my:5, maxWidth: '60%', mx: 'auto'}}>
                 <Typography variant="h6" gutterBottom>
-                    What&#39;s the Procedure?
+                    Challenge #1
                 </Typography>
-                <Typography variant="body1">
-                    You want to look up the protocol for flying near black holes, but you misplaced your mission manual. <br/> Search through your personal items below to find it.
+                <Typography variant="body1" sx={{textAlign: 'center'}}>
+                    You want to look up the protocol for flying near black holes, but you misplaced your mission manual. Search through your personal items below to find it:
                 </Typography>
             </Box>
             <Box sx={{my: 5}}>
@@ -59,7 +60,6 @@ export default function ImageHunt(props) {
             </Box>
             <Grid container>
                 <Grid item xs={6}>
-                    <BackButton handleClick={props.back}></BackButton>
                 </Grid>
                 <Grid item xs={6}>
                     {found &&
@@ -72,6 +72,5 @@ export default function ImageHunt(props) {
 }
 
 ImageHunt.propTypes = {
-    back: PropTypes.func.isRequired,
     next: PropTypes.func.isRequired
 };
