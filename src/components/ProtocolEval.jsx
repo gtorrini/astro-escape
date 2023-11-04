@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Fade, FormControl, FormControlLabel, Grid, Radio, RadioGroup, Typography } from '@mui/material'; 
 import { grey, yellow } from '@mui/material/colors';
-import { BackButton, NextButton } from './NavButtons.jsx';
+import { BackButton, NextButton, RestartButton } from './NavButtons.jsx';
 
 const page = yellow[50];
 const screen = grey[900];
@@ -102,10 +102,13 @@ export default function Protocol(props) {
             }
         </Box>
         <Grid container>
-            <Grid item xs={6}>
+            <Grid item xs={4}>
                 <BackButton handleClick={props.back}></BackButton>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={4}>
+                <RestartButton handleClick={props.restart}></RestartButton>
+            </Grid>
+            <Grid item xs={4}>
                 {correct &&
                     <NextButton handleClick={props.next}></NextButton>
                 }
@@ -117,5 +120,6 @@ export default function Protocol(props) {
 
 Protocol.propTypes = {
     back: PropTypes.func.isRequired,
-    next: PropTypes.func.isRequired
+    next: PropTypes.func.isRequired,
+    restart: PropTypes.func.isRequired
 };

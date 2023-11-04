@@ -8,7 +8,7 @@ import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import SensorOccupiedIcon from '@mui/icons-material/SensorOccupied';
 import SsidChartIcon from '@mui/icons-material/SsidChart';
 import SwitchAccessShortcutIcon from '@mui/icons-material/SwitchAccessShortcut';
-import { BackButton, NextButton } from './NavButtons.jsx';
+import { BackButton, NextButton, RestartButton } from './NavButtons.jsx';
 
 const screen = grey[900];
 const frame = grey[400];
@@ -163,10 +163,13 @@ export default function Controls(props) {
                 >Submit</Button>
             </Box>
             <Grid container>
-                <Grid item xs={6}>
+                <Grid item xs={4}>
                     <BackButton handleClick={props.back}></BackButton>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={4}>
+                    <RestartButton handleClick={props.restart}></RestartButton>
+                </Grid>
+                <Grid item xs={4}>
                     {send &&
                         <NextButton handleClick={props.next}></NextButton>
                     }
@@ -178,5 +181,6 @@ export default function Controls(props) {
 
 Controls.propTypes = {
     back: PropTypes.func.isRequired,
-    next: PropTypes.func.isRequired
+    next: PropTypes.func.isRequired, 
+    restart: PropTypes.func.isRequired
 };

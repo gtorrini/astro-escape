@@ -5,7 +5,7 @@ import BackspaceIcon from '@mui/icons-material/Backspace';
 import ClearIcon from '@mui/icons-material/Clear';
 import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import { red, orange, yellow, green, grey, blue, indigo, purple } from '@mui/material/colors';
-import { BackButton, NextButton } from './NavButtons.jsx';
+import { BackButton, NextButton, RestartButton } from './NavButtons.jsx';
 
 /* Set up screen colors */
 const screen = grey[900];
@@ -253,10 +253,13 @@ export default function Cipher(props) {
                 </ModifiedIcons>
             </Box>
             <Grid container>
-                <Grid item xs={6}>
+                <Grid item xs={4}>
                     <BackButton handleClick={props.back}></BackButton>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={4}>
+                    <RestartButton handleClick={props.restart}></RestartButton>
+                </Grid>
+                <Grid item xs={4}>
                     {decoded &&
                         <NextButton handleClick={props.next}></NextButton>
                     }
@@ -269,4 +272,5 @@ export default function Cipher(props) {
 Cipher.propTypes = {
     back: PropTypes.func.isRequired,
     next: PropTypes.func.isRequired,
+    restart: PropTypes.func.isRequired
 }
