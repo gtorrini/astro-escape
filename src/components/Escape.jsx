@@ -5,7 +5,7 @@ import Protocol from './ProtocolEval.jsx';
 import Controls from './CommsPanel.jsx';
 import Cipher from './CaesarCipher.jsx';
 import Puzzles from './RebusPuzzle.jsx';
-
+import Outro from './Outro.jsx';
 
 export default function Escape() {
     const [activeStep, setActiveStep] = useState(0);
@@ -42,7 +42,11 @@ export default function Escape() {
                 )
             case(4):
                 return(
-                    <Puzzles back={handleBack} restart={handleRestart}></Puzzles>
+                    <Puzzles back={handleBack} next={handleNext} restart={handleRestart}></Puzzles>
+                )
+            case(5):
+                return(
+                    <Outro></Outro>
                 )
         }
     };
