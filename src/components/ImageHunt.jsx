@@ -39,7 +39,7 @@ export default function ImageHunt(props) {
     return (
         <>
             <Box sx={{my:5, maxWidth: '60%', mx: 'auto'}}>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant="h5" gutterBottom>
                     Challenge #1
                 </Typography>
                 <Typography variant="body1" sx={{textAlign: 'center'}}>

@@ -66,7 +66,7 @@ export default function Controls(props) {
     return (
         <>
             <Box sx={{my: 5, maxWidth: '60%', mx: 'auto'}}>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant="h5" gutterBottom>
                     Challenge #3
                 </Typography>
                 <Typography variant="body1">

@@ -165,7 +165,7 @@ export default function Cipher(props) {
     return (
         <>
             <Box sx={{my: 5}}>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant="h5" gutterBottom>
                     Challenge #4
                 </Typography>
                 <Typography variant="body1">
