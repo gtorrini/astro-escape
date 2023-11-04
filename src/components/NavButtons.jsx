@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button'; 
-import IconButton from '@mui/material/IconButton';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import HomeIcon from '@mui/icons-material/Home';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 
@@ -14,12 +14,13 @@ function BackButton(props) {
 
     return (
         <>
-            <IconButton
+            <Button
                 aria-label='back'
                 onClick={handleClick}
+                variant='contained'
             >
                 <ArrowBackIcon></ArrowBackIcon>
-            </IconButton>
+            </Button>
         </>
     );
 }
@@ -28,25 +29,18 @@ BackButton.propTypes = {
     handleClick: PropTypes.func.isRequired
 }
 
-function FinishButton(props) {
-    const handleClick = () => {
-        props.handleClick();
-    }
-
+function HomeButton() {
     return (
         <>
             <Button
+                aria-label='return home'
+                href='/'
                 variant='contained'
-                onClick={handleClick}
             >
-                Finish
+                <HomeIcon></HomeIcon>
             </Button>
         </>
-    )
-}
-
-FinishButton.propTypes = {
-    handleClick: PropTypes.func.isRequired
+    );
 }
 
 function NextButton(props) {
@@ -56,12 +50,13 @@ function NextButton(props) {
 
     return (
         <>
-            <IconButton
+            <Button
                 aria-label='next'
                 onClick={handleClick}
+                variant='contained'
             >
                 <ArrowForwardIcon></ArrowForwardIcon>
-            </IconButton>
+            </Button>
         </>
     );
 }
@@ -77,12 +72,13 @@ function RestartButton(props) {
 
     return (
         <>
-            <IconButton
+            <Button
                 aria-label='restart'
                 onClick={handleClick}
+                variant='contained'
             >
                 <RestartAltIcon></RestartAltIcon>
-            </IconButton>
+            </Button>
         </>
     );
 }
@@ -91,4 +87,4 @@ RestartButton.propTypes = {
     handleClick: PropTypes.func.isRequired
 }
 
-export { BackButton, FinishButton, NextButton, RestartButton };
+export { BackButton, HomeButton, NextButton, RestartButton };
