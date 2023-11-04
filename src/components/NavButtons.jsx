@@ -1,30 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@mui/material/Button';
+import Button from '@mui/material/Button'; 
+import IconButton from '@mui/material/IconButton';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
-function NextButton(props) {
-    const handleClick = () => {
-        props.handleClick();
-    }
-
-    return (
-        <>
-            <Button
-                className='next'
-                variant='contained'
-                onClick={handleClick}
-            >
-                <ArrowForwardIcon></ArrowForwardIcon>
-            </Button>
-        </>
-    );
-}
-
-NextButton.propTypes = {
-    handleClick: PropTypes.func.isRequired
-}
 
 function BackButton(props) {
     const handleClick = () => {
@@ -33,13 +14,12 @@ function BackButton(props) {
 
     return (
         <>
-            <Button
-                className='back'
-                variant='contained'
+            <IconButton
+                aria-label='back'
                 onClick={handleClick}
             >
                 <ArrowBackIcon></ArrowBackIcon>
-            </Button>
+            </IconButton>
         </>
     );
 }
@@ -48,4 +28,67 @@ BackButton.propTypes = {
     handleClick: PropTypes.func.isRequired
 }
 
-export { NextButton, BackButton };
+function FinishButton(props) {
+    const handleClick = () => {
+        props.handleClick();
+    }
+
+    return (
+        <>
+            <Button
+                variant='contained'
+                onClick={handleClick}
+            >
+                Finish
+            </Button>
+        </>
+    )
+}
+
+FinishButton.propTypes = {
+    handleClick: PropTypes.func.isRequired
+}
+
+function NextButton(props) {
+    const handleClick = () => {
+        props.handleClick();
+    }
+
+    return (
+        <>
+            <IconButton
+                aria-label='next'
+                onClick={handleClick}
+            >
+                <ArrowForwardIcon></ArrowForwardIcon>
+            </IconButton>
+        </>
+    );
+}
+
+NextButton.propTypes = {
+    handleClick: PropTypes.func.isRequired
+}
+
+function RestartButton(props) {
+    const handleClick = () => {
+        props.handleClick();
+    }
+
+    return (
+        <>
+            <IconButton
+                aria-label='restart'
+                onClick={handleClick}
+            >
+                <RestartAltIcon></RestartAltIcon>
+            </IconButton>
+        </>
+    );
+}
+
+RestartButton.propTypes = {
+    handleClick: PropTypes.func.isRequired
+}
+
+export { BackButton, FinishButton, NextButton, RestartButton };
