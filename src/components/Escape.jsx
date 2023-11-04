@@ -4,6 +4,7 @@ import ImageHunt from './ImageHunt.jsx';
 import Protocol from './ProtocolEval.jsx';
 import Controls from './CommsPanel.jsx';
 import Cipher from './CaesarCipher.jsx';
+import Puzzles from './RebusPuzzle.jsx';
 
 
 export default function Escape() {
@@ -17,9 +18,9 @@ export default function Escape() {
       setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
   
-    // const handleReset = () => {
-    //   setActiveStep(0);
-    // };
+    const handleRestart = () => {
+      setActiveStep(0);
+    };
 
     const handleContent = () => {
         switch(activeStep) {
@@ -29,15 +30,19 @@ export default function Escape() {
                 );
             case(1):
                 return(
-                    <Protocol back={handleBack} next={handleNext}></Protocol>
+                    <Protocol back={handleBack} next={handleNext} restart={handleRestart}></Protocol>
                 );
             case(2):
                 return(
-                    <Controls back={handleBack} next={handleNext}></Controls>
+                    <Controls back={handleBack} next={handleNext} restart={handleRestart}></Controls>
                 );
             case(3):
                 return(
-                    <Cipher back={handleBack} next={handleNext}></Cipher>
+                    <Cipher back={handleBack} next={handleNext} restart={handleRestart}></Cipher>
+                )
+            case(4):
+                return(
+                    <Puzzles back={handleBack} restart={handleRestart}></Puzzles>
                 )
         }
     };
@@ -56,6 +61,9 @@ export default function Escape() {
                         <StepLabel></StepLabel>
                     </Step>
                     <Step key="puzzle-4">
+                        <StepLabel></StepLabel>
+                    </Step>
+                    <Step key="puzzle-5">
                         <StepLabel></StepLabel>
                     </Step>
                 </Stepper>
