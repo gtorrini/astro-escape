@@ -15,10 +15,10 @@ const darkTheme = createTheme({
       h4: {
           fontFamily: "Silkscreen",
       },
-      h6: {
+      h5: {
           fontFamily: "Silkscreen",
       },
-  },
+  }
 });
 
 function App() {

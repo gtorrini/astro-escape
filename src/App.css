@@ -11,7 +11,7 @@ h3, p, span {
   /* font-family: 'Consolas', 'Courier New', monospace */
 }
 
-h5 {
+h4, h5 {
   color: #ffc107;
   text-shadow: 2px 2px #b71c1c;
 }
