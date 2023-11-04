@@ -12,6 +12,7 @@ function Rebus(props) {
         if (text.toLowerCase().includes(props.includes)) {
             setError(null);
             setExplain(true);
+            props.handleSolved;
         } else {
             setError(props.hint);
         }
@@ -71,13 +72,25 @@ function Rebus(props) {
 
 Rebus.propTypes = {
     includes: PropTypes.string.isRequired,
-    clue: PropTypes.string.isRequired,
+    clue: PropTypes.object.isRequired,
     hint: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    explanation: PropTypes.string.isRequired
+    explanation: PropTypes.object.isRequired,
+    handleSolved: PropTypes.func.isRequired
 };
 
 export default function Puzzles(props) {
+    const [firstSolved, setFirstSolved] = useState(false);
+    const [secondSolved, setSecondSolved] = useState(false);
+
+    const handleFirst = () => {
+        setFirstSolved(true);
+    }
+
+    const handleSecond = () => {
+        setSecondSolved(true);
+    }
+
     const spaghetti = {
         includes: 'spaghettification',
         clue: <>&#127837; + FI + &#128049; + (&#129409; - L)</>,
@@ -90,7 +103,8 @@ export default function Puzzles(props) {
             black holes. Since the radius of the event horizon (or &#34;point of no return&#34;)
             increases with the mass of the black hole, the edge of a less massive black hole is
             closer to its infinitely dense center.
-        </>
+        </>,
+        handleSolved: handleFirst
     };
 
     const radiation = {
@@ -103,7 +117,8 @@ export default function Puzzles(props) {
             orbit in a rotating disk. As different streams of particles inside the disk move
             past each other, the friction between them produces heat and high-energy radiation,
             including powerful X-rays that can damage your cells.
-        </>
+        </>,
+        handleSolved: handleSecond
     }
 
      
@@ -130,7 +145,9 @@ export default function Puzzles(props) {
                     </ButtonGroup>
                 </Grid>
                 <Grid item xs={4}>
-                    <Button variant="contained">Finish</Button>
+                    {(firstSolved && secondSolved) &&
+                        <Button variant="contained" onClick={props.next}>Finish</Button>
+                    }
                 </Grid>
             </Grid>
         </>
@@ -139,5 +156,6 @@ export default function Puzzles(props) {
 
 Puzzles.propTypes = {
     back: PropTypes.func.isRequired,
+    next: PropTypes.func.isRequired,
     restart: PropTypes.func.isRequired
 }
