@@ -2,13 +2,13 @@ import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { blue, green, grey, red, yellow } from '@mui/material/colors';
-import { Box, Button, Fab, Grid, TextField, Typography } from '@mui/material'; 
+import { Box, Button, ButtonGroup, Fab, Grid, TextField, Typography } from '@mui/material'; 
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import SensorOccupiedIcon from '@mui/icons-material/SensorOccupied';
 import SsidChartIcon from '@mui/icons-material/SsidChart';
 import SwitchAccessShortcutIcon from '@mui/icons-material/SwitchAccessShortcut';
-import { BackButton, NextButton, RestartButton } from './NavButtons.jsx';
+import { BackButton, HomeButton, NextButton, RestartButton } from './NavButtons.jsx';
 
 const screen = grey[900];
 const frame = grey[400];
@@ -167,7 +167,10 @@ export default function Controls(props) {
                     <BackButton handleClick={props.back}></BackButton>
                 </Grid>
                 <Grid item xs={4}>
-                    <RestartButton handleClick={props.restart}></RestartButton>
+                    <ButtonGroup aria-label='nav button group' variant='contained'>
+                        <RestartButton handleClick={props.restart}></RestartButton>
+                        <HomeButton></HomeButton>
+                    </ButtonGroup>
                 </Grid>
                 <Grid item xs={4}>
                     {send &&

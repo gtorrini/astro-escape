@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Button, Grid, TextField, Typography } from '@mui/material';
-import { BackButton, RestartButton } from './NavButtons.jsx';
+import { Box, Button, ButtonGroup, Grid, TextField, Typography } from '@mui/material';
+import { BackButton, HomeButton, RestartButton } from './NavButtons.jsx';
 
 function Rebus(props) {
     const [answer, setAnswer] = useState(null);
@@ -124,9 +124,13 @@ export default function Puzzles(props) {
                     <BackButton handleClick={props.back}></BackButton>
                 </Grid>
                 <Grid item xs={4}>
-                    <RestartButton handleClick={props.restart}></RestartButton>
+                    <ButtonGroup aria-label='nav button group' variant='contained'>
+                        <RestartButton handleClick={props.restart}></RestartButton>
+                        <HomeButton></HomeButton>
+                    </ButtonGroup>
                 </Grid>
                 <Grid item xs={4}>
+                    <Button variant="contained">Finish</Button>
                 </Grid>
             </Grid>
         </>
