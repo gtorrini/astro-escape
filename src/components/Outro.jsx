@@ -5,7 +5,7 @@ export default function Outro() {
     return (
         <>
             <Box sx={{my: 5, maxWidth: '60%', mx: 'auto'}}>
-                <Typography variant="h4">
+                <Typography className='site-heading' variant="h4">
                     {'\u2726'} CONGRATULATIONS {'\u2726'}
                 </Typography>
                 <Typography variant="body1" sx={{my: 3}}>

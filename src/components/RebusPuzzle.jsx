@@ -25,7 +25,7 @@ function Rebus(props) {
                     mb: (props.id === '1') ? 10 : 5,
                 }}
             >
-                <Typography variant="h3" sx={{padding: 2}}>
+                <Typography className='site-heading' variant="h3" sx={{padding: 2}}>
                     {props.clue}
                 </Typography>
                 <TextField 
@@ -125,8 +125,8 @@ export default function Puzzles(props) {
     return (
         <>
             <Box sx={{my: 5, maxWidth: '60%', mx: 'auto'}}>
-                <Typography variant="h5" gutterBottom>
-                    Challenge #5
+                <Typography className='site-heading' variant="h5" gutterBottom>
+                    Puzzle #5
                 </Typography>
                 <Typography variant="body1">
                     The aliens see you as their equal, but they don&#39;t know if they can trust you to fly responsibly throughout the cosmos. Solve the rebus puzzles below to prove you are ultimately worthy of their compassion:

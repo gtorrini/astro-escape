@@ -39,8 +39,8 @@ export default function ImageHunt(props) {
     return (
         <>
             <Box sx={{my:5, maxWidth: '60%', mx: 'auto'}}>
-                <Typography variant="h5" gutterBottom>
-                    Challenge #1
+                <Typography className='site-heading' variant="h5" gutterBottom>
+                    Puzzle #1
                 </Typography>
                 <Typography variant="body1" sx={{textAlign: 'center'}}>
                     You want to look up the protocol for flying near black holes, but you misplaced your mission manual. Search through your personal items below to find it:

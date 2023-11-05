@@ -165,8 +165,8 @@ export default function Cipher(props) {
     return (
         <>
             <Box sx={{my: 5}}>
-                <Typography variant="h5" gutterBottom>
-                    Challenge #4
+                <Typography className='site-heading' variant="h5" gutterBottom>
+                    Puzzle #4
                 </Typography>
                 <Typography variant="body1">
                     You received a message, but it seems to be encoded. Decode it and send the appropriate response.

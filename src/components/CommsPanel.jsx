@@ -66,8 +66,8 @@ export default function Controls(props) {
     return (
         <>
             <Box sx={{my: 5, maxWidth: '60%', mx: 'auto'}}>
-                <Typography variant="h5" gutterBottom>
-                    Challenge #3
+                <Typography className='site-heading' variant="h5" gutterBottom>
+                    Puzzle #3
                 </Typography>
                 <Typography variant="body1">
                     You need to send a distress signal, but in your panic, you spilled coffee all over the schematics in your manual. Use the control panel below to activate the correct subsystem.

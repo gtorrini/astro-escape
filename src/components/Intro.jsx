@@ -5,7 +5,7 @@ export default function Intro() {
     return (
         <>
             <Box sx={{my: 5}}>
-                <Typography variant="h4">
+                <Typography className='site-heading' variant="h4">
                     Welcome!
                 </Typography>
                 <Typography variant="body1" sx={{my: 3}}>

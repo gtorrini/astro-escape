@@ -30,8 +30,8 @@ export default function Protocol(props) {
     return (
         <>
         <Box sx={{my: 5, maxWidth: '60%', mx: 'auto'}}>
-            <Typography variant="h5" gutterBottom>
-                Challenge #2
+            <Typography className='site-heading' variant="h5" gutterBottom>
+                Puzzle #2
             </Typography>
             <Typography variant="body1" sx={{ textAlign: 'center' }}>
                 Read the instructions in the mission manual. Use your discretion and reports from the monitoring panel to determine the best protocol.
