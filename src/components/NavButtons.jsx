@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Button from '@mui/material/Button'; 
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import HomeIcon from '@mui/icons-material/Home';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 
@@ -27,20 +26,6 @@ function BackButton(props) {
 
 BackButton.propTypes = {
     handleClick: PropTypes.func.isRequired
-}
-
-function HomeButton() {
-    return (
-        <>
-            <Button
-                aria-label='return home'
-                href='/'
-                variant='contained'
-            >
-                <HomeIcon></HomeIcon>
-            </Button>
-        </>
-    );
 }
 
 function NextButton(props) {
@@ -87,4 +72,4 @@ RestartButton.propTypes = {
     handleClick: PropTypes.func.isRequired
 }
 
-export { BackButton, HomeButton, NextButton, RestartButton };
+export { BackButton, NextButton, RestartButton };
