@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Grid, Typography } from '@mui/material'; 
 import { NextButton } from './NavButtons.jsx';
-import ppk from '../ppk.png';
+import ppk from '../assets/ppk.png';
 
 export default function ImageHunt(props) {
     const [found, setFound] = useState(false);
