@@ -149,7 +149,7 @@ export default function Rebus(props) {
     )
 }
 
-Puzzles.propTypes = {
+Rebus.propTypes = {
     back: PropTypes.func.isRequired,
     next: PropTypes.func.isRequired,
     restart: PropTypes.func.isRequired
