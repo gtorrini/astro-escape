@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Button, ButtonGroup, Grid, TextField, Typography } from '@mui/material';
-import { BackButton, HomeButton, RestartButton } from './NavButtons.jsx';
+import { Box, Button, Grid, TextField, Typography } from '@mui/material';
+import { BackButton, RestartButton } from './NavButtons.jsx';
 
 function Rebus(props) {
     const [answer, setAnswer] = useState(null);
@@ -12,7 +12,7 @@ function Rebus(props) {
         if (text.toLowerCase().includes(props.includes)) {
             setError(null);
             setExplain(true);
-            props.handleSolved;
+            props.handleSolved();
         } else {
             setError(props.hint);
         }
@@ -80,15 +80,15 @@ Rebus.propTypes = {
 };
 
 export default function Puzzles(props) {
-    const [firstSolved, setFirstSolved] = useState(false);
-    const [secondSolved, setSecondSolved] = useState(false);
+    const [first, setFirst] = useState(false);
+    const [second, setSecond] = useState(false);
 
     const handleFirst = () => {
-        setFirstSolved(true);
+        setFirst(true);
     }
 
     const handleSecond = () => {
-        setSecondSolved(true);
+        setSecond(true);
     }
 
     const spaghetti = {
@@ -139,15 +139,10 @@ export default function Puzzles(props) {
                     <BackButton handleClick={props.back}></BackButton>
                 </Grid>
                 <Grid item xs={4}>
-                    <ButtonGroup aria-label='nav button group' variant='contained'>
-                        <RestartButton handleClick={props.restart}></RestartButton>
-                        <HomeButton></HomeButton>
-                    </ButtonGroup>
+                    <RestartButton handleClick={props.restart}></RestartButton>
                 </Grid>
                 <Grid item xs={4}>
-                    {(firstSolved && secondSolved) &&
-                        <Button variant="contained" onClick={props.next}>Finish</Button>
-                    }
+                    <Button disabled={(first===false) && (second===false)} variant="contained" onClick={props.next}>Finish</Button>
                 </Grid>
             </Grid>
         </>
