@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Box, Button, Grid, TextField, Typography } from '@mui/material';
 import { BackButton, RestartButton } from './NavButtons.jsx';
 
-function Rebus(props) {
+function Puzzle(props) {
     const [answer, setAnswer] = useState(null);
     const [error, setError] = useState(null);
     const [explain, setExplain] = useState(false);
@@ -70,7 +70,7 @@ function Rebus(props) {
     );
 }
 
-Rebus.propTypes = {
+Puzzle.propTypes = {
     includes: PropTypes.string.isRequired,
     clue: PropTypes.object.isRequired,
     hint: PropTypes.string.isRequired,
@@ -79,7 +79,7 @@ Rebus.propTypes = {
     handleSolved: PropTypes.func.isRequired
 };
 
-export default function Puzzles(props) {
+export default function Rebus(props) {
     const [first, setFirst] = useState(false);
     const [second, setSecond] = useState(false);
 
