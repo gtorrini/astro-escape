@@ -1,7 +1,7 @@
 import { React } from 'react';
 import { Box, Typography } from '@mui/material';
 
-export default function Intro() {
+export default function Intr() {
     return (
         <>
             <Box sx={{my: 5}}>
