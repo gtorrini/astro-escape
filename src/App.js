@@ -2,13 +2,13 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
 import ResponsiveAppBar from './components/NavBar.jsx';
 import Intro from './components/Intro.jsx';
 import Escape from './components/Escape.jsx';
 import About from './components/About.jsx';
 
-const darkTheme = createTheme({
+let darkTheme = createTheme({
   palette: {
       mode: 'dark',
   },
@@ -21,6 +21,8 @@ const darkTheme = createTheme({
       },
   }
 });
+
+darkTheme = responsiveFontSizes(darkTheme);
 
 function App() {
   return (
