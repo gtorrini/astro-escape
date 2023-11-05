@@ -1,8 +1,7 @@
 .App {
   text-align: center;
-  /* background-color: #ffffff; */
   background-color: #090415;
-  border: 2px solid #ffffff;
+  border: 5px solid #193154;
   margin: 30px;
 }
 
@@ -11,8 +10,9 @@ h3, p, span {
   /* font-family: 'Consolas', 'Courier New', monospace */
 }
 
-h4, h5 {
+.site-heading {
   color: #ffc107;
+  font-family: 'Silkscreen';
   text-shadow: 2px 2px #b71c1c;
 }
 
