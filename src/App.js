@@ -31,7 +31,7 @@ function App() {
           <div className="App">
             <Router>
               <Routes>
-                <Route path='/' element={<Intro></Intro>}></Route>
+                <Route path='/' element={<Home></Home>}></Route>
                 <Route path='/play' element={<Escape></Escape>}></Route>
                 <Route path='/about' element={<About></About>}></Route>
               </Routes>
