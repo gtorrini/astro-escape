@@ -4,7 +4,7 @@ import ImageHunt from './ImageHunt.jsx';
 import Protocol from './Protocol.jsx';
 import Controls from './Controls.jsx';
 import Cipher from './Cipher.jsx';
-import Puzzles from './RebusPuzzle.jsx';
+import Rebus from './Rebus.jsx';
 import Outro from './Outro.jsx';
 
 export default function Escape() {
