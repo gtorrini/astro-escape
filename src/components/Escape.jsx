@@ -42,7 +42,7 @@ export default function Escape() {
                 );
             case(4):
                 return(
-                    <Puzzles back={handleBack} next={handleNext} restart={handleRestart}></Puzzles>
+                    <Rebus back={handleBack} next={handleNext} restart={handleRestart}></Rebus>
                 );
             case(5):
                 return(
