@@ -37,6 +37,7 @@ function NextButton(props) {
         <>
             <Button
                 aria-label='next'
+                disabled={props.disabled}
                 onClick={handleClick}
                 variant='contained'
             >
@@ -47,7 +48,8 @@ function NextButton(props) {
 }
 
 NextButton.propTypes = {
-    handleClick: PropTypes.func.isRequired
+    handleClick: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired
 }
 
 function RestartButton(props) {
