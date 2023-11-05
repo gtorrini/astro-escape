@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import { Box, Step, Stepper, StepLabel } from '@mui/material';
 import ImageHunt from './ImageHunt.jsx';
-import Protocol from './ProtocolEval.jsx';
+import Protocol from './Protocol.jsx';
 import Controls from './Controls.jsx';
 import Cipher from './Cipher.jsx';
 import Puzzles from './RebusPuzzle.jsx';
@@ -39,15 +39,15 @@ export default function Escape() {
             case(3):
                 return(
                     <Cipher back={handleBack} next={handleNext} restart={handleRestart}></Cipher>
-                )
+                );
             case(4):
                 return(
                     <Puzzles back={handleBack} next={handleNext} restart={handleRestart}></Puzzles>
-                )
+                );
             case(5):
                 return(
                     <Outro></Outro>
-                )
+                );
         }
     };
   
