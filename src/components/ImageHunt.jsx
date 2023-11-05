@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Grid, Typography } from '@mui/material'; 
-import { HomeButton, NextButton } from './NavButtons.jsx';
+import { NextButton } from './NavButtons.jsx';
 import ppk from '../ppk.png';
 
 export default function ImageHunt(props) {
@@ -62,12 +62,9 @@ export default function ImageHunt(props) {
                 <Grid item xs={4}>
                 </Grid>
                 <Grid item xs={4}>
-                    <HomeButton></HomeButton>
                 </Grid>
                 <Grid item xs={4}>
-                    {found &&
-                        <NextButton handleClick={props.next}></NextButton>
-                    }
+                    <NextButton disabled={found === false} handleClick={props.next}></NextButton>
                 </Grid>
             </Grid>
         </>

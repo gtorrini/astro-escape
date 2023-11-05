@@ -5,7 +5,7 @@ import BackspaceIcon from '@mui/icons-material/Backspace';
 import ClearIcon from '@mui/icons-material/Clear';
 import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import { red, orange, yellow, green, grey, blue, indigo, purple } from '@mui/material/colors';
-import { BackButton, HomeButton, NextButton, RestartButton } from './NavButtons.jsx';
+import { BackButton, NextButton, RestartButton } from './NavButtons.jsx';
 
 /* Set up screen colors */
 const screen = grey[900];
@@ -257,15 +257,10 @@ export default function Cipher(props) {
                     <BackButton handleClick={props.back}></BackButton>
                 </Grid>
                 <Grid item xs={4}>
-                    <ButtonGroup aria-label='nav button group' variant='contained'>
-                        <RestartButton handleClick={props.restart}></RestartButton>
-                        <HomeButton></HomeButton>
-                    </ButtonGroup>
+                    <RestartButton handleClick={props.restart}></RestartButton>
                 </Grid>
                 <Grid item xs={4}>
-                    {decoded &&
-                        <NextButton handleClick={props.next}></NextButton>
-                    }
+                    <NextButton disabled={decoded===false} handleClick={props.next}></NextButton>
                 </Grid>
             </Grid>
         </>

@@ -1,8 +1,8 @@
 import { React, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Box, ButtonGroup, Fade, FormControl, FormControlLabel, Grid, Radio, RadioGroup, Typography } from '@mui/material'; 
+import { Box, Fade, FormControl, FormControlLabel, Grid, Radio, RadioGroup, Typography } from '@mui/material'; 
 import { grey, yellow } from '@mui/material/colors';
-import { BackButton, HomeButton, NextButton, RestartButton } from './NavButtons.jsx';
+import { BackButton, NextButton, RestartButton } from './NavButtons.jsx';
 
 const page = yellow[50];
 const screen = grey[900];
@@ -106,15 +106,10 @@ export default function Protocol(props) {
                 <BackButton handleClick={props.back}></BackButton>
             </Grid>
             <Grid item xs={4}>
-                <ButtonGroup aria-label='nav button group' variant='contained'>
-                    <RestartButton handleClick={props.restart}></RestartButton>
-                    <HomeButton></HomeButton>
-                </ButtonGroup>
+                <RestartButton handleClick={props.restart}></RestartButton>
             </Grid>
             <Grid item xs={4}>
-                {correct &&
-                    <NextButton handleClick={props.next}></NextButton>
-                }
+                <NextButton disabled={correct===false} handleClick={props.next}></NextButton>
             </Grid>
         </Grid>
         </>
