@@ -2,8 +2,8 @@ import { React, useState } from 'react';
 import { Box, Step, Stepper, StepLabel } from '@mui/material';
 import ImageHunt from './ImageHunt.jsx';
 import Protocol from './ProtocolEval.jsx';
-import Controls from './CommsPanel.jsx';
-import Cipher from './CaesarCipher.jsx';
+import Controls from './Controls.jsx';
+import Cipher from './Cipher.jsx';
 import Puzzles from './RebusPuzzle.jsx';
 import Outro from './Outro.jsx';
 
