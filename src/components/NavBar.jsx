@@ -1,19 +1,29 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 
-const pages = ['Play', 'About'];
-const routes = ['/play', '/about'];
+const navAtts = {
+  play: {
+    label: 'Play Astro Escape game',
+    name: 'Play',
+    route: '/play',
+  },
+  about: {
+    label: 'View info about this site',
+    name: 'About',
+    route: '/about',
+  }
+}
 
-function ResponsiveAppBar() {
+export default function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -25,34 +35,36 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl" sx={{backgroundColor: '#193154'}}>
+    <AppBar position='static'>
+      <Container maxWidth='xl' sx={{backgroundColor: '#193154'}}>
         <Toolbar disableGutters>
           <Typography
-            variant="h4"
-            noWrap
-            component="a"
+            aria-label="Visit home page"
+            component='a'
             href="/"
+            noWrap
             sx={{
-              mr: 2,
+              color: '#ffc107',
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'Silkscreen',
-              color: '#ffc107',
+              mr: 2,
               textShadow: '2px 2px #b71c1c',
               textDecoration: 'none',
             }}
+            tabIndex="0"
+            title="Astro Escape Home"
+            variant='h4'
           >
             Astro {'\u2726'} Escape
           </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, flexGrow: 1 }}>
             <IconButton
-              size="large"
-              aria-label="account of current user"
+              aria-label="Menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
+              color='inherit'
               onClick={handleOpenNavMenu}
-              color="inherit"
+              size='large'
             >
               <MenuIcon />
             </IconButton>
@@ -74,40 +86,57 @@ function ResponsiveAppBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page, idx) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography component='a' href={routes[idx]} textAlign="center" sx={{textDecoration: 'none', color: 'white', fontFamily: 'Silkscreen'}}>{page}</Typography>
+              {Object.entries(navAtts).map(([key, value]) => (
+                <MenuItem key={key} onClick={handleCloseNavMenu}>
+                  <Typography
+                    aria-label={value.label}
+                    component='a'
+                    href={value.route}
+                    sx={{ textDecoration: 'none', color: 'white', fontFamily: 'Silkscreen' }}
+                    textAlign='center'
+                    tabIndex="0"
+                  >
+                    {value.name}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
           <Typography
-            variant="h5"
-            noWrap
-            component="a"
+            component='a'
             href="/"
+            noWrap
             sx={{
-              mr: 2,
+              color: '#ffc107',
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
               fontFamily: 'Silkscreen',
-              color: '#ffc107',
+              mr: 2,
               textShadow: '2px 2px #b71c1c',
               textDecoration: 'none',
             }}
+            variant='h5'
           >
             Astro {'\u2726'} Escape
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page, idx) => (
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, flexGrow: 1 }}>
+            {Object.entries(navAtts).map(([key, value]) => (
               <Button
+                aria-label={value.label}
                 component='a'
-                href={routes[idx]}
-                key={page}
+                href={value.route}
+                key={key}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', textDecoration: 'none', display: 'block', fontFamily: 'Silkscreen'}}
+                sx={{
+                  color: 'white',
+                  display: 'block',
+                  fontFamily: 'Silkscreen',
+                  my: 2,
+                  textDecoration: 'none'
+                }}
+                tabIndex="0"
               >
-                {page}
+                {value.name}
               </Button>
             ))}
           </Box>
@@ -116,4 +145,3 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
