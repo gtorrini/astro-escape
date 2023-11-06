@@ -8,7 +8,7 @@ export default function About() {
     return (
         <>
             <Box sx={{my: 5}}>
-                <Typography variant="h4">
+                <Typography className="site-heading" variant="h4">
                     ABOUT
                 </Typography>
                 <Typography variant="body1" sx={{my: 3, maxWidth: '60%', mx: 'auto'}}>
