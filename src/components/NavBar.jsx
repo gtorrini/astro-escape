@@ -12,14 +12,16 @@ import Typography from '@mui/material/Typography';
 
 const navAtts = {
   play: {
-    label: 'Play Astro Escape game',
+    label: 'Play the game',
     name: 'Play',
     route: '/play',
+    title: 'Play the game'
   },
   about: {
     label: 'View info about this site',
     name: 'About',
     route: '/about',
+    title: 'View info about this site'
   }
 }
 
@@ -51,7 +53,7 @@ export default function ResponsiveAppBar() {
               textShadow: '2px 2px #b71c1c',
               textDecoration: 'none',
             }}
-            tabIndex="0"
+            tabIndex={0}
             title="Astro Escape Home"
             variant='h4'
           >
@@ -92,9 +94,9 @@ export default function ResponsiveAppBar() {
                     aria-label={value.label}
                     component='a'
                     href={value.route}
-                    sx={{ textDecoration: 'none', color: 'white', fontFamily: 'Silkscreen' }}
-                    textAlign='center'
-                    tabIndex="0"
+                    sx={{ color: 'white', fontFamily: 'Silkscreen', textDecoration: 'none' }}
+                    tabIndex={0}
+                    title={value.title}
                   >
                     {value.name}
                   </Typography>
@@ -132,9 +134,11 @@ export default function ResponsiveAppBar() {
                   display: 'block',
                   fontFamily: 'Silkscreen',
                   my: 2,
+                  textAlign: 'center',
                   textDecoration: 'none'
                 }}
-                tabIndex="0"
+                tabIndex={0}
+                title={value.title}
               >
                 {value.name}
               </Button>
