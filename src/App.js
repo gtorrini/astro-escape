@@ -44,15 +44,15 @@ darkTheme = responsiveFontSizes(darkTheme);
 export default function App() {
   return (
         <ThemeProvider theme={darkTheme}>
-          <Router>
-            <Routes>
-              <Route path='/' element={<Home></Home>}></Route>
-              <Route path='/play' element={<Escape></Escape>}></Route>
-              <Route path='/about' element={<About></About>}></Route>
-            </Routes>
-          </Router>
           <ResponsiveAppBar></ResponsiveAppBar>
           <main>
+            <Router>
+              <Routes>
+                <Route path='/' element={<Home></Home>}></Route>
+                <Route path='/play' element={<Escape></Escape>}></Route>
+                <Route path='/about' element={<About></About>}></Route>
+              </Routes>
+            </Router>
           </main>
           <footer>
             <Container maxWidth='xl' sx={{ backgroundColor: '#193154' }}>
