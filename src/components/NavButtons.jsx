@@ -16,6 +16,7 @@ function BackButton(props) {
             <Button
                 aria-label='back'
                 onClick={handleClick}
+                title='Previous puzzle'
                 variant='contained'
             >
                 <ArrowBackIcon></ArrowBackIcon>
@@ -39,6 +40,7 @@ function NextButton(props) {
                 aria-label='next'
                 disabled={props.disabled}
                 onClick={handleClick}
+                title='Next puzzle'
                 variant='contained'
             >
                 <ArrowForwardIcon></ArrowForwardIcon>
@@ -63,6 +65,7 @@ function RestartButton(props) {
                 aria-label='restart'
                 onClick={handleClick}
                 variant='contained'
+                title='Restart'
             >
                 <RestartAltIcon></RestartAltIcon>
             </Button>
