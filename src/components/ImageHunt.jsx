@@ -1,6 +1,11 @@
+// 3rd-party imports
 import { React, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Grid, Typography } from '@mui/material'; 
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+
+// Local imports
 import { NextButton } from './NavButtons.jsx';
 import ppk from '../assets/ppk.png';
 
@@ -38,23 +43,25 @@ export default function ImageHunt(props) {
 
     return (
         <>
-            <Box sx={{my:5, maxWidth: '60%', mx: 'auto'}}>
+            <Box sx={{ maxWidth: '60%', mx: 'auto', my: 5 }}>
                 <Typography className='site-heading' variant="h5" gutterBottom>
                     Puzzle #1
                 </Typography>
-                <Typography variant="body1" sx={{textAlign: 'center'}}>
+                <Typography variant="body1" sx={{ textAlign: 'center' }}>
                     You want to look up the protocol for flying near black holes, but you misplaced your mission manual. Search through your personal items below to find it:
                 </Typography>
             </Box>
             <Box sx={{my: 5}}>
-                <img src={ppk} id="img-search" alt="Personal items" useMap="#ppk"></img>
+                <img alt="Personal items" id="img-search" useMap="#ppk" src={ppk} title="Personal items" tabIndex={0}></img>
                 <map name="ppk">
                     <area 
-                        shape="poly"
+                        alt="Mission manual"
                         coords={calcCoords()}
-                        alt="Manual"
                         href="javascript:void(0);"
                         onClick={() => handleFound()}
+                        shape="poly"
+                        tabIndex={0}
+                        title="Mission manual"
                     ></area>
                 </map>
             </Box>
