@@ -27,7 +27,7 @@ function App() {
   return (
         <ThemeProvider theme={darkTheme}>
           <ResponsiveAppBar></ResponsiveAppBar>
-          <div className="App">
+          <main className="App">
             <Router>
               <Routes>
                 <Route path='/' element={<Home></Home>}></Route>
@@ -35,7 +35,7 @@ function App() {
                 <Route path='/about' element={<About></About>}></Route>
               </Routes>
             </Router>
-          </div>
+          </main>
         </ThemeProvider>
   );
 }
