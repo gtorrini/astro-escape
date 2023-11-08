@@ -199,39 +199,51 @@ export default function Cipher(props) {
                 <ThemeProvider theme={rainbow}>
                     <ButtonGroup variant="contained" aria-label="color buttons" sx={{my: 2, display: "inline-block"}}>
                         <Button 
-                            color="red" 
+                            aria-label='red'
+                            color="red"
                             onClick={() => handleKey(display, 'R')} 
                             sx={{height: 40, width: 80}}
+                            title='red'
                         ></Button>
                         <Button
+                            aria-label='orange'
                             color="orange"
                             onClick={() => handleKey(display, 'O')}
                             sx={{height: 40, width: 80}}
+                            title='orange'
                         ></Button>
                         <Button
                             color="yellow"
                             onClick={() => handleKey(display, 'Y')}
                             sx={{height: 40, width: 80}}
+                            title='yellow'
                         ></Button>
                         <Button
+                            aria-label='green'
                             color="green"
                             onClick={() => handleKey(display, 'G')}
                             sx={{height: 40, width: 80}}
+                            title='green'
                         ></Button>
                         <Button
+                            aria-label='blue'
                             color="blue"
                             onClick={() => handleKey(display, 'B')}
                             sx={{height: 40, width: 80}}
+                            title='blue'
                         ></Button>
                         <Button
                             color="indigo"
                             onClick={() => handleKey(display, 'I')}
                             sx={{height: 40, width: 80}}
+                            title='indigo'
                         ></Button>
                         <Button
+                            aria-label='violet'
                             color="violet"
                             onClick={() => handleKey(display, 'V')}
                             sx={{height: 40, width: 80}}
+                            title='violet'
                         ></Button>
                     </ButtonGroup>
                 </ThemeProvider>
@@ -239,7 +251,7 @@ export default function Cipher(props) {
                     aria-label="backspace"
                     disabled={display.length === 0}
                     onClick={() => handleBackspace(display)}
-
+                    title='Backspace'
                 >
                     <BackspaceIcon fontSize="medium"></BackspaceIcon>
                 </ModifiedIcons>
@@ -247,7 +259,7 @@ export default function Cipher(props) {
                     aria-label="clear"
                     disabled={display.length === 0}
                     onClick={() => handleClear()}
-
+                    title='Clear'
                 >
                     <ClearIcon fontSize="large"></ClearIcon>
                 </ModifiedIcons>
