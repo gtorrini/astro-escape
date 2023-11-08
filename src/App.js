@@ -55,7 +55,7 @@ export default function App() {
             </Router>
           </main>
           <footer>
-            <Container maxWidth='xl' sx={{ backgroundColor: '#193154' }}>
+            <Container maxWidth='100%' sx={{ backgroundColor: '#193154' }}>
               <Typography variant='body1' sx={{ padding: 1, textAlign: 'center'}}>
                 Copyright {'\u00A9'} 2023 Gabriela Torrini
               </Typography>

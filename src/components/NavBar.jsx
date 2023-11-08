@@ -38,10 +38,10 @@ export default function ResponsiveAppBar() {
 
   return (
     <AppBar position='static'>
-      <Container maxWidth='xl' sx={{backgroundColor: '#193154'}}>
+      <Container maxWidth='100%' sx={{backgroundColor: '#193154'}}>
         <Toolbar disableGutters>
           <Typography
-            aria-label="Visit home page"
+            aria-label="Visit Astro Escape home page"
             component='a'
             href="/"
             noWrap
