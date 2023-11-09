@@ -8,7 +8,7 @@ import ImageListItem from '@mui/material/ImageListItem';
 import Typography from '@mui/material/Typography';
 
 // Local imports
-import { NextButton } from './NavButtons.jsx';
+import { NextButton } from './NavButtons.jsx'; 
 
 const itemData = [
   {
@@ -62,13 +62,28 @@ const itemData = [
 ];
 
 function PersonalItemsList(props) {
+  const calcDims = () => {
+    const currentWidth = window.innerWidth;
+
+    // Calculate appropriate width, height, and rowHeight
+    if (currentWidth <= 480) {
+      return (250, 225, 85);
+    } else {
+      return (500, 450, 164);
+    }
+  }
+
   return (
-    <ImageList sx={{ width: 500, height: 450, mx: 'auto' }} cols={3} rowHeight={164}>
+    <ImageList 
+      sx={{ width: (calcDims())[0], height: (calcDims())[1], mx: 'auto' }} 
+      cols={3} 
+      rowHeight={(calcDims())[2]}
+    >
       {itemData.map((item) => (
         <ImageListItem key={item.img}>
           <img
-            srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-            src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+            srcSet={`${item.img}?w=${(calcDims())[2]}&h=${(calcDims())[2]}&fit=crop&auto=format&dpr=2 2x`}
+            src={`${item.img}?w=${(calcDims())[2]}&h=${(calcDims())[2]}&fit=crop&auto=format`}
             alt={item.title}
             onClick={() => props.handleClick(item.title)}
             onKeyDown={() => props.handleClick(item.title)}
@@ -104,7 +119,7 @@ export default function ImageHunt(props) {
                     You want to look up the protocol for flying near black holes, but you misplaced your instruction manual. Search through your personal items below to find it:
                 </Typography>
             </Box>
-            <Box sx={{my: 5}}>
+            <Box sx={{ maxWidth: '80%', mx: 'auto', my: 5}}>
               <PersonalItemsList handleClick={handleFound}></PersonalItemsList>
             </Box>
             <Grid container>
