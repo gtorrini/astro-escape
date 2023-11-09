@@ -7,16 +7,12 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 
 function BackButton(props) {
-    const handleClick = () => {
-        props.handleClick();
-    }
-
     return (
         <>
             <Button
-                aria-label='back'
-                onClick={handleClick}
-                title='Previous puzzle'
+                aria-label="Previous puzzle"
+                onClick={() => props.handleClick()}
+                onKeyDown={() => props.handleClick()}
                 variant='contained'
             >
                 <ArrowBackIcon></ArrowBackIcon>
@@ -30,17 +26,13 @@ BackButton.propTypes = {
 }
 
 function NextButton(props) {
-    const handleClick = () => {
-        props.handleClick();
-    }
-
     return (
         <>
             <Button
-                aria-label='next'
+                aria-label="Next puzzle"
                 disabled={props.disabled}
-                onClick={handleClick}
-                title='Next puzzle'
+                onClick={() => props.handleClick()}
+                onKeyDown={() => props.handleClick()}
                 variant='contained'
             >
                 <ArrowForwardIcon></ArrowForwardIcon>
@@ -55,17 +47,13 @@ NextButton.propTypes = {
 }
 
 function RestartButton(props) {
-    const handleClick = () => {
-        props.handleClick();
-    }
-
     return (
         <>
             <Button
-                aria-label='restart'
-                onClick={handleClick}
+                aria-label="Restart game"
+                onClick={() => props.handleClick()}
+                onKeyDown={() => props.handleClick()}
                 variant='contained'
-                title='Restart'
             >
                 <RestartAltIcon></RestartAltIcon>
             </Button>
