@@ -67,7 +67,7 @@ const ModifiedIcons = styled(IconButton) (() => ({
 
 const cipherKey = () => {
     return (
-        <table className="screen cipher">
+        <table className="screen">
             <tr>
                 <td>A</td>
                 <td>B</td>
