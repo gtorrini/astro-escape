@@ -3,41 +3,109 @@ import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
 import Typography from '@mui/material/Typography';
 
 // Local imports
-import { NextButton } from './NavButtons.jsx';
-import ppk from '../assets/ppk.png';
+import { NextButton } from './NavButtons.jsx'; 
+
+const itemData = [
+  {
+    img: 'https://images.unsplash.com/photo-1632757664317-adc33c576b2f',
+    title: 'Dog polaroid',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1598962073869-f9282d672af0',
+    title: 'Crackers',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1588411404261-6052062cb881',
+    title: 'Sketch pad',
+  }, 
+  {
+    img: 'https://images.unsplash.com/photo-1608797689272-9fffaa177090',
+    title: 'Seasoning',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1636583133884-fbefc7ac3fb3',
+    title: 'Playing cards',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1502920917128-1aa500764cbd',
+    title: 'Camera',
+  },
+  {
+    img: 'https://live.staticflickr.com/3208/2763488097_56bf92b0ea_k_d.jpg',
+    title: 'Eye mask',
+  }, 
+  {
+    img: 'https://live.staticflickr.com/5246/5297985633_2d26ffc29b_k_d.jpg',
+    title: 'Luma plushie',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1556449895-a33c9dba33dd',
+    title: 'Guitar',
+  },
+  {
+    img: 'https://clipground.com/images/manual-clipart-2.jpg',
+    title: 'Instruction manual',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1585849835117-1446a1514ea6',
+    title: 'Tea',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634',
+    title: 'Colored pencils',
+  }
+];
+
+function PersonalItemsList(props) {
+  const calcDims = () => {
+    const currentWidth = window.innerWidth;
+
+    // Calculate appropriate width, height, and rowHeight
+    if (currentWidth <= 480) {
+      return (250, 225, 85);
+    } else {
+      return (500, 450, 164);
+    }
+  }
+
+  return (
+    <ImageList 
+      sx={{ width: (calcDims())[0], height: (calcDims())[1], mx: 'auto' }} 
+      cols={3} 
+      rowHeight={(calcDims())[2]}
+    >
+      {itemData.map((item) => (
+        <ImageListItem key={item.img}>
+          <img
+            srcSet={`${item.img}?w=${(calcDims())[2]}&h=${(calcDims())[2]}&fit=crop&auto=format&dpr=2 2x`}
+            src={`${item.img}?w=${(calcDims())[2]}&h=${(calcDims())[2]}&fit=crop&auto=format`}
+            alt={item.title}
+            onClick={() => props.handleClick(item.title)}
+            onKeyDown={() => props.handleClick(item.title)}
+            loading="lazy"
+            tabIndex={0}
+          />
+        </ImageListItem>
+      ))}
+    </ImageList>
+  );
+}
+
+PersonalItemsList.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+};
 
 export default function ImageHunt(props) {
     const [found, setFound] = useState(false);
 
-    const handleFound = () => {
-        setFound(true);
-    }
-
-    const calcCoords = () => {
-        const width = window.innerWidth;
-
-        // Coords for phones
-        if (width <= 480) {
-            return "75, 85, 110, 90, 105, 130, 65, 120";
-        }
-        // Coords for tablets
-        else if (width > 480 && width <= 768) {
-            return "110, 120, 155, 130, 145, 180, 100, 170";
-        }
-        // Coords for small laptops
-        else if (width > 768 && width <= 1024) {
-            return "170, 185, 240, 195, 220, 280, 145, 260";
-        }
-        // Coords for large laptops
-        else if (width > 1024 && width <= 1280) {
-            return "260, 280, 360, 295, 335, 420, 225, 400";
-        }
-        // Coords for desktops
-        else if (width > 1280 && width <= 1600) {
-            return "320, 345, 450, 365, 425, 525, 280, 500";
+    const handleFound = (item) => {
+        if (item === 'Instruction manual') {
+          setFound(true);
         }
     }
 
@@ -48,22 +116,11 @@ export default function ImageHunt(props) {
                     Puzzle #1
                 </Typography>
                 <Typography variant="body1" sx={{ textAlign: 'center' }}>
-                    You want to look up the protocol for flying near black holes, but you misplaced your mission manual. Search through your personal items below to find it:
+                    You want to look up the protocol for flying near black holes, but you misplaced your instruction manual. Search through your personal items below to find it:
                 </Typography>
             </Box>
-            <Box sx={{my: 5}}>
-                <img alt="Personal items" id="img-search" useMap="#ppk" src={ppk} title="Personal items" tabIndex={0}></img>
-                <map name="ppk">
-                    <area 
-                        alt="Mission manual"
-                        coords={calcCoords()}
-                        href="javascript:void(0);"
-                        onClick={() => handleFound()}
-                        shape="poly"
-                        tabIndex={0}
-                        title="Mission manual"
-                    ></area>
-                </map>
+            <Box sx={{ maxWidth: '80%', mx: 'auto', my: 5}}>
+              <PersonalItemsList handleClick={handleFound}></PersonalItemsList>
             </Box>
             <Grid container>
                 <Grid item xs={4}>
