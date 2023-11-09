@@ -73,6 +73,12 @@ function PersonalItemsList(props) {
     }
   }
 
+  const handleKeyDown = (event, name) => {
+    if (event.key === "Enter") {
+      props.handleClick(name);
+    }
+  }
+
   return (
     <ImageList 
       sx={{ width: (calcDims())[0], height: (calcDims())[1], mx: 'auto' }} 
@@ -86,7 +92,7 @@ function PersonalItemsList(props) {
             src={`${item.img}?w=${(calcDims())[2]}&h=${(calcDims())[2]}&fit=crop&auto=format`}
             alt={item.title}
             onClick={() => props.handleClick(item.title)}
-            onKeyDown={() => props.handleClick(item.title)}
+            onKeyDown={(e) => handleKeyDown(e, item.title)}
             loading="lazy"
             tabIndex={0}
           />
