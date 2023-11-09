@@ -1,3 +1,9 @@
+/* || GENERAL STYLES */
+h3, p, span {
+  color: #ffffff;
+}
+
+/* || SITEWIDE */
 main {
   text-align: center;
   background-color: #090415;
@@ -12,10 +18,6 @@ footer {
   justify-content:flex-end;
 }
 
-h3, p, span {
-  color: #ffffff;
-}
-
 .site-heading {
   color: #ffc107;
   font-family: 'Silkscreen';
@@ -27,11 +29,13 @@ h3, p, span {
   font-family: 'Consolas', 'Courier New', monospace;
 }
 
+/* || PROTOCOL COMPONENT */
 .page {
   color: #000000;
   font-family: 'Times New Roman', Times, serif;
 }
 
+/* || CIPHER COMPONENT */
 table, tr, td {
   border: 1px solid;
   border-collapse: collapse;
@@ -39,7 +43,7 @@ table, tr, td {
   margin: 16px auto;
 }
 
-/* Keyboard Accessibility */
+/* || ACCESSIBILITY */
 .MuiButtonBase-root.Mui-focusVisible, .MuiButton-root.Mui-focusVisible {
   outline: 1px solid white;
   border: 2px solid #0060df;
