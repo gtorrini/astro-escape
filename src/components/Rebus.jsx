@@ -1,82 +1,89 @@
+// 3rd-party imports
 import { React, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Button, Grid, TextField, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+
+// Local imports
 import { BackButton, RestartButton } from './NavButtons.jsx';
 
 function Puzzle(props) {
-    const [answer, setAnswer] = useState(null);
-    const [error, setError] = useState(null);
-    const [explain, setExplain] = useState(false);
+  const [answer, setAnswer] = useState(null);
+  const [error, setError] = useState(null);
+  const [explain, setExplain] = useState(false);
 
-    const handleSubmit = (text) => {
-        if (text.toLowerCase().includes(props.includes)) {
-            setError(null);
-            setExplain(true);
-            props.handleSolved();
-        } else {
-            setError(props.hint);
-        }
+  const handleSubmit = (text) => {
+    if (text.toLowerCase().includes(props.includes)) {
+      setError(null);
+      setExplain(true);
+      props.handleSolved();
+    } else {
+      setError(props.hint);
     }
+  }
 
-    return (
-        <>
-            <Box 
-                sx={{
-                    mb: (props.id === '1') ? 10 : 5,
-                }}
-            >
-                <Typography className='site-heading' variant="h3" sx={{padding: 2}}>
-                    {props.clue}
-                </Typography>
-                <TextField 
-                    error={error !== null}
-                    helperText={error}
-                    id={"rebus-" + props.id + "-answer"}
-                    label="Answer"
-                    inputProps={{
-                        maxLength: 25,
-                    }}
-                    onChange={e => {
-                        setAnswer(e.target.value)
-                        setError(null);
-                    }}
-                    sx={{ my: 3}}
-                ></TextField>
-                <Button 
-                    aria-label="submit"
-                    disabled={answer === null || explain}
-                    label="Submit"
-                    variant="contained"
-                    onClick={() => {handleSubmit(answer)}}
-                    sx={{ mb: 3, ml: 2, mt: 4}}
-                >Submit</Button>
-                {explain && 
-                    <Box
-                        sx={{
-                            backgroundColor: '#b71c1c',
-                            borderRadius: 1,
-                            maxWidth: '60%',
-                            mb: 3,
-                            mx: 'auto'
-                        }}
-                    >
-                        <Typography variant="body2" sx={{padding: 2, textAlign: 'justify'}}>
-                            {props.explanation}
-                        </Typography>
-                    </Box>
-                }
-            </Box>
-        </>
-    );
+  return (
+      <>
+          <Box 
+              sx={{
+                  mb: (props.id === '1') ? 10 : 5,
+              }}
+          >
+              <Typography className='site-heading' variant="h3" sx={{padding: 2}}>
+                  {props.clue}
+              </Typography>
+              <TextField 
+                  error={error !== null}
+                  helperText={error}
+                  id={"rebus-" + props.id + "-answer"}
+                  label="Answer"
+                  inputProps={{
+                      maxLength: 25,
+                  }}
+                  onChange={e => {
+                      setAnswer(e.target.value)
+                      setError(null);
+                  }}
+                  sx={{ my: 3}}
+              ></TextField>
+              <Button 
+                  aria-label="submit"
+                  disabled={answer === null || explain}
+                  label="Submit"
+                  variant="contained"
+                  onClick={() => {handleSubmit(answer)}}
+                  sx={{ mb: 3, ml: 2, mt: 4}}
+              >Submit</Button>
+              {explain && 
+                  <Box
+                      sx={{
+                          backgroundColor: '#b71c1c',
+                          borderRadius: 1,
+                          maxWidth: '60%',
+                          mb: 3,
+                          mx: 'auto'
+                      }}
+                  >
+                      <Typography variant="body2" sx={{padding: 2, textAlign: 'justify'}}>
+                          {props.explanation}
+                      </Typography>
+                  </Box>
+              }
+          </Box>
+      </>
+  );
 }
 
 Puzzle.propTypes = {
-    includes: PropTypes.string.isRequired,
-    clue: PropTypes.object.isRequired,
-    hint: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    explanation: PropTypes.object.isRequired,
-    handleSolved: PropTypes.func.isRequired
+  includes: PropTypes.string.isRequired,
+  clue: PropTypes.object.isRequired,
+  hint: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  explanation: PropTypes.object.isRequired,
+  handleSolved: PropTypes.func.isRequired
 };
 
 export default function Rebus(props) {
