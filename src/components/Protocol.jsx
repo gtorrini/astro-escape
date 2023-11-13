@@ -8,7 +8,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import Typography from '@mui/material/Typography';
 import { grey, yellow } from '@mui/material/colors';
 
 // Local imports
@@ -39,22 +38,14 @@ export default function Protocol(props) {
 
   return (
     <>
-    <Box sx={{ maxWidth: '60%', mx: 'auto', my: 5 }}>
-        <Typography className="site-heading" variant='h5' gutterBottom>
-          Puzzle #2
-        </Typography>
-        <Typography variant='body1' sx={{ textAlign: 'center' }}>
-          Read the instructions in the mission manual. Use your discretion and reports from the monitoring panel to determine the best protocol.
-        </Typography>
-    </Box>
     <Box
       sx={{
         backgroundColor: page,
+        maxWidth: (window.innerWidth <= 650) ? '100%' : '80%',
         mb: 3,
         mx: 'auto',
         padding: 2,
         textAlign: 'left',
-        width: '80%',
       }}
     >
         <p className="page">Black holes are not galactic vacuum cleaners; they will not indiscriminately consume everything in their path. Missions can fly calmly around both stellar-mass and supermassive black holes, as long as they keep a safe distance. Keep in mind that the bigger the black hole (and the closer you are to it), the faster the velocity required to escape.</p>
@@ -62,13 +53,13 @@ export default function Protocol(props) {
     <Box 
       sx={{
         backgroundColor: screen,
-        border: 20,
+        border: (window.innerWidth <= 650) ? 10 : 20,
         borderColor: frame,
+        maxWidth: (window.innerWidth <= 650) ? '100%' : '75%',
         mb: 3,
         mx: 'auto',
         padding: 2,
         textAlign: 'left',
-        width: '75%'
       }}
     >
       <p className="screen"> <b>INSIGHTS</b> <br/> The black hole is 6 million times the mass of the Sun, making it <em>supermassive</em>. </p>
