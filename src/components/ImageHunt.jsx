@@ -44,8 +44,8 @@ const itemData = [
     title: 'Luma plushie',
   },
   {
-    img: 'https://images.unsplash.com/photo-1556449895-a33c9dba33dd',
-    title: 'Guitar',
+    img: 'https://images.unsplash.com/photo-1612016293124-1636e3d99b6a',
+    title: 'Knitting needles',
   },
   {
     img: 'https://clipground.com/images/manual-clipart-2.jpg',
