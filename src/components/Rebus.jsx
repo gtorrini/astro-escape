@@ -131,14 +131,6 @@ export default function Rebus(props) {
      
     return (
         <>
-            <Box sx={{my: 5, maxWidth: '60%', mx: 'auto'}}>
-                <Typography className='site-heading' variant="h5" gutterBottom>
-                    Puzzle #5
-                </Typography>
-                <Typography variant="body1">
-                    The aliens see you as their equal, but they don&#39;t know if they can trust you to fly responsibly throughout the cosmos. Solve the rebus puzzles below to prove you are ultimately worthy of their compassion:
-                </Typography>
-            </Box>
             <Rebus {...spaghetti}></Rebus>
             <Rebus {...radiation}></Rebus>
             <Grid container>

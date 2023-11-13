@@ -10,7 +10,6 @@ import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import { red, orange, yellow, green, grey, blue, indigo, purple } from '@mui/material/colors';
-import Typography from '@mui/material/Typography';
 
 // Local imports
 import { BackButton, NextButton, RestartButton } from './NavButtons.jsx';
@@ -71,76 +70,8 @@ const ModifiedIcons = styled(IconButton) (() => ({
 }));
 
 function CipherKey() {
-  if (window.innerWidth <= 650) {
-    return (
-      <table className="screen">
-        <tbody>
-          <tr>
-            <td>A</td>
-            <td>B</td>
-            <td>C</td>
-            <td>D</td>
-            <td>E</td>
-            <td>F</td>
-            <td>G</td>
-            <td>H</td>
-            <td>I</td>
-            <td>J</td>
-            <td>K</td>
-            <td>L</td>
-            <td>M</td>
-            <td>N</td>
-          </tr>
-          <tr>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td>M</td>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-          </tr>
-          <tr>
-            <td>N</td>
-            <td>O</td>
-            <td>P</td>
-            <td>Q</td>
-            <td>R</td>
-            <td>S</td>
-            <td>T</td>
-            <td>U</td>
-            <td>V</td>
-            <td>W</td>
-            <td>X</td>
-            <td>Y</td>
-            <td>Z</td>
-          </tr>
-          <tr>
-            <td>U</td>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td>B</td>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-          </tr>
-        </tbody>
-      </table>
-    );
-  } else {
-    return (
+  return (
+    <div style={{ overflow: 'auto' }}>
       <table className="screen">
         <tbody>
           <tr>
@@ -201,8 +132,8 @@ function CipherKey() {
           </tr>
         </tbody>
       </table>
-    );
-  }
+    </div>
+  );
 }
 
 export default function Cipher(props) {
@@ -241,18 +172,10 @@ export default function Cipher(props) {
 
   return (
     <>
-      <Box sx={{ my: 5 }}>
-          <Typography className="site-heading" variant='h5' gutterBottom>
-            Puzzle #4
-          </Typography>
-          <Typography variant='body1'>
-            You received a response, but it seems to be encoded. Decode the response using the cipher below.
-          </Typography>
-      </Box>
       <Box 
         sx={{
           backgroundColor: screen,
-          border: 20,
+          border: (window.innerWidth <= 650) ? 10 : 20,
           borderColor: frame,
           maxWidth: (window.innerWidth <= 650) ? '100%' : '60%',
           mx: 'auto',
@@ -269,7 +192,7 @@ export default function Cipher(props) {
         sx={{
           backgroundColor: frame,
           borderRadius: '20px',
-          maxWidth: (window.innerWidth <= 700) ? '100%' : '60%',
+          maxWidth: (window.innerWidth <= 650) ? '100%' : '60%',
           mx: 'auto',
           mb: 5
         }}

@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import Typography from '@mui/material/Typography';
 
 // Local imports
 import { NextButton } from './NavButtons.jsx'; 
@@ -117,14 +116,6 @@ export default function ImageHunt(props) {
 
     return (
         <>
-            <Box sx={{ maxWidth: '60%', mx: 'auto', my: 5 }}>
-                <Typography className='site-heading' variant="h5" gutterBottom>
-                    Puzzle #1
-                </Typography>
-                <Typography variant="body1" sx={{ textAlign: 'center' }}>
-                    You want to look up the protocol for flying near black holes, but you misplaced your instruction manual. Search through your personal items below to find it:
-                </Typography>
-            </Box>
             <Box sx={{ maxWidth: '80%', mx: 'auto', my: 5}}>
               <PersonalItemsList handleClick={handleFound}></PersonalItemsList>
             </Box>

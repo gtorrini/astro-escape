@@ -13,7 +13,6 @@ import SensorOccupiedIcon from '@mui/icons-material/SensorOccupied';
 import SsidChartIcon from '@mui/icons-material/SsidChart';
 import SwitchAccessShortcutIcon from '@mui/icons-material/SwitchAccessShortcut';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 
 // Local imports
 import { BackButton, NextButton, RestartButton } from './NavButtons.jsx';
@@ -73,23 +72,16 @@ export default function Controls(props) {
 
   return (
     <>
-      <Box sx={{ maxWidth: '60%', mx: 'auto', my: 5}}>
-        <Typography className="site-heading" variant='h5' gutterBottom>
-          Puzzle #3
-        </Typography>
-        <Typography variant='body1'>
-          You need to send a distress signal, but in your panic, you spilled coffee all over the schematics in your manual. Use the control panel below to activate the correct subsystem.
-        </Typography>
-      </Box>
       <Box 
         sx={{
           backgroundColor: screen,
-          border: 20,
+          border: (window.innerWidth <= 650) ? 10 : 20,
           borderColor: frame,
+          maxWidth: (window.innerWidth <= 650) ? '100%' : '75%',
           mb: 3,
           mx: 'auto',
+          padding: 2,
           textAlign: 'center',
-          maxWidth: (window.innerWidth <= 480) ? '80%' : '50%'
         }}
       >
         <p className="screen">{display}</p>
