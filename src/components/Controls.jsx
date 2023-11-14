@@ -1,5 +1,5 @@
 // 3rd-party imports
-import { React, useState } from 'react';
+import { memo, React, useState } from 'react';
 import PropTypes from 'prop-types';
 import { blue, green, grey, red, yellow } from '@mui/material/colors';
 import Box from '@mui/material/Box';
@@ -17,9 +17,9 @@ import TextField from '@mui/material/TextField';
 // Local imports
 import { BackButton, NextButton, RestartButton } from './NavButtons.jsx';
 
+// Set up colors & theme
 const screen = grey[900];
 const frame = grey[400];
-
 const panelColors = createTheme({
   palette: {
     blue: {
@@ -40,6 +40,102 @@ const panelColors = createTheme({
   }
 });
 
+// Screen displaying which subsystem is enabled
+const ControlScreen = memo(
+  function ControlScreen(props) {
+    return (
+      <Box 
+        sx={{
+          backgroundColor: screen,
+          border: (window.innerWidth <= 650) ? 10 : 20,
+          borderColor: frame,
+          maxWidth: (window.innerWidth <= 650) ? '100%' : '75%',
+          mb: 3,
+          mx: 'auto',
+          padding: 2,
+          textAlign: 'center',
+        }}
+      >
+        <p className="screen">{props.display}</p>
+      </Box>
+    );
+  }
+);
+
+ControlScreen.propTypes = {
+  display: PropTypes.string.isRequired
+};
+
+// Control panel of buttons
+function ControlPanel(props) {
+  return (
+    <Box
+      sx={{
+        backgroundColor: frame,
+        borderRadius: '20px',
+        mx: 'auto',
+        mb: 3,
+        maxWidth: (window.innerWidth <= 480) ? '80%' : '35%'
+      }}
+    >
+      <ThemeProvider theme={panelColors}>
+        <Fab 
+          aria-label="electrical power"
+          color='white'
+          onClick={() => {props.handleActivate(false, 'ELECTRICAL POWER SUBSYSTEM')}}
+          size={(window.innerWidth <= 480) ? 'medium' : 'large'}
+          sx={{ mx: 1, my: 2}}
+        >
+          <ElectricBoltIcon/>
+        </Fab>
+        <Fab
+          aria-label="propulsion"
+          color='red'
+          onClick={() => {props.handleActivate(false, 'PROPULSION SUBSYSTEM')}}
+          size={(window.innerWidth <= 480) ? 'medium' : 'large'}
+          sx={{mx: 1, my: 2}}
+        >
+          <RocketLaunchIcon/>
+        </Fab>
+        <Fab
+          aria-label="attitude and orbit control"
+          color='yellow'
+          onClick={() => {props.handleActivate(false, 'ATTITUDE & ORBIT CONTROL SUBSYSTEM')}}
+          size={(window.innerWidth <= 480) ? 'medium' : 'large'}
+          sx={{mx: 1, my: 2}}
+        >
+          <SwitchAccessShortcutIcon/>
+        </Fab>
+        <Fab
+          aria-label="communications and data handling"
+          color='green'
+          onClick={() => {props.handleActivate(true, 'COMMUNICATIONS & DATA HANDLING SUBSYSTEM')}}
+          size={(window.innerWidth <= 480) ? 'medium' : 'large'}
+          sx={{mx: 1, my: 2}}
+        >
+          <SsidChartIcon/>
+        </Fab>
+        <Fab
+          aria-label="environmental control and life support"
+          color='blue'
+          onClick={() => {
+            props.handleActivate(false, 'ENVIRONMENTAL CONTROL & LIFE SUPPORT SUBSYSTEM')
+          }}
+          size={(window.innerWidth <= 480) ? 'medium' : 'large'}
+          sx={{mx: 1, my: 2}}
+        >
+          <SensorOccupiedIcon/>
+        </Fab>
+      </ThemeProvider>
+    </Box>
+  );
+}
+
+ControlPanel.propTypes = {
+  handleActivate: PropTypes.func.isRequired
+};
+
+// Component to activate comms & send distress signal
 export default function Controls(props) {
   const [activated, setActivated] = useState(false);
   const [display, setDisplay] = useState('WELCOME');
@@ -72,79 +168,8 @@ export default function Controls(props) {
 
   return (
     <>
-      <Box 
-        sx={{
-          backgroundColor: screen,
-          border: (window.innerWidth <= 650) ? 10 : 20,
-          borderColor: frame,
-          maxWidth: (window.innerWidth <= 650) ? '100%' : '75%',
-          mb: 3,
-          mx: 'auto',
-          padding: 2,
-          textAlign: 'center',
-        }}
-      >
-        <p className="screen">{display}</p>
-      </Box>
-      <Box
-        sx={{
-          backgroundColor: frame,
-          borderRadius: '20px',
-          mx: 'auto',
-          mb: 3,
-          maxWidth: (window.innerWidth <= 480) ? '80%' : '35%'
-        }}
-      >
-        <ThemeProvider theme={panelColors}>
-          <Fab 
-            aria-label="electrical power"
-            color='white'
-            onClick={() => {handleActivate(false, 'ELECTRICAL POWER SUBSYSTEM')}}
-            size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-            sx={{ mx: 1, my: 2}}
-          >
-            <ElectricBoltIcon/>
-          </Fab>
-          <Fab
-            aria-label="propulsion"
-            color='red'
-            onClick={() => {handleActivate(false, 'PROPULSION SUBSYSTEM')}}
-            size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-            sx={{mx: 1, my: 2}}
-          >
-            <RocketLaunchIcon/>
-          </Fab>
-          <Fab
-            aria-label="attitude and orbit control"
-            color='yellow'
-            onClick={() => {handleActivate(false, 'ATTITUDE & ORBIT CONTROL SUBSYSTEM')}}
-            size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-            sx={{mx: 1, my: 2}}
-          >
-            <SwitchAccessShortcutIcon/>
-          </Fab>
-          <Fab
-            aria-label="communications and data handling"
-            color='green'
-            onClick={() => {handleActivate(true, 'COMMUNICATIONS & DATA HANDLING SUBSYSTEM')}}
-            size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-            sx={{mx: 1, my: 2}}
-          >
-            <SsidChartIcon/>
-          </Fab>
-          <Fab
-            aria-label="environmental control and life support"
-            color='blue'
-            onClick={() => {
-              handleActivate(false, 'ENVIRONMENTAL CONTROL & LIFE SUPPORT SUBSYSTEM')
-            }}
-            size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-            sx={{mx: 1, my: 2}}
-          >
-            <SensorOccupiedIcon/>
-          </Fab>
-        </ThemeProvider>
-      </Box>
+      <ControlScreen display={display} />
+      <ControlPanel handleActivate={handleActivate} />
       <Box sx={{ mb: 5 }}>
         <TextField 
           error={error !== null}
