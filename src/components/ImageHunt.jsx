@@ -120,10 +120,8 @@ export default function ImageHunt(props) {
               <PersonalItemsList handleClick={handleFound}></PersonalItemsList>
             </Box>
             <Grid container>
-                <Grid item xs={4}>
-                </Grid>
-                <Grid item xs={4}>
-                </Grid>
+                <Grid item xs={4} />
+                <Grid item xs={4} />
                 <Grid item xs={4}>
                     <NextButton disabled={found === false} handleClick={props.next}></NextButton>
                 </Grid>
