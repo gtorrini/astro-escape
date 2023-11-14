@@ -18,7 +18,8 @@ const page = yellow[50];
 const screen = grey[900];
 const frame = grey[400];
 
-function ManualPage() {
+// Instructions for black hole navigation
+function Instructions() {
   return (
     <Box
     sx={{
@@ -35,6 +36,7 @@ function ManualPage() {
   );
 }
 
+// Monitoring panel with science insights
 function MonitoringPanel() {
   return (
     <Box 
@@ -56,7 +58,8 @@ function MonitoringPanel() {
   );
 }
 
-export default function Protocol(props) {
+// Choices for black hole navigation
+function Choices(props) {
   const [choice, setChoice] = useState(null);
   const [correct, setCorrect] = useState(false);
   const [message, setMessage] = useState(null);
@@ -77,8 +80,6 @@ export default function Protocol(props) {
 
   return (
     <>
-      <ManualPage/>
-      <MonitoringPanel/>
       <Box sx={{ mb: 5, mx: 'auto', width: '80%' }}>
         <FormControl sx={{ mb: 3 }}>
           <RadioGroup
@@ -128,6 +129,23 @@ export default function Protocol(props) {
           <NextButton disabled={correct===false} handleClick={props.next}></NextButton>
         </Grid>
       </Grid>
+    </>
+  );
+}
+
+Choices.propTypes = {
+  back: PropTypes.func.isRequired,
+  next: PropTypes.func.isRequired,
+  restart: PropTypes.func.isRequired
+};
+
+// Component to select a navigation protocol
+export default function Protocol(props) {
+  return (
+    <>
+      <Instructions/>
+      <MonitoringPanel/>
+      <Choices back={props.back} next={props.next} restart={props.restart} />
     </>
   );
 }
