@@ -9,6 +9,7 @@ import ImageListItem from '@mui/material/ImageListItem';
 // Local imports
 import { NextButton } from './NavButtons.jsx'; 
 
+// Personal item image data
 const itemData = [
   {
     img: 'https://images.unsplash.com/photo-1632757664317-adc33c576b2f',
@@ -60,6 +61,7 @@ const itemData = [
   }
 ];
 
+// Image list of personal items
 function PersonalItemsList(props) {
   const calcDims = () => {
     const currentWidth = window.innerWidth;
@@ -105,6 +107,7 @@ PersonalItemsList.propTypes = {
   handleClick: PropTypes.func.isRequired,
 };
 
+// Component to find instruction manual
 export default function ImageHunt(props) {
     const [found, setFound] = useState(false);
 
