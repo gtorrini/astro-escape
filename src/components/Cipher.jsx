@@ -1,5 +1,5 @@
 // 3rd-party imports
-import { React, useState } from 'react';
+import { memo, React, useState } from 'react';
 import PropTypes from 'prop-types';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import Box from '@mui/material/Box';
@@ -14,11 +14,9 @@ import { red, orange, yellow, green, grey, blue, indigo, purple } from '@mui/mat
 // Local imports
 import { BackButton, NextButton, RestartButton } from './NavButtons.jsx';
 
-/* Set up screen colors */
+// Set up colors & theme
 const screen = grey[900];
 const frame = grey[400];
-
-/* Set up button colors */
 const rainbow = createTheme({
   palette: {
     red: {
@@ -60,6 +58,7 @@ const rainbow = createTheme({
   },
 });
 
+// Increase icon button visibility when disabled
 const ModifiedIcons = styled(IconButton) (() => ({
   marginLeft: 1,
   display: 'inline-block',
@@ -69,73 +68,96 @@ const ModifiedIcons = styled(IconButton) (() => ({
   },
 }));
 
-function CipherKey() {
-  return (
-    <div style={{ overflow: 'auto' }}>
-      <table className="screen">
-        <tbody>
-          <tr>
-            <td>A</td>
-            <td>B</td>
-            <td>C</td>
-            <td>D</td>
-            <td>E</td>
-            <td>F</td>
-            <td>G</td>
-            <td>H</td>
-            <td>I</td>
-            <td>J</td>
-            <td>K</td>
-            <td>L</td>
-            <td>M</td>
-            <td>N</td>
-            <td>O</td>
-            <td>P</td>
-            <td>Q</td>
-            <td>R</td>
-            <td>S</td>
-            <td>T</td>
-            <td>U</td>
-            <td>V</td>
-            <td>W</td>
-            <td>X</td>
-            <td>Y</td>
-            <td>Z</td>
-          </tr>
-          <tr>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td>M</td>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td>U</td>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td>B</td>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-            <td/>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  );
+// Screen displaying encoded message, cipher key, & command sequence
+const CipherKey = memo(
+  function CipherKey(props) {
+    return (
+      <Box 
+        sx={{
+          backgroundColor: screen,
+          border: (window.innerWidth <= 650) ? 10 : 20,
+          borderColor: frame,
+          maxWidth: (window.innerWidth <= 650) ? '100%' : '60%',
+          mx: 'auto',
+          mb: 3,
+          padding: 1,
+          textAlign: (window.innerWidth <= 650) ? 'left' : 'center'
+        }}
+      >
+        <p className="screen"> 	MSHZO NYVVCF JVSVYZ AV HJJLWA VBY HPK  </p>
+        <div style={{ overflow: 'auto' }}>
+          <table className="screen">
+            <tbody>
+              <tr>
+                <td>A</td>
+                <td>B</td>
+                <td>C</td>
+                <td>D</td>
+                <td>E</td>
+                <td>F</td>
+                <td>G</td>
+                <td>H</td>
+                <td>I</td>
+                <td>J</td>
+                <td>K</td>
+                <td>L</td>
+                <td>M</td>
+                <td>N</td>
+                <td>O</td>
+                <td>P</td>
+                <td>Q</td>
+                <td>R</td>
+                <td>S</td>
+                <td>T</td>
+                <td>U</td>
+                <td>V</td>
+                <td>W</td>
+                <td>X</td>
+                <td>Y</td>
+                <td>Z</td>
+              </tr>
+              <tr>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td>M</td>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td>U</td>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td>B</td>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="screen"> &gt;&gt;&gt; {props.display}</p>
+      </Box>
+    );
+  }
+);
+
+CipherKey.propTypes = {
+  display: PropTypes.string.isRequired
 }
 
+// Component to decode cipher & send correct sequence
 export default function Cipher(props) {
   const [decoded, setDecoded] = useState(false);
   const [display, setDisplay] = useState('INPUT COMMAND SEQUENCE');
@@ -172,22 +194,7 @@ export default function Cipher(props) {
 
   return (
     <>
-      <Box 
-        sx={{
-          backgroundColor: screen,
-          border: (window.innerWidth <= 650) ? 10 : 20,
-          borderColor: frame,
-          maxWidth: (window.innerWidth <= 650) ? '100%' : '60%',
-          mx: 'auto',
-          mb: 3,
-          padding: 1,
-          textAlign: (window.innerWidth <= 650) ? 'left' : 'center'
-        }}
-      >
-        <p className="screen"> 	MSHZO NYVVCF JVSVYZ AV HJJLWA VBY HPK  </p>
-          <CipherKey></CipherKey>
-        <p className="screen"> &gt;&gt;&gt; {display}</p>
-      </Box>
+      <CipherKey display={display} />
       <Box
         sx={{
           backgroundColor: frame,
