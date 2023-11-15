@@ -37,6 +37,7 @@ const titleCards = {
   },
 }
 
+// Component to hold escape room puzzles
 export default function Escape() {
     const [activeStep, setActiveStep] = useState(0);
   
@@ -64,7 +65,7 @@ export default function Escape() {
             case(1):
                 return(
                     <>
-                      <PuzzleIntros title={titleCards[2].title} blurb={titleCards[1].blurb}/>
+                      <PuzzleIntros title={titleCards[2].title} blurb={titleCards[2].blurb}/>
                       <Protocol back={handleBack} next={handleNext} restart={handleRestart}/>
                     </>
                 );
@@ -110,7 +111,7 @@ export default function Escape() {
                       <StepLabel/>
                     </Step>
                     <Step key="puzzle-4">
-                    <StepLabel/>
+                      <StepLabel/>
                     </Step>
                     <Step key="puzzle-5">
                       <StepLabel/>
