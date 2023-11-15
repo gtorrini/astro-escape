@@ -152,7 +152,7 @@ export default function Controls(props) {
   const handleSubmit = (text) => {
     const count = attempts + 1;
     setAttempts(attempts + 1);
-    if (text.toLowerCase().includes('sos')) {
+    if (text.toLowerCase() === 'sos') {
       setError(null);
       setSend(true);
     } else {
