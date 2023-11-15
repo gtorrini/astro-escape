@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 // Local imports
 import { BackButton, RestartButton } from './NavButtons.jsx';
 
+// Display & solve a rebus puzzle
 function Puzzle(props) {
   const [answer, setAnswer] = useState(null);
   const [error, setError] = useState(null);
@@ -86,6 +87,7 @@ Puzzle.propTypes = {
   handleSolved: PropTypes.func.isRequired
 };
 
+// Component to hold multiple rebus puzzles
 export default function Rebus(props) {
     const [first, setFirst] = useState(false);
     const [second, setSecond] = useState(false);
