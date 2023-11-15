@@ -42,6 +42,11 @@ function Puzzle(props) {
               setAnswer(e.target.value)
               setError(null);
           }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleSubmit(answer);
+            }
+          }}
           sx={{ my: 3}}
         />
         <Button 
@@ -104,10 +109,9 @@ export default function Rebus(props) {
     explanation: <>
       The tidal forces near black holes are so intense that they can stretch out
       and flatten objects in a process called <b>spaghettification</b>. In fact, 
-      the tidal acceleration stellar-mass black holes more dangerous than supermassive
-      black holes. Since the radius of the event horizon (or &#34;point of no return&#34;)
-      increases with the mass of the black hole, the edge of a less massive black hole is
-      closer to its infinitely dense center.
+      tidal acceleration makes travelling around stellar-mass black holes more dangerous than
+      supermassive black holes! Since the radius of the event horizon (or &#34;point of no return&#34;) increases with the mass of the black hole, the edge of a less massive black hole is
+      actually closer to the infinitely dense region at its center.
     </>,
     handleSolved: handleFirst
   };
@@ -120,8 +124,7 @@ export default function Rebus(props) {
     explanation: <>
       When a black hole&#39;s gravity pulls in stars, gas, or dust, the material begins to 
       orbit in a rotating disk. As different streams of particles inside the disk move
-      past each other, the friction between them produces heat and high-energy radiation,
-      including powerful X-rays that can damage your cells.
+      past each other, the friction between them produces heat and high-energy <b>radiation</b>. This includes the emission of powerful X-rays, which can damage your cells!
     </>,
     handleSolved: handleSecond
   }
