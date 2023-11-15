@@ -29,42 +29,45 @@ function Puzzle(props) {
   return (
     <>
       <Box sx={{ mb: (props.id === '1') ? 10 : 5 }} >
-        <Typography variant='h3' sx={{padding: 2}}>
+        <Typography variant={(window.innerWidth <= 480) ? 'h6' : 'h3'} sx={{padding: 2}}>
           {props.clue}
         </Typography>
-        <TextField 
-          error={error !== null}
-          helperText={error}
-          id={"rebus-" + props.id + "-answer"}
-          label='Answer'
-          inputProps={{ maxLength: 25 }}
-          onChange={e => {
-              setAnswer(e.target.value)
-              setError(null);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              handleSubmit(answer);
-            }
-          }}
-          sx={{ my: 3}}
-        />
-        <Button 
-          aria-label="submit"
-          disabled={answer === null || explain}
-          label='Submit'
-          variant='contained'
-          onClick={() => {handleSubmit(answer)}}
-          sx={{ mb: 3, ml: 2, mt: 4}}
-        >
-          Submit
-        </Button>
+        <Box sx={{ my: 3 }}>
+          <TextField 
+            error={error !== null}
+            helperText={error}
+            id={"rebus-" + props.id + "-answer"}
+            label='Answer'
+            inputProps={{ maxLength: 25 }}
+            onChange={e => {
+                setAnswer(e.target.value)
+                setError(null);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleSubmit(answer);
+              }
+            }}
+            size={(window.innerWidth <= 480) ? 'small' : 'large'}
+          />
+          <Button 
+            aria-label="submit"
+            disabled={answer === null || explain}
+            display={(window.innerWidth <= 480) ? 'block' : 'inline'}
+            label='Submit'
+            variant='contained'
+            onClick={() => {handleSubmit(answer)}}
+            sx={{ ml: ((window.innerWidth <= 480) ? 0 : 2), mt: 1 }}
+          >
+            Submit
+          </Button>
+        </Box>
         {explain && 
           <Box
               sx={{
                   backgroundColor: '#b71c1c',
                   borderRadius: 1,
-                  maxWidth: '60%',
+                  maxWidth: (window.innerWidth <= 480) ? '100%' : '60%',
                   mb: 3,
                   mx: 'auto'
               }}
