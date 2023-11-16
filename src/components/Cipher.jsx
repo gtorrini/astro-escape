@@ -9,7 +9,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
-import { red, orange, yellow, green, grey, blue, indigo, purple } from '@mui/material/colors';
+import { red, orange, yellow, lightGreen, grey, blue, indigo, purple } from '@mui/material/colors';
 
 // Local imports
 import { BackButton, NextButton, RestartButton } from './NavButtons.jsx';
@@ -26,10 +26,10 @@ const rainbow = createTheme({
       main: orange[500]
     },
     yellow: {
-      main: yellow[500]
+      main: yellow[600]
     },
     green: {
-      main: green[500]
+      main: lightGreen[500]
     },
     blue: {
       main: blue[500]
@@ -44,15 +44,67 @@ const rainbow = createTheme({
   components: {
     MuiButtonGroup: {
       styleOverrides: {
-        root: {
-          borderColor: frame,
-        },
         firstButton: {
-          borderColor: frame,
+          border: '6px solid',
+          borderColor: red[800],
+          marginRight: '1px',
+          '&:hover, &:disabled': {
+            backgroundColor: red[300],
+            borderRight: '6px solid ' + red[800]
+          },
         },
         middleButton: {
-          borderColor: frame,
+          borderRight: '6px solid',
+          marginRight: '1px',
+          '&.MuiButton-containedOrange': {
+            borderColor: orange[800],
+            '&:hover, &:disabled': {
+              backgroundColor: orange[300],
+              borderRight: '6px solid ' + orange[800]
+            }, 
+          },
+          '&.MuiButton-containedYellow': {
+            borderColor: yellow[800],
+            '&:hover, &:disabled': {
+              backgroundColor: yellow[300],
+              borderRight: '6px solid ' + yellow[800]
+            }, 
+          },
+          '&.MuiButton-containedGreen': {
+            borderColor: lightGreen[800],
+            '&:hover, &:disabled': {
+              backgroundColor: lightGreen[300],
+              borderRight: '6px solid ' + lightGreen[800]
+            }, 
+          },
+          '&.MuiButton-containedBlue': {
+            borderColor: blue[800],
+            '&:hover, &:disabled': {
+              backgroundColor: blue[300],
+              borderRight: '6px solid ' + blue[800]
+            }, 
+          },
+          '&.MuiButton-containedIndigo': {
+            borderColor: indigo[800],
+            '&:hover, &:disabled': {
+              backgroundColor: indigo[300],
+              borderRight: '6px solid ' + indigo[800]
+            }, 
+          }
+        },
+        lastButton: {
+          borderColor: purple[800],
+          '&:hover, &:disabled': {
+            backgroundColor: purple[300],
+          }, 
         }
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          border: '6px solid',
+        },
       },
     },
   },
@@ -206,7 +258,8 @@ export default function Cipher(props) {
       >
         <ThemeProvider theme={rainbow}>
             <ButtonGroup 
-              aria-label="Color buttons" 
+              aria-label="Color buttons"
+              disabled={decoded}
               sx={{ display: "inline-block", my: (window.innerWidth > 480) ? 2 : 1 }}
               variant='contained'
             >
@@ -284,7 +337,7 @@ export default function Cipher(props) {
         </ThemeProvider>
         <ModifiedIcons
           aria-label="Backspace command sequence"
-          disabled={display.length === 0}
+          disabled={display.length === 0 || decoded}
           onClick={() => handleBackspace(display)}
           title="Backspace"
         >
@@ -292,7 +345,7 @@ export default function Cipher(props) {
         </ModifiedIcons>
         <ModifiedIcons 
           aria-label="Clear command sequence"
-          disabled={display.length === 0}
+          disabled={display.length === 0 || decoded}
           onClick={() => handleClear()}
           title="Clear"
         >
