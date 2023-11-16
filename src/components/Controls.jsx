@@ -39,7 +39,7 @@ const panelColors = createTheme({
       border: red[800]
     },
     yellow: {
-      main: yellow[500],
+      main: yellow[600],
       border: yellow[800],
     },
   },
@@ -47,27 +47,27 @@ const panelColors = createTheme({
     MuiFab: {
       styleOverrides: {
         blue: {
-          '&:hover': {
+          '&:hover, &:disabled': {
             backgroundColor: blue[300],
           },
         },
         green: {
-          '&:hover': {
+          '&:hover, &:disabled': {
             backgroundColor: lightGreen[300],
           },
         },
         orange: {
-          '&:hover': {
+          '&:hover, &:disabled': {
             backgroundColor: orange[300],
           },
         },
         red: {
-          '&:hover': {
+          '&:hover, &:disabled': {
             backgroundColor: red[300],
           },
         },
         yellow: {
-          '&:hover': {
+          '&:hover, &:disabled': {
             backgroundColor: yellow[300],
           },
         },
@@ -118,6 +118,7 @@ function ControlPanel(props) {
         <Fab 
           aria-label="electrical power"
           color='yellow'
+          disabled={props.send}
           onClick={() => {props.handleActivate(false, 'ELECTRICAL POWER SUBSYSTEM')}}
           size={(window.innerWidth <= 480) ? 'medium' : 'large'}
           sx={{ border: '4px solid', borderColor: 'yellow.border', mx: 1, my: 2 }}
@@ -127,6 +128,7 @@ function ControlPanel(props) {
         <Fab
           aria-label="propulsion"
           color='red'
+          disabled={props.send}
           onClick={() => {props.handleActivate(false, 'PROPULSION SUBSYSTEM')}}
           size={(window.innerWidth <= 480) ? 'medium' : 'large'}
           sx={{ border: '4px solid', borderColor: 'red.border', mx: 1, my: 2 }}
@@ -136,6 +138,7 @@ function ControlPanel(props) {
         <Fab
           aria-label="attitude and orbit control"
           color='blue'
+          disabled={props.send}
           onClick={() => {props.handleActivate(false, 'ATTITUDE & ORBIT CONTROL SUBSYSTEM')}}
           size={(window.innerWidth <= 480) ? 'medium' : 'large'}
           sx={{ border: '4px solid', borderColor: 'blue.border', mx: 1, my: 2 }}
@@ -145,6 +148,7 @@ function ControlPanel(props) {
         <Fab
           aria-label="communications and data handling"
           color='orange'
+          disabled={props.send}
           onClick={() => {props.handleActivate(true, 'COMMUNICATIONS & DATA HANDLING SUBSYSTEM')}}
           size={(window.innerWidth <= 480) ? 'medium' : 'large'}
           sx={{ border: '4px solid', borderColor: 'orange.border', mx: 1, my: 2 }}
@@ -154,6 +158,7 @@ function ControlPanel(props) {
         <Fab
           aria-label="environmental control and life support"
           color='green'
+          disabled={props.send}
           onClick={() => {
             props.handleActivate(false, 'ENVIRONMENTAL CONTROL & LIFE SUPPORT SUBSYSTEM')
           }}
@@ -168,7 +173,8 @@ function ControlPanel(props) {
 }
 
 ControlPanel.propTypes = {
-  handleActivate: PropTypes.func.isRequired
+  handleActivate: PropTypes.func.isRequired,
+  send: PropTypes.bool.isRequired,
 };
 
 // Component to activate comms & send distress signal
@@ -205,7 +211,7 @@ export default function Controls(props) {
   return (
     <>
       <ControlScreen display={display} />
-      <ControlPanel handleActivate={handleActivate} />
+      <ControlPanel handleActivate={handleActivate} send={send} />
       <Box sx={{ mb: 5 }}>
         <TextField 
           error={error !== null}
