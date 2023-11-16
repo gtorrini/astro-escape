@@ -92,6 +92,9 @@ function Choices(props) {
               if (e.key === 'Enter') {
                 setMessage;
                 handleChoice(e);
+              } else if (e.key === 'Escape') {
+                setMessage(null);
+                setChoice(null);
               }
             }}
           >
