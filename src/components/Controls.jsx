@@ -40,7 +40,38 @@ const panelColors = createTheme({
     },
     yellow: {
       main: yellow[500],
-      border: yellow[800]
+      border: yellow[800],
+    },
+  },
+  components: {
+    MuiFab: {
+      styleOverrides: {
+        blue: {
+          '&:hover': {
+            backgroundColor: blue[300],
+          },
+        },
+        green: {
+          '&:hover': {
+            backgroundColor: lightGreen[300],
+          },
+        },
+        orange: {
+          '&:hover': {
+            backgroundColor: orange[300],
+          },
+        },
+        red: {
+          '&:hover': {
+            backgroundColor: red[300],
+          },
+        },
+        yellow: {
+          '&:hover': {
+            backgroundColor: yellow[300],
+          },
+        },
+      },
     },
   }
 });
@@ -89,7 +120,7 @@ function ControlPanel(props) {
           color='yellow'
           onClick={() => {props.handleActivate(false, 'ELECTRICAL POWER SUBSYSTEM')}}
           size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-          sx={{ border: '5px solid', borderColor: 'yellow.border', mx: 1, my: 2 }}
+          sx={{ border: '4px solid', borderColor: 'yellow.border', mx: 1, my: 2 }}
         >
           <ElectricBoltIcon/>
         </Fab>
@@ -98,7 +129,7 @@ function ControlPanel(props) {
           color='red'
           onClick={() => {props.handleActivate(false, 'PROPULSION SUBSYSTEM')}}
           size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-          sx={{ border: '5px solid', borderColor: 'red.border', mx: 1, my: 2 }}
+          sx={{ border: '4px solid', borderColor: 'red.border', mx: 1, my: 2 }}
         >
           <RocketLaunchIcon/>
         </Fab>
@@ -107,7 +138,7 @@ function ControlPanel(props) {
           color='blue'
           onClick={() => {props.handleActivate(false, 'ATTITUDE & ORBIT CONTROL SUBSYSTEM')}}
           size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-          sx={{ border: '5px solid', borderColor: 'blue.border', mx: 1, my: 2 }}
+          sx={{ border: '4px solid', borderColor: 'blue.border', mx: 1, my: 2 }}
         >
           <SwitchAccessShortcutIcon/>
         </Fab>
@@ -116,7 +147,7 @@ function ControlPanel(props) {
           color='orange'
           onClick={() => {props.handleActivate(true, 'COMMUNICATIONS & DATA HANDLING SUBSYSTEM')}}
           size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-          sx={{ border: '5px solid', borderColor: 'orange.border', mx: 1, my: 2 }}
+          sx={{ border: '4px solid', borderColor: 'orange.border', mx: 1, my: 2 }}
         >
           <SsidChartIcon/>
         </Fab>
@@ -127,7 +158,7 @@ function ControlPanel(props) {
             props.handleActivate(false, 'ENVIRONMENTAL CONTROL & LIFE SUPPORT SUBSYSTEM')
           }}
           size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-          sx={{ border: '5px solid', borderColor: 'green.border', mx: 1, my: 2 }}
+          sx={{ border: '4px solid', borderColor: 'green.border', mx: 1, my: 2 }}
         >
           <SensorOccupiedIcon/>
         </Fab>
