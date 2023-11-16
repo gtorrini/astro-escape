@@ -121,8 +121,8 @@ export default function Rebus(props) {
 
   const radiation = {
     includes: 'radiation',
-    clue: <>(&#128251; [O=A]) + (&#128084; - E) + (&#127816; - MEL)</>,
-    hint: 'Hint: (RADIO [O=A]) + (TIE - E) + (MELON - MEL)',
+    clue: <>(&#128251; [O&rarr;A]) + (&#128084; - E) + (&#127816; - MEL)</>,
+    hint: 'Hint: (RADIO [O→A]) + (TIE - E) + (MELON - MEL)',
     id: '2', 
     explanation: <>
       When a black hole&#39;s gravity pulls in stars, gas, or dust, the material begins to 
