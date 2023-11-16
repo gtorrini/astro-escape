@@ -1,7 +1,7 @@
 // 3rd-party imports
 import { memo, React, useState } from 'react';
 import PropTypes from 'prop-types';
-import { blue, green, grey, red, yellow } from '@mui/material/colors';
+import { blue, grey, lightGreen, orange, red, yellow } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -24,18 +24,23 @@ const panelColors = createTheme({
   palette: {
     blue: {
       main: blue[500],
+      border: blue[800]
     },
     green: {
-      main: green[500],
+      main: lightGreen[500],
+      border: lightGreen[800]
+    },
+    orange: {
+      main: orange[500],
+      border: orange[800]
     },
     red: {
       main: red[500],
-    },
-    white: {
-      main: '#ffffff',
+      border: red[800]
     },
     yellow: {
       main: yellow[500],
+      border: yellow[800]
     },
   }
 });
@@ -81,10 +86,10 @@ function ControlPanel(props) {
       <ThemeProvider theme={panelColors}>
         <Fab 
           aria-label="electrical power"
-          color='white'
+          color='yellow'
           onClick={() => {props.handleActivate(false, 'ELECTRICAL POWER SUBSYSTEM')}}
           size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-          sx={{ mx: 1, my: 2}}
+          sx={{ border: '5px solid', borderColor: 'yellow.border', mx: 1, my: 2 }}
         >
           <ElectricBoltIcon/>
         </Fab>
@@ -93,36 +98,36 @@ function ControlPanel(props) {
           color='red'
           onClick={() => {props.handleActivate(false, 'PROPULSION SUBSYSTEM')}}
           size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-          sx={{mx: 1, my: 2}}
+          sx={{ border: '5px solid', borderColor: 'red.border', mx: 1, my: 2 }}
         >
           <RocketLaunchIcon/>
         </Fab>
         <Fab
           aria-label="attitude and orbit control"
-          color='yellow'
+          color='blue'
           onClick={() => {props.handleActivate(false, 'ATTITUDE & ORBIT CONTROL SUBSYSTEM')}}
           size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-          sx={{mx: 1, my: 2}}
+          sx={{ border: '5px solid', borderColor: 'blue.border', mx: 1, my: 2 }}
         >
           <SwitchAccessShortcutIcon/>
         </Fab>
         <Fab
           aria-label="communications and data handling"
-          color='green'
+          color='orange'
           onClick={() => {props.handleActivate(true, 'COMMUNICATIONS & DATA HANDLING SUBSYSTEM')}}
           size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-          sx={{mx: 1, my: 2}}
+          sx={{ border: '5px solid', borderColor: 'orange.border', mx: 1, my: 2 }}
         >
           <SsidChartIcon/>
         </Fab>
         <Fab
           aria-label="environmental control and life support"
-          color='blue'
+          color='green'
           onClick={() => {
             props.handleActivate(false, 'ENVIRONMENTAL CONTROL & LIFE SUPPORT SUBSYSTEM')
           }}
           size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-          sx={{mx: 1, my: 2}}
+          sx={{ border: '5px solid', borderColor: 'green.border', mx: 1, my: 2 }}
         >
           <SensorOccupiedIcon/>
         </Fab>
@@ -191,7 +196,7 @@ export default function Controls(props) {
         />
         <Button 
             id="distress-submit"
-            disabled={message === null}
+            disabled={message === null || send}
             display={(window.innerWidth <= 480) ? 'block' : 'inline'}
             label="Submit"
             variant="contained"
