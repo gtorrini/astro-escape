@@ -39,86 +39,86 @@ const titleCards = {
 
 // Component to hold escape room puzzles
 export default function Escape() {
-    const [activeStep, setActiveStep] = useState(0);
-  
-    const handleNext = () => {
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
-  
-    const handleBack = () => {
-      setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
-  
-    const handleRestart = () => {
-      setActiveStep(0);
-    };
+  const [activeStep, setActiveStep] = useState(0);
 
-    const handleContent = () => {
-        switch(activeStep) {
-            case(0): 
-                return(
-                    <>
-                      <PuzzleIntros title={titleCards[1].title} blurb={titleCards[1].blurb}/>
-                      <ImageHunt next={handleNext}/>
-                    </>
-                );
-            case(1):
-                return(
-                    <>
-                      <PuzzleIntros title={titleCards[2].title} blurb={titleCards[2].blurb}/>
-                      <Protocol back={handleBack} next={handleNext} restart={handleRestart}/>
-                    </>
-                );
-            case(2):
-                return(
-                    <>
-                      <PuzzleIntros title={titleCards[3].title} blurb={titleCards[3].blurb}/>
-                      <Controls back={handleBack} next={handleNext} restart={handleRestart}/>
-                    </>
-                );
-            case(3):
-                return(
-                    <>
-                      <PuzzleIntros title={titleCards[4].title} blurb={titleCards[4].blurb}/>
-                      <Cipher back={handleBack} next={handleNext} restart={handleRestart}/>
-                    </>
-                );
-            case(4):
-                return(
-                    <>
-                      <PuzzleIntros title={titleCards[5].title} blurb={titleCards[5].blurb}/>
-                      <Rebus back={handleBack} next={handleNext} restart={handleRestart}/>
-                    </>
-                );
-            case(5):
-                return(
-                    <Outro/>
-                );
-        }
-    };
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleRestart = () => {
+    setActiveStep(0);
+  };
+
+  const handleContent = () => {
+    switch(activeStep) {
+      case(0): 
+        return(
+          <>
+            <PuzzleIntros title={titleCards[1].title} blurb={titleCards[1].blurb}/>
+            <ImageHunt next={handleNext}/>
+          </>
+        );
+      case(1):
+        return(
+          <>
+            <PuzzleIntros title={titleCards[2].title} blurb={titleCards[2].blurb}/>
+            <Protocol back={handleBack} next={handleNext} restart={handleRestart}/>
+          </>
+        );
+      case(2):
+        return(
+          <>
+            <PuzzleIntros title={titleCards[3].title} blurb={titleCards[3].blurb}/>
+            <Controls back={handleBack} next={handleNext} restart={handleRestart}/>
+          </>
+        );
+      case(3):
+        return(
+          <>
+            <PuzzleIntros title={titleCards[4].title} blurb={titleCards[4].blurb}/>
+            <Cipher back={handleBack} next={handleNext} restart={handleRestart}/>
+          </>
+        );
+      case(4):
+        return(
+          <>
+            <PuzzleIntros title={titleCards[5].title} blurb={titleCards[5].blurb}/>
+            <Rebus back={handleBack} next={handleNext} restart={handleRestart}/>
+          </>
+        );
+      case(5):
+        return(
+          <Outro/>
+        );
+    }
+  };
   
-    return (
-        <>
-            <Box sx={{ mx: 2, my: 2}}>
-                <Stepper activeStep={activeStep}>
-                    <Step key="puzzle-1">
-                        <StepLabel/>
-                    </Step>
-                    <Step key="puzzle-2">
-                      <StepLabel/>
-                    </Step>
-                    <Step key="puzzle-3">
-                      <StepLabel/>
-                    </Step>
-                    <Step key="puzzle-4">
-                      <StepLabel/>
-                    </Step>
-                    <Step key="puzzle-5">
-                      <StepLabel/>
-                    </Step>
-                </Stepper>
-                {handleContent()}
-            </Box>
-        </>
-    );
+  return (
+    <>
+      <Box sx={{ mx: 2, my: 2}}>
+        <Stepper activeStep={activeStep}>
+          <Step key="puzzle-1">
+            <StepLabel/>
+          </Step>
+          <Step key="puzzle-2">
+            <StepLabel/>
+          </Step>
+          <Step key="puzzle-3">
+            <StepLabel/>
+          </Step>
+          <Step key="puzzle-4">
+            <StepLabel/>
+          </Step>
+          <Step key="puzzle-5">
+            <StepLabel/>
+          </Step>
+        </Stepper>
+        {handleContent()}
+      </Box>
+    </>
+  );
 }
