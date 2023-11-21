@@ -1,5 +1,5 @@
 // 3rd-party imports
-import { React, useState } from 'react';
+import { React, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -7,7 +7,8 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 
 // Local imports
-import { NextButton } from './NavButtons.jsx'; 
+import { NextButton } from './NavButtons.jsx';
+import { ViewportContext } from './useViewport.js';
 
 // Personal item image data
 const itemData = [
@@ -63,9 +64,9 @@ const itemData = [
 
 // Image list of personal items
 function PersonalItemsList(props) {
-  const calcDims = () => {
-    const currentWidth = window.innerWidth;
+  const width = useContext(ViewportContext);
 
+  const calcDims = (currentWidth) => {
     // Calculate appropriate width, height, and rowHeight
     if (currentWidth <= 480) {
       return (250, 225, 85);
@@ -82,9 +83,9 @@ function PersonalItemsList(props) {
 
   return (
     <ImageList 
-      sx={{ width: (calcDims())[0], height: (calcDims())[1], mx: 'auto' }} 
+      sx={{ width: (calcDims(width))[0], height: (calcDims(width))[1], mx: 'auto' }} 
       cols={3} 
-      rowHeight={(calcDims())[2]}
+      rowHeight={(calcDims(width))[2]}
     >
       {itemData.map((item) => (
         <ImageListItem key={item.img}>
