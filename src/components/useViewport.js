@@ -1,9 +1,9 @@
 import { createContext, React, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const viewportContext = createContext({});
+const ViewportContext = createContext({});
 
-export default function ViewportProvider({children}) {
+function ViewportProvider({children}) {
   const [width, setWidth] = useState(window.innerWidth);
 
   // Listen to window resize events
@@ -19,12 +19,14 @@ export default function ViewportProvider({children}) {
 
   // Wrap child elements with context provider 
   return (
-    <viewportContext.Provider value={width}>
+    <ViewportContext.Provider value={width}>
       {children}
-    </viewportContext.Provider>
+    </ViewportContext.Provider>
   );
 }
 
 ViewportProvider.propTypes = {
   children: PropTypes.element.isRequired
 }
+
+export { ViewportContext, ViewportProvider };
