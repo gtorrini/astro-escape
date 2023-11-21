@@ -15,14 +15,14 @@ const Escape = React.lazy(() => import('./components/Escape.jsx'));
 // App-wide MUI styling and overrides
 let darkTheme = createTheme({
   palette: {
-      mode: 'dark',
+    mode: 'dark',
   },
   typography: {
     h4: {
-        fontFamily: "Silkscreen",
+      fontFamily: "Silkscreen",
     },
     h5: {
-        fontFamily: "Silkscreen",
+      fontFamily: "Silkscreen",
     },
   },
   components: {
@@ -43,26 +43,26 @@ darkTheme = responsiveFontSizes(darkTheme);
 
 export default function App() {
   return (
-        <ThemeProvider theme={darkTheme}>
-          <ResponsiveAppBar></ResponsiveAppBar>
-          <main>
-            <Router>
-              <React.Suspense fallback={<h5>Loading page...</h5>}>
-                <Routes>
-                  <Route path='/' element={<Home></Home>}></Route>
-                  <Route path='/play' element={<Escape></Escape>}></Route>
-                  <Route path='/about' element={<About></About>}></Route>
-                </Routes>
-              </React.Suspense>
-            </Router>
-          </main>
-          <footer>
-            <Container maxWidth='100%' sx={{ backgroundColor: '#193154' }}>
-              <Typography variant='body1' sx={{ padding: 1, textAlign: 'center'}}>
-                Copyright {'\u00A9'} 2023 Gabriela Torrini
-              </Typography>
-            </Container>
-          </footer>
-        </ThemeProvider>
+    <ThemeProvider theme={darkTheme}>
+      <ResponsiveAppBar></ResponsiveAppBar>
+      <main>
+        <Router>
+          <React.Suspense fallback={<h5>Loading page...</h5>}>
+            <Routes>
+              <Route path='/' element={<Home></Home>}></Route>
+              <Route path='/play' element={<Escape></Escape>}></Route>
+              <Route path='/about' element={<About></About>}></Route>
+            </Routes>
+          </React.Suspense>
+        </Router>
+      </main>
+      <footer>
+        <Container maxWidth='100%' sx={{ backgroundColor: '#193154' }}>
+          <Typography variant='body1' sx={{ padding: 1, textAlign: 'center'}}>
+            Copyright {'\u00A9'} 2023 Gabriela Torrini
+          </Typography>
+        </Container>
+      </footer>
+    </ThemeProvider>
   );
 }
