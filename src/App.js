@@ -8,7 +8,7 @@ import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/s
 // Local imports
 import './App.css';
 import ResponsiveAppBar from './components/NavBar.jsx';
-import ViewportProvider from './components/useViewport.js';
+import { ViewportProvider } from './components/useViewport.js';
 const About = React.lazy(() => import('./components/About.jsx'));
 const Home = React.lazy(() => import('./components/Home.jsx'));
 const Escape = React.lazy(() => import('./components/Escape.jsx'));
