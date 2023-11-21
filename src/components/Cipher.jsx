@@ -1,5 +1,5 @@
 // 3rd-party imports
-import { memo, React, useState } from 'react';
+import { memo, React, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import Box from '@mui/material/Box';
@@ -13,6 +13,7 @@ import { red, orange, yellow, lightGreen, grey, blue, indigo, purple } from '@mu
 
 // Local imports
 import { BackButton, NextButton, RestartButton } from './NavButtons.jsx';
+import { ViewportContext } from './useViewport.js';
 
 // Set up colors & theme
 const screen = grey[900];
@@ -127,75 +128,143 @@ const CipherKey = memo(
       <Box 
         sx={{
           backgroundColor: screen,
-          border: (window.innerWidth <= 650) ? 10 : 20,
+          border: (props.width <= 650) ? 10 : 20,
           borderColor: frame,
-          maxWidth: (window.innerWidth <= 650) ? '100%' : '60%',
+          maxWidth: (props.width <= 650) ? '100%' : '60%',
           mx: 'auto',
           mb: 3,
           padding: 1,
-          textAlign: (window.innerWidth <= 650) ? 'left' : 'center'
+          textAlign: (props.width <= 650) ? 'left' : 'center'
         }}
       >
         <p className="screen"> 	MSHZO NYVVCF JVSVYZ AV HJJLWA VBY HPK  </p>
         <div style={{ overflow: 'auto' }}>
           <table className="screen">
             <tbody>
-              <tr>
-                <td>A</td>
-                <td>B</td>
-                <td>C</td>
-                <td>D</td>
-                <td>E</td>
-                <td>F</td>
-                <td>G</td>
-                <td>H</td>
-                <td>I</td>
-                <td>J</td>
-                <td>K</td>
-                <td>L</td>
-                <td>M</td>
-                <td>N</td>
-                <td>O</td>
-                <td>P</td>
-                <td>Q</td>
-                <td>R</td>
-                <td>S</td>
-                <td>T</td>
-                <td>U</td>
-                <td>V</td>
-                <td>W</td>
-                <td>X</td>
-                <td>Y</td>
-                <td>Z</td>
-              </tr>
-              <tr>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td>M</td>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td>U</td>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td>B</td>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-              </tr>
+              {(props.width > 480) && 
+                <>
+                  <tr>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                  </tr>
+                  <tr>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td>M</td>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td>U</td>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td>B</td>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                  </tr>
+                </>
+              }
+              {(props.width <= 480) &&
+                <>
+                  <tr>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                  </tr>
+                  <tr>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td>M</td>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                  </tr>
+                  <tr>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                  </tr>
+                  <tr>
+                    <td>U</td>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td>B</td>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+                  </tr>
+                </>
+              }
             </tbody>
           </table>
         </div>
@@ -206,13 +275,16 @@ const CipherKey = memo(
 );
 
 CipherKey.propTypes = {
-  display: PropTypes.string.isRequired
+  display: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired
 }
 
 // Component to decode cipher & send correct sequence
 export default function Cipher(props) {
   const [decoded, setDecoded] = useState(false);
   const [display, setDisplay] = useState('INPUT COMMAND SEQUENCE');
+
+  const width = useContext(ViewportContext);
 
   const validateResponse = (message) => {
     if (message === 'GROOVY') {
@@ -246,12 +318,12 @@ export default function Cipher(props) {
 
   return (
     <>
-      <CipherKey display={display} />
+      <CipherKey display={display} width={width} />
       <Box
         sx={{
           backgroundColor: frame,
-          borderRadius: '20px',
-          maxWidth: (window.innerWidth <= 650) ? '100%' : '60%',
+          borderRadius: '10px',
+          maxWidth: (width <= 650) ? '95%' : '60%',
           mx: 'auto',
           mb: 5
         }}
@@ -260,7 +332,7 @@ export default function Cipher(props) {
             <ButtonGroup 
               aria-label="Color buttons"
               disabled={decoded}
-              sx={{ display: "inline-block", my: (window.innerWidth > 480) ? 2 : 1 }}
+              sx={{ display: "inline-block", my: (width > 480) ? 2 : 1}}
               variant='contained'
             >
               <Button 
@@ -268,8 +340,8 @@ export default function Cipher(props) {
                 color='red'
                 onClick={() => handleKey(display, 'R')} 
                 sx={{
-                  height: (window.innerWidth > 480) ? 40 : 30,
-                  width: (window.innerWidth > 480) ? 80 : 60
+                  height: (width > 480) ? 40 : 30,
+                  width: (width > 480) ? 80 : 60
                 }}
                 title="Red"
               ></Button>
@@ -278,8 +350,8 @@ export default function Cipher(props) {
                 color='orange'
                 onClick={() => handleKey(display, 'O')}
                 sx={{
-                  height: (window.innerWidth > 480) ? 40 : 30,
-                  width: (window.innerWidth > 480) ? 80 : 60
+                  height: (width > 480) ? 40 : 30,
+                  width: (width > 480) ? 80 : 60
                 }}
                 title="Orange"
               ></Button>
@@ -288,8 +360,8 @@ export default function Cipher(props) {
                 color='yellow'
                 onClick={() => handleKey(display, 'Y')}
                 sx={{
-                  height: (window.innerWidth > 480) ? 40 : 30,
-                  width: (window.innerWidth > 480) ? 80 : 60
+                  height: (width > 480) ? 40 : 30,
+                  width: (width > 480) ? 80 : 60
                 }}
                 title="Yellow"
               ></Button>
@@ -298,8 +370,8 @@ export default function Cipher(props) {
                 color='green'
                 onClick={() => handleKey(display, 'G')}
                 sx={{
-                  height: (window.innerWidth > 480) ? 40 : 30,
-                  width: (window.innerWidth > 480) ? 80 : 60
+                  height: (width > 480) ? 40 : 30,
+                  width: (width > 480) ? 80 : 60
                 }}
                 title="Green"
               ></Button>
@@ -308,8 +380,8 @@ export default function Cipher(props) {
                 color='blue'
                 onClick={() => handleKey(display, 'B')}
                 sx={{
-                  height: (window.innerWidth > 480) ? 40 : 30,
-                  width: (window.innerWidth > 480) ? 80 : 60
+                  height: (width > 480) ? 40 : 30,
+                  width: (width > 480) ? 80 : 60
                 }}
                 title="Blue"
               ></Button>
@@ -318,8 +390,8 @@ export default function Cipher(props) {
                 color='indigo'
                 onClick={() => handleKey(display, 'I')}
                 sx={{
-                  height: (window.innerWidth > 480) ? 40 : 30,
-                  width: (window.innerWidth > 480) ? 80 : 60
+                  height: (width > 480) ? 40 : 30,
+                  width: (width > 480) ? 80 : 60
                 }}
                 title="Indigo"
               ></Button>
@@ -328,8 +400,8 @@ export default function Cipher(props) {
                 color='violet'
                 onClick={() => handleKey(display, 'V')}
                 sx={{
-                  height: (window.innerWidth > 480) ? 40 : 30,
-                  width: (window.innerWidth > 480) ? 80 : 60
+                  height: (width > 480) ? 40 : 30,
+                  width: (width > 480) ? 80 : 60
                 }}
                 title="Violet"
               ></Button>

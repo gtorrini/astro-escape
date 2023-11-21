@@ -1,5 +1,5 @@
 // 3rd-party imports
-import { React, useState } from 'react';
+import { React, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
@@ -13,6 +13,7 @@ import { grey, yellow } from '@mui/material/colors';
 
 // Local imports
 import { BackButton, NextButton, RestartButton } from './NavButtons.jsx';
+import { ViewportContext } from './useViewport.js';
 
 const page = yellow[50];
 const screen = grey[900];
@@ -20,11 +21,13 @@ const frame = grey[400];
 
 // Instructions for black hole navigation
 function Instructions() {
+  const width = useContext(ViewportContext);
+
   return (
     <Box
     sx={{
       backgroundColor: page,
-      maxWidth: (window.innerWidth <= 650) ? '100%' : '80%',
+      maxWidth: (width <= 650) ? '95%' : '80%',
       mb: 3,
       mx: 'auto',
       padding: 2,
@@ -38,13 +41,15 @@ function Instructions() {
 
 // Monitoring panel with science insights
 function MonitoringPanel() {
+  const width = useContext(ViewportContext);
+
   return (
     <Box 
       sx={{
         backgroundColor: screen,
-        border: (window.innerWidth <= 650) ? 10 : 20,
+        border: (width <= 650) ? 10 : 20,
         borderColor: frame,
-        maxWidth: (window.innerWidth <= 650) ? '100%' : '75%',
+        maxWidth: (width <= 650) ? '100%' : '75%',
         mb: 3,
         mx: 'auto',
         padding: 2,

@@ -1,5 +1,5 @@
 // 3rd-party imports
-import { React, useState } from 'react';
+import { React, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 
 // Local imports
 import { BackButton, RestartButton } from './NavButtons.jsx';
+import { ViewportContext } from './useViewport.js';
 
 // Display & solve a rebus puzzle
 function Puzzle(props) {
@@ -29,7 +30,7 @@ function Puzzle(props) {
   return (
     <>
       <Box sx={{ mb: (props.id === '1') ? 10 : 5 }} >
-        <Typography variant={(window.innerWidth <= 480) ? 'h6' : 'h3'} sx={{padding: 2}}>
+        <Typography variant={(props.width <= 480) ? 'h6' : 'h3'} sx={{padding: 2}}>
           {props.clue}
         </Typography>
         <Box sx={{ my: 3 }}>
@@ -48,7 +49,7 @@ function Puzzle(props) {
                 handleSubmit(answer);
               }
             }}
-            size={(window.innerWidth <= 480) ? 'small' : 'large'}
+            size={(props.width <= 480) ? 'small' : 'large'}
           />
           <Button 
             aria-label="submit"
@@ -57,7 +58,8 @@ function Puzzle(props) {
             label='Submit'
             variant='contained'
             onClick={() => {handleSubmit(answer)}}
-            sx={{ ml: ((window.innerWidth <= 480) ? 0 : 2), mt: 1 }}
+            sx={{ ml: ((props.width < 424) ? 0 : 2), mt: ((props.width <= 480) ? 0.5 : 1) }}
+            size={(props.width <= 480) ? 'small' : 'large'}
           >
             Submit
           </Button>
@@ -67,7 +69,7 @@ function Puzzle(props) {
               sx={{
                   backgroundColor: '#b71c1c',
                   borderRadius: 1,
-                  maxWidth: (window.innerWidth <= 480) ? '100%' : '60%',
+                  maxWidth: (props.width <= 480) ? '100%' : '60%',
                   mb: 3,
                   mx: 'auto'
               }}
@@ -88,13 +90,16 @@ Puzzle.propTypes = {
   hint: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   explanation: PropTypes.object.isRequired,
-  handleSolved: PropTypes.func.isRequired
+  handleSolved: PropTypes.func.isRequired,
+  width: PropTypes.number.isRequired
 };
 
 // Component to hold multiple rebus puzzles
 export default function Rebus(props) {
   const [first, setFirst] = useState(false);
   const [second, setSecond] = useState(false);
+
+  const width = useContext(ViewportContext);
 
   const handleFirst = () => {
     setFirst(true);
@@ -134,8 +139,8 @@ export default function Rebus(props) {
 
   return (
     <>
-      <Puzzle {...spaghetti}></Puzzle>
-      <Puzzle {...radiation}></Puzzle>
+      <Puzzle {...spaghetti} width={width} />
+      <Puzzle {...radiation} width={width} />
       <Grid container>
         <Grid item xs={4}>
           <BackButton handleClick={props.back}></BackButton>

@@ -1,5 +1,5 @@
 // 3rd-party imports
-import { memo, React, useState } from 'react';
+import { memo, React, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { blue, grey, lightGreen, orange, red, yellow } from '@mui/material/colors';
 import Box from '@mui/material/Box';
@@ -16,6 +16,7 @@ import TextField from '@mui/material/TextField';
 
 // Local imports
 import { BackButton, NextButton, RestartButton } from './NavButtons.jsx';
+import { ViewportContext } from './useViewport.js';
 
 // Set up colors & theme
 const screen = grey[900];
@@ -79,13 +80,14 @@ const panelColors = createTheme({
 // Screen displaying which subsystem is enabled
 const ControlScreen = memo(
   function ControlScreen(props) {
+
     return (
       <Box 
         sx={{
           backgroundColor: screen,
-          border: (window.innerWidth <= 650) ? 10 : 20,
+          border: (props.width <= 650) ? 10 : 20,
           borderColor: frame,
-          maxWidth: (window.innerWidth <= 650) ? '100%' : '75%',
+          maxWidth: (props.width <= 650) ? '100%' : '75%',
           mb: 3,
           mx: 'auto',
           padding: 2,
@@ -99,7 +101,8 @@ const ControlScreen = memo(
 );
 
 ControlScreen.propTypes = {
-  display: PropTypes.string.isRequired
+  display: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired
 };
 
 // Control panel of buttons
@@ -111,7 +114,7 @@ function ControlPanel(props) {
         borderRadius: '20px',
         mx: 'auto',
         mb: 3,
-        maxWidth: (window.innerWidth <= 480) ? '80%' : '35%'
+        maxWidth: (props.width <= 480) ? '95%' : '35%'
       }}
     >
       <ThemeProvider theme={panelColors}>
@@ -120,7 +123,7 @@ function ControlPanel(props) {
           color='yellow'
           disabled={props.send}
           onClick={() => {props.handleActivate(false, 'ELECTRICAL POWER SUBSYSTEM')}}
-          size={(window.innerWidth <= 480) ? 'medium' : 'large'}
+          size={(props.width <= 480) ? 'medium' : 'large'}
           sx={{ border: '4px solid', borderColor: 'yellow.border', mx: 1, my: 2 }}
         >
           <ElectricBoltIcon/>
@@ -130,7 +133,7 @@ function ControlPanel(props) {
           color='red'
           disabled={props.send}
           onClick={() => {props.handleActivate(false, 'PROPULSION SUBSYSTEM')}}
-          size={(window.innerWidth <= 480) ? 'medium' : 'large'}
+          size={(props.width <= 480) ? 'medium' : 'large'}
           sx={{ border: '4px solid', borderColor: 'red.border', mx: 1, my: 2 }}
         >
           <RocketLaunchIcon/>
@@ -140,7 +143,7 @@ function ControlPanel(props) {
           color='blue'
           disabled={props.send}
           onClick={() => {props.handleActivate(false, 'ATTITUDE & ORBIT CONTROL SUBSYSTEM')}}
-          size={(window.innerWidth <= 480) ? 'medium' : 'large'}
+          size={(props.width <= 480) ? 'medium' : 'large'}
           sx={{ border: '4px solid', borderColor: 'blue.border', mx: 1, my: 2 }}
         >
           <SwitchAccessShortcutIcon/>
@@ -150,7 +153,7 @@ function ControlPanel(props) {
           color='orange'
           disabled={props.send}
           onClick={() => {props.handleActivate(true, 'COMMUNICATIONS & DATA HANDLING SUBSYSTEM')}}
-          size={(window.innerWidth <= 480) ? 'medium' : 'large'}
+          size={(props.width <= 480) ? 'medium' : 'large'}
           sx={{ border: '4px solid', borderColor: 'orange.border', mx: 1, my: 2 }}
         >
           <SsidChartIcon/>
@@ -162,7 +165,7 @@ function ControlPanel(props) {
           onClick={() => {
             props.handleActivate(false, 'ENVIRONMENTAL CONTROL & LIFE SUPPORT SUBSYSTEM')
           }}
-          size={(window.innerWidth <= 480) ? 'medium' : 'large'}
+          size={(props.width <= 480) ? 'medium' : 'large'}
           sx={{ border: '4px solid', borderColor: 'green.border', mx: 1, my: 2 }}
         >
           <SensorOccupiedIcon/>
@@ -175,6 +178,7 @@ function ControlPanel(props) {
 ControlPanel.propTypes = {
   handleActivate: PropTypes.func.isRequired,
   send: PropTypes.bool.isRequired,
+  width: PropTypes.number.isRequired
 };
 
 // Component to activate comms & send distress signal
@@ -185,6 +189,8 @@ export default function Controls(props) {
   const [error, setError] = useState(null);
   const [attempts, setAttempts] = useState(0)
   const [send, setSend] = useState(false);
+
+  const width = useContext(ViewportContext);
 
   const handleActivate = (isComms, message) => {
     setActivated(isComms);
@@ -210,8 +216,8 @@ export default function Controls(props) {
 
   return (
     <>
-      <ControlScreen display={display} />
-      <ControlPanel handleActivate={handleActivate} send={send} />
+      <ControlScreen display={display} width={width} />
+      <ControlPanel handleActivate={handleActivate} send={send} width={width} />
       <Box sx={{ mb: 5 }}>
         <TextField 
           error={error !== null}
@@ -229,16 +235,17 @@ export default function Controls(props) {
               handleSubmit(message);
             }
           }}
-          size={(window.innerWidth <= 480) ? 'small' : 'large'}
+          size={(width <= 480) ? 'small' : 'large'}
         />
         <Button 
             id="distress-submit"
             disabled={message === null || send}
-            display={(window.innerWidth <= 480) ? 'block' : 'inline'}
+            display={(width <= 480) ? 'block' : 'inline'}
             label="Submit"
             variant="contained"
             onClick={() => {handleSubmit(message)}}
-            sx={{ ml: ((window.innerWidth <= 480) ? 0 : 2), mt: 1}}
+            sx={{ ml: ((width <= 424) ? 0 : 2), mt: ((width <= 480) ? 0.5 : 1) }}
+            size={(width <= 480) ? 'small' : 'large'}
         >Submit</Button>
       </Box>
       <Grid container>
