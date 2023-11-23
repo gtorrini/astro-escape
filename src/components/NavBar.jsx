@@ -89,7 +89,15 @@ export default function ResponsiveAppBar() {
               }}
             >
               {Object.entries(navAtts).map(([key, value]) => (
-                <MenuItem key={key} onClick={handleCloseNavMenu}>
+                <MenuItem 
+                  key={key}
+                  onClick={handleCloseNavMenu}
+                  onKeyDown = {(e) => {  
+                    if (e.key === 'Enter') {
+                      window.location.href = value.route;
+                    }
+                  }}  
+                >
                   <Typography
                     aria-label={value.label}
                     component='a'

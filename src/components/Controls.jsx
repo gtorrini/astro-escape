@@ -1,7 +1,7 @@
 // 3rd-party imports
-import { React, useState } from 'react';
+import { memo, React, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { blue, green, grey, red, yellow } from '@mui/material/colors';
+import { blue, grey, lightGreen, orange, red, yellow } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -16,30 +16,172 @@ import TextField from '@mui/material/TextField';
 
 // Local imports
 import { BackButton, NextButton, RestartButton } from './NavButtons.jsx';
+import { ViewportContext } from './useViewport.js';
 
+// Set up colors & theme
 const screen = grey[900];
 const frame = grey[400];
-
 const panelColors = createTheme({
   palette: {
     blue: {
       main: blue[500],
+      border: blue[800]
     },
     green: {
-      main: green[500],
+      main: lightGreen[500],
+      border: lightGreen[800]
+    },
+    orange: {
+      main: orange[500],
+      border: orange[800]
     },
     red: {
       main: red[500],
-    },
-    white: {
-      main: '#ffffff',
+      border: red[800]
     },
     yellow: {
-      main: yellow[500],
+      main: yellow[600],
+      border: yellow[800],
+    },
+  },
+  components: {
+    MuiFab: {
+      styleOverrides: {
+        blue: {
+          '&:hover, &:disabled': {
+            backgroundColor: blue[300],
+          },
+        },
+        green: {
+          '&:hover, &:disabled': {
+            backgroundColor: lightGreen[300],
+          },
+        },
+        orange: {
+          '&:hover, &:disabled': {
+            backgroundColor: orange[300],
+          },
+        },
+        red: {
+          '&:hover, &:disabled': {
+            backgroundColor: red[300],
+          },
+        },
+        yellow: {
+          '&:hover, &:disabled': {
+            backgroundColor: yellow[300],
+          },
+        },
+      },
     },
   }
 });
 
+// Screen displaying which subsystem is enabled
+const ControlScreen = memo(
+  function ControlScreen(props) {
+
+    return (
+      <Box 
+        sx={{
+          backgroundColor: screen,
+          border: (props.width <= 650) ? 10 : 20,
+          borderColor: frame,
+          maxWidth: (props.width <= 650) ? '100%' : '75%',
+          mb: 3,
+          mx: 'auto',
+          padding: 2,
+          textAlign: 'center',
+        }}
+      >
+        <p className="screen">{props.display}</p>
+      </Box>
+    );
+  }
+);
+
+ControlScreen.propTypes = {
+  display: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired
+};
+
+// Control panel of buttons
+function ControlPanel(props) {
+  return (
+    <Box
+      sx={{
+        backgroundColor: frame,
+        borderRadius: '20px',
+        mx: 'auto',
+        mb: 3,
+        maxWidth: (props.width <= 480) ? '95%' : '35%'
+      }}
+    >
+      <ThemeProvider theme={panelColors}>
+        <Fab 
+          aria-label="electrical power"
+          color='yellow'
+          disabled={props.send}
+          onClick={() => {props.handleActivate(false, 'ELECTRICAL POWER SUBSYSTEM')}}
+          size={(props.width <= 480) ? 'medium' : 'large'}
+          sx={{ border: '4px solid', borderColor: 'yellow.border', mx: 1, my: 2 }}
+        >
+          <ElectricBoltIcon/>
+        </Fab>
+        <Fab
+          aria-label="propulsion"
+          color='red'
+          disabled={props.send}
+          onClick={() => {props.handleActivate(false, 'PROPULSION SUBSYSTEM')}}
+          size={(props.width <= 480) ? 'medium' : 'large'}
+          sx={{ border: '4px solid', borderColor: 'red.border', mx: 1, my: 2 }}
+        >
+          <RocketLaunchIcon/>
+        </Fab>
+        <Fab
+          aria-label="attitude and orbit control"
+          color='blue'
+          disabled={props.send}
+          onClick={() => {props.handleActivate(false, 'ATTITUDE & ORBIT CONTROL SUBSYSTEM')}}
+          size={(props.width <= 480) ? 'medium' : 'large'}
+          sx={{ border: '4px solid', borderColor: 'blue.border', mx: 1, my: 2 }}
+        >
+          <SwitchAccessShortcutIcon/>
+        </Fab>
+        <Fab
+          aria-label="communications and data handling"
+          color='orange'
+          disabled={props.send}
+          onClick={() => {props.handleActivate(true, 'COMMUNICATIONS & DATA HANDLING SUBSYSTEM')}}
+          size={(props.width <= 480) ? 'medium' : 'large'}
+          sx={{ border: '4px solid', borderColor: 'orange.border', mx: 1, my: 2 }}
+        >
+          <SsidChartIcon/>
+        </Fab>
+        <Fab
+          aria-label="environmental control and life support"
+          color='green'
+          disabled={props.send}
+          onClick={() => {
+            props.handleActivate(false, 'ENVIRONMENTAL CONTROL & LIFE SUPPORT SUBSYSTEM')
+          }}
+          size={(props.width <= 480) ? 'medium' : 'large'}
+          sx={{ border: '4px solid', borderColor: 'green.border', mx: 1, my: 2 }}
+        >
+          <SensorOccupiedIcon/>
+        </Fab>
+      </ThemeProvider>
+    </Box>
+  );
+}
+
+ControlPanel.propTypes = {
+  handleActivate: PropTypes.func.isRequired,
+  send: PropTypes.bool.isRequired,
+  width: PropTypes.number.isRequired
+};
+
+// Component to activate comms & send distress signal
 export default function Controls(props) {
   const [activated, setActivated] = useState(false);
   const [display, setDisplay] = useState('WELCOME');
@@ -47,6 +189,8 @@ export default function Controls(props) {
   const [error, setError] = useState(null);
   const [attempts, setAttempts] = useState(0)
   const [send, setSend] = useState(false);
+
+  const width = useContext(ViewportContext);
 
   const handleActivate = (isComms, message) => {
     setActivated(isComms);
@@ -56,7 +200,7 @@ export default function Controls(props) {
   const handleSubmit = (text) => {
     const count = attempts + 1;
     setAttempts(attempts + 1);
-    if (text.toLowerCase().includes('sos')) {
+    if (text.toLowerCase() === 'sos') {
       setError(null);
       setSend(true);
     } else {
@@ -72,79 +216,8 @@ export default function Controls(props) {
 
   return (
     <>
-      <Box 
-        sx={{
-          backgroundColor: screen,
-          border: (window.innerWidth <= 650) ? 10 : 20,
-          borderColor: frame,
-          maxWidth: (window.innerWidth <= 650) ? '100%' : '75%',
-          mb: 3,
-          mx: 'auto',
-          padding: 2,
-          textAlign: 'center',
-        }}
-      >
-        <p className="screen">{display}</p>
-      </Box>
-      <Box
-        sx={{
-          backgroundColor: frame,
-          borderRadius: '20px',
-          mx: 'auto',
-          mb: 3,
-          maxWidth: (window.innerWidth <= 480) ? '80%' : '35%'
-        }}
-      >
-        <ThemeProvider theme={panelColors}>
-          <Fab 
-            aria-label="electrical power"
-            color='white'
-            onClick={() => {handleActivate(false, 'ELECTRICAL POWER SUBSYSTEM')}}
-            size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-            sx={{ mx: 1, my: 2}}
-          >
-            <ElectricBoltIcon/>
-          </Fab>
-          <Fab
-            aria-label="propulsion"
-            color='red'
-            onClick={() => {handleActivate(false, 'PROPULSION SUBSYSTEM')}}
-            size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-            sx={{mx: 1, my: 2}}
-          >
-            <RocketLaunchIcon/>
-          </Fab>
-          <Fab
-            aria-label="attitude and orbit control"
-            color='yellow'
-            onClick={() => {handleActivate(false, 'ATTITUDE & ORBIT CONTROL SUBSYSTEM')}}
-            size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-            sx={{mx: 1, my: 2}}
-          >
-            <SwitchAccessShortcutIcon/>
-          </Fab>
-          <Fab
-            aria-label="communications and data handling"
-            color='green'
-            onClick={() => {handleActivate(true, 'COMMUNICATIONS & DATA HANDLING SUBSYSTEM')}}
-            size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-            sx={{mx: 1, my: 2}}
-          >
-            <SsidChartIcon/>
-          </Fab>
-          <Fab
-            aria-label="environmental control and life support"
-            color='blue'
-            onClick={() => {
-              handleActivate(false, 'ENVIRONMENTAL CONTROL & LIFE SUPPORT SUBSYSTEM')
-            }}
-            size={(window.innerWidth <= 480) ? 'medium' : 'large'}
-            sx={{mx: 1, my: 2}}
-          >
-            <SensorOccupiedIcon/>
-          </Fab>
-        </ThemeProvider>
-      </Box>
+      <ControlScreen display={display} width={width} />
+      <ControlPanel handleActivate={handleActivate} send={send} width={width} />
       <Box sx={{ mb: 5 }}>
         <TextField 
           error={error !== null}
@@ -162,16 +235,17 @@ export default function Controls(props) {
               handleSubmit(message);
             }
           }}
-          size={(window.innerWidth <= 480) ? 'small' : 'large'}
+          size={(width <= 480) ? 'small' : 'large'}
         />
         <Button 
             id="distress-submit"
-            disabled={message === null}
-            display={(window.innerWidth <= 480) ? 'block' : 'inline'}
+            disabled={message === null || send}
+            display={(width <= 480) ? 'block' : 'inline'}
             label="Submit"
             variant="contained"
             onClick={() => {handleSubmit(message)}}
-            sx={{ ml: ((window.innerWidth <= 480) ? 0 : 2), mt: 1}}
+            sx={{ ml: ((width <= 424) ? 0 : 2), mt: ((width <= 480) ? 0.5 : 1) }}
+            size={(width <= 480) ? 'small' : 'large'}
         >Submit</Button>
       </Box>
       <Grid container>

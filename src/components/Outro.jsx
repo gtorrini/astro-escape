@@ -1,17 +1,13 @@
 import { React } from 'react';
-import { Box, Typography } from '@mui/material';
+import PuzzleIntros from './PuzzleIntros.jsx';
 
 export default function Outro() {
-    return (
-        <>
-            <Box sx={{my: 5, maxWidth: '60%', mx: 'auto'}}>
-                <Typography className='site-heading' variant="h4">
-                    {'\u2726'} CONGRATULATIONS {'\u2726'}
-                </Typography>
-                <Typography variant="body1" sx={{my: 3}}>
-                    Thanks for playing!
-                </Typography>
-            </Box>
-        </>
-    );
+  const heading = '\u2726 CONGRATULATIONS \u2726';
+  const closing = 'Thanks for playing!';
+
+  return (
+    <>
+      <PuzzleIntros title={heading} blurb={closing} />
+    </>
+  );
 }

@@ -1,17 +1,13 @@
 import { React } from 'react';
-import { Box, Typography } from '@mui/material';
+import PuzzleIntros from './PuzzleIntros.jsx';
 
 export default function Home() {
-    return (
-        <>
-            <Box sx={{my: 5}}>
-                <Typography className='site-heading' variant="h4">
-                    Welcome!
-                </Typography>
-                <Typography variant="body1" sx={{my: 3}}>
-                    You have just entered space near a black hole. Can you escape?
-                </Typography>
-            </Box>
-        </>
-    );
+  const heading = 'Welcome!';
+  const greeting = 'You have just entered space near a black hole. Can you escape?'
+
+  return (
+    <>
+      <PuzzleIntros title={heading} blurb={greeting} />
+    </>
+  );
 }
