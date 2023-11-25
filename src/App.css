@@ -18,6 +18,14 @@ footer {
   justify-content:flex-end;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:focus {
+  outline: none;
+}
+
 .site-heading {
   color: #ffc107;
   font-family: 'Silkscreen';
