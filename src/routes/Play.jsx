@@ -6,13 +6,13 @@ import Stepper from '@mui/material/Stepper';
 import StepLabel from '@mui/material/StepLabel';
 
 // Local imports
-import PuzzleIntros from './PuzzleIntros.jsx';
-import ImageHunt from './ImageHunt.jsx';
-import Protocol from './Protocol.jsx';
-import Controls from './Controls.jsx';
-import Cipher from './Cipher.jsx';
-import Rebus from './Rebus.jsx';
-import Outro from './Outro.jsx';
+import PuzzleIntros from '../components/PuzzleIntros.jsx';
+import ImageHunt from '../components/ImageHunt.jsx';
+import Protocol from '../components/Protocol.jsx';
+import Controls from '../components/Controls.jsx';
+import Cipher from '../components/Cipher.jsx';
+import Rebus from '../components/Rebus.jsx';
+import Outro from '../components/Outro.jsx';
 
 const titleCards = {
   1: {
