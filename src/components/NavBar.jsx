@@ -14,13 +14,13 @@ const navAtts = {
   play: {
     label: 'Play the game',
     name: 'Play',
-    route: '/play',
+    route: '/astro-escape/play',
     title: 'Play the game'
   },
   about: {
     label: 'View info about this site',
     name: 'About',
-    route: '/about',
+    route: '/astro-escape/about',
     title: 'View info about this site'
   }
 }
@@ -43,7 +43,7 @@ export default function ResponsiveAppBar() {
           <Typography
             aria-label="Visit Astro Escape home page"
             component='a'
-            href="/"
+            href="/astro-escape/"
             noWrap
             sx={{
               color: '#ffc107',
@@ -114,7 +114,7 @@ export default function ResponsiveAppBar() {
           </Box>
           <Typography
             component='a'
-            href="/"
+            href="/astro-escape/"
             noWrap
             sx={{
               color: '#ffc107',
