@@ -51,10 +51,10 @@ export default function App() {
           <Router>
             <React.Suspense fallback={<h5>Loading page...</h5>}>
               <Routes>
-                <Route path='/astro-escape/index.html' element={<Home></Home>}></Route>
-                <Route path='/astro-escape/' element={<Home></Home>}></Route>
-                <Route path='/astro-escape/play' element={<Escape></Escape>}></Route>
-                <Route path='/astro-escape/about' element={<About></About>}></Route>
+                <Route path='/index.html' element={<Home></Home>}></Route>
+                <Route path='/' element={<Home></Home>}></Route>
+                <Route path='/play' element={<Escape></Escape>}></Route>
+                <Route path='/about' element={<About></About>}></Route>
               </Routes>
             </React.Suspense>
           </Router>
