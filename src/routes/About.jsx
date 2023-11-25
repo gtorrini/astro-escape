@@ -6,7 +6,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 // Local imports
-import PuzzleIntros from './PuzzleIntros.jsx';
+import PuzzleIntros from '../components/PuzzleIntros.jsx';
 
 function Networking() {
   return (
