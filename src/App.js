@@ -9,9 +9,9 @@ import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/s
 import './App.css';
 import ResponsiveAppBar from './components/NavBar.jsx';
 import { ViewportProvider } from './components/useViewport.js';
-const About = React.lazy(() => import('./components/About.jsx'));
-const Home = React.lazy(() => import('./components/Home.jsx'));
-const Escape = React.lazy(() => import('./components/Escape.jsx'));
+const About = React.lazy(() => import('./routes/About.jsx'));
+const Home = React.lazy(() => import('./routes/Home.jsx'));
+const Play = React.lazy(() => import('./routes/Play.jsx'));
 
 // App-wide MUI styling and overrides
 let darkTheme = createTheme({
@@ -53,7 +53,7 @@ export default function App() {
               <Routes>
                 <Route path='/astro-escape/index.html' element={<Home></Home>}></Route>
                 <Route path='/astro-escape/' element={<Home></Home>}></Route>
-                <Route path='/astro-escape/play' element={<Escape></Escape>}></Route>
+                <Route path='/astro-escape/play' element={<Play></Play>}></Route>
                 <Route path='/astro-escape/about' element={<About></About>}></Route>
               </Routes>
             </React.Suspense>
