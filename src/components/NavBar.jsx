@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -40,25 +41,27 @@ export default function ResponsiveAppBar() {
     <AppBar position='static'>
       <Container maxWidth='100%' sx={{backgroundColor: '#193154'}}>
         <Toolbar disableGutters>
-          <Typography
-            aria-label="Visit Astro Escape home page"
-            component='a'
-            href="/"
-            noWrap
-            sx={{
-              color: '#ffc107',
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'Silkscreen',
-              mr: 2,
-              textShadow: '2px 2px #b71c1c',
-              textDecoration: 'none',
-            }}
-            tabIndex={0}
-            title="Astro Escape Home"
-            variant='h4'
-          >
-            Astro {'\u2726'} Escape
-          </Typography>
+          <Link to='/' tabIndex={-1}>
+            <Typography
+              aria-label="Visit Astro Escape home page"
+              // component='a'
+              // href="/"
+              noWrap
+              sx={{
+                color: '#ffc107',
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'Silkscreen',
+                mr: 2,
+                textShadow: '2px 2px #b71c1c',
+                textDecoration: 'none',
+              }}
+              tabIndex={0}
+              title="Astro Escape Home"
+              variant='h4'
+            >
+              Astro {'\u2726'} Escape
+            </Typography>
+          </Link>
           <Box sx={{ display: { xs: 'flex', md: 'none' }, flexGrow: 1 }}>
             <IconButton
               aria-label="Menu"
@@ -89,67 +92,77 @@ export default function ResponsiveAppBar() {
               }}
             >
               {Object.entries(navAtts).map(([key, value]) => (
-                <MenuItem 
-                  key={key}
-                  onClick={handleCloseNavMenu}
-                  onKeyDown = {(e) => {  
-                    if (e.key === 'Enter') {
-                      window.location.href = value.route;
-                    }
-                  }}  
-                >
-                  <Typography
-                    aria-label={value.label}
-                    component='a'
-                    href={value.route}
-                    sx={{ color: 'white', fontFamily: 'Silkscreen', textDecoration: 'none' }}
-                    tabIndex={0}
-                    title={value.title}
-                  >
-                    {value.name}
-                  </Typography>
-                </MenuItem>
+                <>
+                  <Link to={value.route} tabIndex={-1}>
+                    <MenuItem 
+                      key={key}
+                      onClick={handleCloseNavMenu}
+                      onKeyDown = {(e) => {  
+                        if (e.key === 'Enter') {
+                          window.location.href = value.route;
+                        }
+                      }}  
+                    >
+                      <Typography
+                        aria-label={value.label}
+                        // component='a'
+                        // href={value.route}
+                        sx={{ color: 'white', fontFamily: 'Silkscreen', textDecoration: 'none' }}
+                        tabIndex={0}
+                        title={value.title}
+                      >
+                        {value.name}
+                      </Typography>
+                    </MenuItem>
+                  </Link>
+                </>
               ))}
             </Menu>
           </Box>
-          <Typography
-            component='a'
-            href="/"
-            noWrap
-            sx={{
-              color: '#ffc107',
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'Silkscreen',
-              mr: 2,
-              textShadow: '2px 2px #b71c1c',
-              textDecoration: 'none',
-            }}
-            variant='h5'
-          >
-            Astro {'\u2726'} Escape
-          </Typography>
+          <Link to='/' tabIndex={-1}>
+            <Typography
+              // component='a'
+              // href="/"
+              noWrap
+              sx={{
+                color: '#ffc107',
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontFamily: 'Silkscreen',
+                mr: 2,
+                textShadow: '2px 2px #b71c1c',
+                textDecoration: 'none',
+              }}
+              variant='h5'
+            >
+              Astro {'\u2726'} Escape
+            </Typography>
+          </Link>
           <Box sx={{ display: { xs: 'none', md: 'flex' }, flexGrow: 1 }}>
             {Object.entries(navAtts).map(([key, value]) => (
-              <Button
-                aria-label={value.label}
-                component='a'
-                href={value.route}
-                key={key}
-                onClick={handleCloseNavMenu}
-                sx={{
-                  color: 'white',
-                  display: 'block',
-                  fontFamily: 'Silkscreen',
-                  my: 2,
-                  textAlign: 'center',
-                  textDecoration: 'none'
-                }}
-                tabIndex={0}
-                title={value.title}
-              >
-                {value.name}
-              </Button>
+              <>
+                <Link to={value.route} tabIndex={-1}>
+                  <Button
+                  aria-label={value.label}
+                  // component='a'
+                  // href={value.route}
+                  key={key}
+                  onClick={handleCloseNavMenu}
+                  sx={{
+                    color: 'white',
+                    display: 'block',
+                    fontFamily: 'Silkscreen',
+                    my: 2,
+                    textAlign: 'center',
+                    textDecoration: 'none'
+                  }}
+                  tabIndex={0}
+                  title={value.title}
+                >
+                  {value.name}
+                </Button>
+                </Link>
+              </>
             ))}
           </Box>
         </Toolbar>
