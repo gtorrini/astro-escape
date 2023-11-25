@@ -1,5 +1,5 @@
 import { React } from 'react';
-import PuzzleIntros from './PuzzleIntros.jsx';
+import PuzzleIntros from '../components/PuzzleIntros.jsx';
 
 export default function Home() {
   const heading = 'Welcome!';
