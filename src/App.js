@@ -1,6 +1,6 @@
 // 3rd-party imports
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
@@ -48,7 +48,6 @@ export default function App() {
       <ViewportProvider>
         <ResponsiveAppBar></ResponsiveAppBar>
         <main>
-          <Router>
             <React.Suspense fallback={<h5>Loading page...</h5>}>
               <Routes>
                 <Route path='/index.html' element={<Home></Home>}></Route>
@@ -57,7 +56,6 @@ export default function App() {
                 <Route path='/about' element={<About></About>}></Route>
               </Routes>
             </React.Suspense>
-          </Router>
         </main>
         <footer>
           <Container maxWidth='100%' sx={{ backgroundColor: '#193154' }}>
