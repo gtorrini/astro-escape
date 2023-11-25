@@ -51,7 +51,7 @@ export default function App() {
           <Router>
             <React.Suspense fallback={<h5>Loading page...</h5>}>
               <Routes>
-                <Route path='/' element={<Home></Home>}></Route>
+                <Route index element={<Home></Home>}></Route>
                 <Route path='/play' element={<Escape></Escape>}></Route>
                 <Route path='/about' element={<About></About>}></Route>
               </Routes>
