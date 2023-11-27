@@ -44,8 +44,6 @@ export default function ResponsiveAppBar() {
           <Link to='/' tabIndex={-1}>
             <Typography
               aria-label="Visit Astro Escape home page"
-              // component='a'
-              // href="/"
               noWrap
               sx={{
                 color: '#ffc107',
@@ -92,37 +90,33 @@ export default function ResponsiveAppBar() {
               }}
             >
               {Object.entries(navAtts).map(([key, value]) => (
-                <>
-                  <Link to={value.route} tabIndex={-1}>
-                    <MenuItem 
-                      key={key}
-                      onClick={handleCloseNavMenu}
-                      onKeyDown = {(e) => {  
-                        if (e.key === 'Enter') {
-                          window.location.href = value.route;
-                        }
-                      }}  
+                <Link key={key} to={value.route} tabIndex={-1}>
+                  <MenuItem 
+                    key={key}
+                    onClick={handleCloseNavMenu}
+                    onKeyDown = {(e) => {  
+                      if (e.key === 'Enter') {
+                        window.location.href = value.route;
+                      }
+                    }}  
+                  >
+                    <Typography
+                      aria-label={value.label}
+                      // component='a'
+                      // href={value.route}
+                      sx={{ color: 'white', fontFamily: 'Silkscreen', textDecoration: 'none' }}
+                      tabIndex={0}
+                      title={value.title}
                     >
-                      <Typography
-                        aria-label={value.label}
-                        // component='a'
-                        // href={value.route}
-                        sx={{ color: 'white', fontFamily: 'Silkscreen', textDecoration: 'none' }}
-                        tabIndex={0}
-                        title={value.title}
-                      >
-                        {value.name}
-                      </Typography>
-                    </MenuItem>
-                  </Link>
-                </>
+                      {value.name}
+                    </Typography>
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
           <Link to='/' tabIndex={-1}>
             <Typography
-              // component='a'
-              // href="/"
               noWrap
               sx={{
                 color: '#ffc107',
@@ -141,11 +135,9 @@ export default function ResponsiveAppBar() {
           <Box sx={{ display: { xs: 'none', md: 'flex' }, flexGrow: 1 }}>
             {Object.entries(navAtts).map(([key, value]) => (
               <>
-                <Link to={value.route} tabIndex={-1}>
+                <Link key={key} to={value.route} tabIndex={-1}>
                   <Button
                   aria-label={value.label}
-                  // component='a'
-                  // href={value.route}
                   key={key}
                   onClick={handleCloseNavMenu}
                   sx={{
