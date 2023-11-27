@@ -87,7 +87,7 @@ const ControlScreen = memo(
           backgroundColor: screen,
           border: (props.width <= 650) ? 10 : 20,
           borderColor: frame,
-          maxWidth: (props.width <= 650) ? '100%' : '75%',
+          maxWidth: (props.width <= 650) ? '95%' : '60%',
           mb: 3,
           mx: 'auto',
           padding: 2,
@@ -114,7 +114,7 @@ function ControlPanel(props) {
         borderRadius: '20px',
         mx: 'auto',
         mb: 3,
-        maxWidth: (props.width <= 480) ? '95%' : '35%'
+        maxWidth: (props.width <= 480) ? 336 : 392
       }}
     >
       <ThemeProvider theme={panelColors}>
@@ -124,7 +124,12 @@ function ControlPanel(props) {
           disabled={props.send}
           onClick={() => {props.handleActivate(false, 'ELECTRICAL POWER SUBSYSTEM')}}
           size={(props.width <= 480) ? 'medium' : 'large'}
-          sx={{ border: '4px solid', borderColor: 'yellow.border', mx: 1, my: 2 }}
+          sx={{ 
+            border: '4px solid', 
+            borderColor: 'yellow.border', 
+            mx: (props.width <= 480) ? 0.5 : 1, 
+            my: 2
+          }}
         >
           <ElectricBoltIcon/>
         </Fab>
@@ -134,7 +139,12 @@ function ControlPanel(props) {
           disabled={props.send}
           onClick={() => {props.handleActivate(false, 'PROPULSION SUBSYSTEM')}}
           size={(props.width <= 480) ? 'medium' : 'large'}
-          sx={{ border: '4px solid', borderColor: 'red.border', mx: 1, my: 2 }}
+          sx={{
+            border: '4px solid',
+            borderColor: 'red.border',
+            mx: (props.width <= 480) ? 0.5 : 1,
+            my: 2
+          }}
         >
           <RocketLaunchIcon/>
         </Fab>
@@ -144,7 +154,12 @@ function ControlPanel(props) {
           disabled={props.send}
           onClick={() => {props.handleActivate(false, 'ATTITUDE & ORBIT CONTROL SUBSYSTEM')}}
           size={(props.width <= 480) ? 'medium' : 'large'}
-          sx={{ border: '4px solid', borderColor: 'blue.border', mx: 1, my: 2 }}
+          sx={{
+            border: '4px solid',
+            borderColor: 'blue.border',
+            mx: (props.width <= 480) ? 0.5 : 1,
+            my: 2
+          }}
         >
           <SwitchAccessShortcutIcon/>
         </Fab>
@@ -154,7 +169,12 @@ function ControlPanel(props) {
           disabled={props.send}
           onClick={() => {props.handleActivate(true, 'COMMUNICATIONS & DATA HANDLING SUBSYSTEM')}}
           size={(props.width <= 480) ? 'medium' : 'large'}
-          sx={{ border: '4px solid', borderColor: 'orange.border', mx: 1, my: 2 }}
+          sx={{
+            border: '4px solid',
+            borderColor: 'orange.border', 
+            mx: (props.width <= 480) ? 0.5 : 1,
+            my: 2
+          }}
         >
           <SsidChartIcon/>
         </Fab>
@@ -166,7 +186,12 @@ function ControlPanel(props) {
             props.handleActivate(false, 'ENVIRONMENTAL CONTROL & LIFE SUPPORT SUBSYSTEM')
           }}
           size={(props.width <= 480) ? 'medium' : 'large'}
-          sx={{ border: '4px solid', borderColor: 'green.border', mx: 1, my: 2 }}
+          sx={{
+            border: '4px solid',
+            borderColor: 'green.border',
+            mx: (props.width <= 480) ? 0.5 : 1,
+            my: 2
+          }}
         >
           <SensorOccupiedIcon/>
         </Fab>
@@ -223,7 +248,7 @@ export default function Controls(props) {
           error={error !== null}
           disabled={activated === false}
           id="distress-signal"
-          label='Message'
+          label='Distress signal'
           inputProps={{ maxLength: 25 }}
           helperText = {error}
           onChange={(e) => {
@@ -235,17 +260,16 @@ export default function Controls(props) {
               handleSubmit(message);
             }
           }}
-          size={(width <= 480) ? 'small' : 'large'}
+          size={(width <= 480) ? 'medium' : 'large'}
         />
         <Button 
             id="distress-submit"
             disabled={message === null || send}
-            display={(width <= 480) ? 'block' : 'inline'}
             label="Submit"
             variant="contained"
             onClick={() => {handleSubmit(message)}}
-            sx={{ ml: ((width <= 424) ? 0 : 2), mt: ((width <= 480) ? 0.5 : 1) }}
-            size={(width <= 480) ? 'small' : 'large'}
+            sx={{ ml: ((width <= 395) ? 0 : 2), mt: 1 }}
+            size={(width <= 480) ? 'medium' : 'large'}
         >Submit</Button>
       </Box>
       <Grid container>
