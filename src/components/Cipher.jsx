@@ -332,7 +332,7 @@ export default function Cipher(props) {
             <ButtonGroup 
               aria-label="Color buttons"
               disabled={decoded}
-              sx={{ display: "inline-block", my: (width > 480) ? 2 : 1}}
+              sx={{ display: "inline-block", my: (width > 480) ? 2 : 1 }}
               variant='contained'
             >
               <Button 
