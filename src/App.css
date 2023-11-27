@@ -11,6 +11,12 @@ main {
   margin: 35px;
 }
 
+@media screen and (max-width: 650px) {
+  main {
+    margin: 20px;
+  }
+}
+
 footer {
   display:flex;
   flex-direction:column;
