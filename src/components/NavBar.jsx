@@ -41,9 +41,10 @@ export default function ResponsiveAppBar() {
     <AppBar position='static'>
       <Container maxWidth='100%' sx={{backgroundColor: '#193154'}}>
         <Toolbar disableGutters>
-          <Link to='/' tabIndex={-1}>
+          <Link key='home-link-reg' to='/' tabIndex={-1}>
             <Typography
               aria-label="Visit Astro Escape home page"
+              key='home-text-reg'
               noWrap
               sx={{
                 color: '#ffc107',
@@ -90,9 +91,9 @@ export default function ResponsiveAppBar() {
               }}
             >
               {Object.entries(navAtts).map(([key, value]) => (
-                <Link key={key} to={value.route} tabIndex={-1}>
+                <Link key={key + '-link-sm'} to={value.route} tabIndex={-1}>
                   <MenuItem 
-                    key={key}
+                    key={key + '-menu-item'}
                     onClick={handleCloseNavMenu}
                     onKeyDown = {(e) => {  
                       if (e.key === 'Enter') {
@@ -102,8 +103,6 @@ export default function ResponsiveAppBar() {
                   >
                     <Typography
                       aria-label={value.label}
-                      // component='a'
-                      // href={value.route}
                       sx={{ color: 'white', fontFamily: 'Silkscreen', textDecoration: 'none' }}
                       tabIndex={0}
                       title={value.title}
@@ -115,8 +114,9 @@ export default function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <Link to='/' tabIndex={-1}>
+          <Link key='home-link-sm' to='/' tabIndex={-1}>
             <Typography
+              key='home-text-sm'
               noWrap
               sx={{
                 color: '#ffc107',
@@ -135,10 +135,10 @@ export default function ResponsiveAppBar() {
           <Box sx={{ display: { xs: 'none', md: 'flex' }, flexGrow: 1 }}>
             {Object.entries(navAtts).map(([key, value]) => (
               <>
-                <Link key={key} to={value.route} tabIndex={-1}>
+                <Link key={key + '-link-reg'} to={value.route} tabIndex={-1}>
                   <Button
                   aria-label={value.label}
-                  key={key}
+                  key={key + 'button-reg'}
                   onClick={handleCloseNavMenu}
                   sx={{
                     color: 'white',
