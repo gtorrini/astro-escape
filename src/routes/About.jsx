@@ -28,7 +28,7 @@ function Networking() {
         <GitHubIcon></GitHubIcon>
       </Button>
       <Button
-        href="www.linkedin.com/in/gabriela-torrini-9a2ab7235" 
+        href="https://www.linkedin.com/in/gabriela-torrini-9a2ab7235" 
         variant="contained" 
         sx={{ mx: 1, mb: 1 }}
       >
