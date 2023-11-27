@@ -8,6 +8,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import ClearIcon from '@mui/icons-material/Clear';
 import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
+import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import IconButton from '@mui/material/IconButton';
 import { red, orange, yellow, lightGreen, grey, blue, indigo, purple } from '@mui/material/colors';
 
@@ -130,14 +131,14 @@ const CipherKey = memo(
           backgroundColor: screen,
           border: (props.width <= 650) ? 10 : 20,
           borderColor: frame,
-          maxWidth: (props.width <= 650) ? '100%' : '60%',
+          maxWidth: 410,
           mx: 'auto',
           mb: 3,
           padding: 1,
-          textAlign: (props.width <= 650) ? 'left' : 'center'
+          textAlign: (props.width <= 480) ? 'left' : 'center'
         }}
       >
-        <p className="screen"> 	MSHZO NYVVCF JVSVYZ AV HJJLWA VBY HPK  </p>
+        <p className="screen"> MSHZO NYVVCF JVSVYZ AV HJJLWA VBY HPK <br/>- HSPLUZ </p>
         <div style={{ overflow: 'auto' }}>
           <table className="screen">
             <tbody>
@@ -316,6 +317,10 @@ export default function Cipher(props) {
     setDisplay('');
   }
 
+  const handleHint = () => {
+    setDisplay('Hint: ROY G. BIV');
+  }
+
   return (
     <>
       <CipherKey display={display} width={width} />
@@ -323,7 +328,7 @@ export default function Cipher(props) {
         sx={{
           backgroundColor: frame,
           borderRadius: '10px',
-          maxWidth: (width <= 650) ? '95%' : '60%',
+          maxWidth: (width <= 415) ? 205 : 384,
           mx: 'auto',
           mb: 5
         }}
@@ -332,7 +337,7 @@ export default function Cipher(props) {
             <ButtonGroup 
               aria-label="Color buttons"
               disabled={decoded}
-              sx={{ display: "inline-block", my: (width > 480) ? 2 : 1 }}
+              sx={{ display: "block", padding: (width > 480) ? 2 : 1 }}
               variant='contained'
             >
               <Button 
@@ -340,8 +345,8 @@ export default function Cipher(props) {
                 color='red'
                 onClick={() => handleKey(display, 'R')} 
                 sx={{
-                  height: (width > 480) ? 40 : 30,
-                  width: (width > 480) ? 80 : 60
+                  height: (width > 480) ? 48 : 32,
+                  width: (width > 480) ? 48 : 32
                 }}
                 title="Red"
               ></Button>
@@ -350,8 +355,8 @@ export default function Cipher(props) {
                 color='orange'
                 onClick={() => handleKey(display, 'O')}
                 sx={{
-                  height: (width > 480) ? 40 : 30,
-                  width: (width > 480) ? 80 : 60
+                  height: (width > 480) ? 48 : 32,
+                  width: (width > 480) ? 48 : 32
                 }}
                 title="Orange"
               ></Button>
@@ -360,8 +365,8 @@ export default function Cipher(props) {
                 color='yellow'
                 onClick={() => handleKey(display, 'Y')}
                 sx={{
-                  height: (width > 480) ? 40 : 30,
-                  width: (width > 480) ? 80 : 60
+                  height: (width > 480) ? 48 : 32,
+                  width: (width > 480) ? 48 : 32
                 }}
                 title="Yellow"
               ></Button>
@@ -370,8 +375,8 @@ export default function Cipher(props) {
                 color='green'
                 onClick={() => handleKey(display, 'G')}
                 sx={{
-                  height: (width > 480) ? 40 : 30,
-                  width: (width > 480) ? 80 : 60
+                  height: (width > 480) ? 48 : 32,
+                  width: (width > 480) ? 48 : 32
                 }}
                 title="Green"
               ></Button>
@@ -380,8 +385,8 @@ export default function Cipher(props) {
                 color='blue'
                 onClick={() => handleKey(display, 'B')}
                 sx={{
-                  height: (width > 480) ? 40 : 30,
-                  width: (width > 480) ? 80 : 60
+                  height: (width > 480) ? 48 : 32,
+                  width: (width > 480) ? 48 : 32
                 }}
                 title="Blue"
               ></Button>
@@ -390,8 +395,8 @@ export default function Cipher(props) {
                 color='indigo'
                 onClick={() => handleKey(display, 'I')}
                 sx={{
-                  height: (width > 480) ? 40 : 30,
-                  width: (width > 480) ? 80 : 60
+                  height: (width > 480) ? 48 : 32,
+                  width: (width > 480) ? 48 : 32
                 }}
                 title="Indigo"
               ></Button>
@@ -400,8 +405,8 @@ export default function Cipher(props) {
                 color='violet'
                 onClick={() => handleKey(display, 'V')}
                 sx={{
-                  height: (width > 480) ? 40 : 30,
-                  width: (width > 480) ? 80 : 60
+                  height: (width > 480) ? 48 : 32,
+                  width: (width > 480) ? 48 : 32
                 }}
                 title="Violet"
               ></Button>
@@ -413,7 +418,7 @@ export default function Cipher(props) {
           onClick={() => handleBackspace(display)}
           title="Backspace"
         >
-            <BackspaceIcon fontSize="medium"></BackspaceIcon>
+          <BackspaceIcon fontSize="medium"></BackspaceIcon>
         </ModifiedIcons>
         <ModifiedIcons 
           aria-label="Clear command sequence"
@@ -422,6 +427,14 @@ export default function Cipher(props) {
           title="Clear"
         >
           <ClearIcon fontSize="large"></ClearIcon>
+        </ModifiedIcons>
+        <ModifiedIcons
+          aria-label="Get help with this puzzle"
+          disabled={decoded}
+          onClick={() => handleHint()}
+          title="Hint"
+        >
+          <HelpCenterIcon fontSize="medium"></HelpCenterIcon>
         </ModifiedIcons>
       </Box>
       <Grid container>
