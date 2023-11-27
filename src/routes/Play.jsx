@@ -25,15 +25,15 @@ const titleCards = {
   },
   3: {
     title: 'Puzzle #3',
-    blurb: 'You need to send a distress signal, but in your panic, you spilled coffee all over the schematics in your manual. Use the control panel below to activate the correct subsystem.',
+    blurb: 'In your panic, you spilled coffee all over the schematics in your manual. Using the control panel below, activate the correct subsystem to send a distress signal.',
   },
   4: {
     title: 'Puzzle #4',
-    blurb: 'You received a response, but it seems to be encoded. Decode the response using the cipher below.',
+    blurb: 'You received a response, but it seems to be encoded. Decode the response using the cipher below. Then, follow any relevant instructions to enter negotiations.',
   },
   5: {
     title: 'Puzzle #5',
-    blurb: 'An alien ship has offered you aid, but they do not know if they can trust you to fly responsibly throughout the cosmos. Solve the rebus puzzles below to prove you are ultimately worthy of their compassion.',
+    blurb: 'An alien ship has offered help, but they doubt your ability to responsibly navigate the cosmos. Solve the rebus puzzles below to prove you are ultimately worthy of their compassion.',
   },
 }
 
