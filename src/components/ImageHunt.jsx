@@ -66,15 +66,6 @@ const itemData = [
 function PersonalItemsList(props) {
   const width = useContext(ViewportContext);
 
-  const calcDims = (currentWidth) => {
-    // Calculate appropriate width, height, and rowHeight
-    if (currentWidth <= 480) {
-      return (250, 225, 85);
-    } else {
-      return (500, 450, 164);
-    }
-  }
-
   const handleKeyDown = (event, name) => {
     if (event.key === "Enter") {
       props.handleClick(name);
@@ -83,23 +74,43 @@ function PersonalItemsList(props) {
 
   return (
     <ImageList 
-      sx={{ width: (calcDims(width))[0], height: (calcDims(width))[1], mx: 'auto' }} 
+      sx={{
+        height: (width <= 800) ? 225 : 450,
+        mx: 'auto',
+        width: (width <= 800) ? 250 : 500, 
+      }} 
       cols={3} 
-      rowHeight={(calcDims(width))[2]}
+      rowHeight={(width <= 800) ? 85 : 164}
     >
-      {itemData.map((item) => (
-        <ImageListItem key={item.img}>
-          <img
-            srcSet={`${item.img}?w=${(calcDims())[2]}&h=${(calcDims())[2]}&fit=crop&auto=format&dpr=2 2x`}
-            src={`${item.img}?w=${(calcDims())[2]}&h=${(calcDims())[2]}&fit=crop&auto=format`}
-            alt={item.title}
-            onClick={() => props.handleClick(item.title)}
-            onKeyDown={(e) => handleKeyDown(e, item.title)}
-            loading="lazy"
-            tabIndex={0}
-          />
-        </ImageListItem>
-      ))}
+      {width < 800 ? 
+        (itemData.slice(0, 8)).map((item) => (
+          <ImageListItem key={item.img}>
+            <img
+              srcSet={`${item.img}?w=250&h=225&fit=crop&auto=format&dpr=2 2x`}
+              src={`${item.img}?w=250&h=225&fit=crop&auto=format`}
+              alt={item.title}
+              onClick={() => props.handleClick(item.title)}
+              onKeyDown={(e) => handleKeyDown(e, item.title)}
+              loading="lazy"
+              tabIndex={0}
+            />
+          </ImageListItem>
+        ))
+        :
+        itemData.map((item) => (
+          <ImageListItem key={item.img}>
+            <img
+              srcSet={`${item.img}?w=500&h=450&fit=crop&auto=format&dpr=2 2x`}
+              src={`${item.img}?w=500&h=450&fit=crop&auto=format`}
+              alt={item.title}
+              onClick={() => props.handleClick(item.title)}
+              onKeyDown={(e) => handleKeyDown(e, item.title)}
+              loading="lazy"
+              tabIndex={0}
+            />
+          </ImageListItem>
+        ))
+      }
     </ImageList>
   );
 }
