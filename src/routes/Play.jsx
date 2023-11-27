@@ -7,7 +7,7 @@ import StepLabel from '@mui/material/StepLabel';
 
 // Local imports
 import PuzzleIntros from '../components/PuzzleIntros.jsx';
-import ImageHunt from '../components/ImageHunt.jsx';
+// import ImageHunt from '../components/ImageHunt.jsx';
 import Protocol from '../components/Protocol.jsx';
 import Controls from '../components/Controls.jsx';
 import Cipher from '../components/Cipher.jsx';
@@ -55,42 +55,42 @@ export default function Escape() {
 
   const handleContent = () => {
     switch(activeStep) {
-      case(0): 
-        return(
-          <>
-            <PuzzleIntros title={titleCards[1].title} blurb={titleCards[1].blurb}/>
-            <ImageHunt next={handleNext}/>
-          </>
-        );
-      case(1):
+      // case(0): 
+      //   return(
+      //     <>
+      //       <PuzzleIntros title={titleCards[1].title} blurb={titleCards[1].blurb}/>
+      //       <ImageHunt next={handleNext}/>
+      //     </>
+      //   );
+      case(0):
         return(
           <>
             <PuzzleIntros title={titleCards[2].title} blurb={titleCards[2].blurb}/>
             <Protocol back={handleBack} next={handleNext} restart={handleRestart}/>
           </>
         );
-      case(2):
+      case(1):
         return(
           <>
             <PuzzleIntros title={titleCards[3].title} blurb={titleCards[3].blurb}/>
             <Controls back={handleBack} next={handleNext} restart={handleRestart}/>
           </>
         );
-      case(3):
+      case(2):
         return(
           <>
             <PuzzleIntros title={titleCards[4].title} blurb={titleCards[4].blurb}/>
             <Cipher back={handleBack} next={handleNext} restart={handleRestart}/>
           </>
         );
-      case(4):
+      case(3):
         return(
           <>
             <PuzzleIntros title={titleCards[5].title} blurb={titleCards[5].blurb}/>
             <Rebus back={handleBack} next={handleNext} restart={handleRestart}/>
           </>
         );
-      case(5):
+      case(4):
         return(
           <Outro/>
         );
@@ -113,9 +113,9 @@ export default function Escape() {
           <Step key="puzzle-4">
             <StepLabel/>
           </Step>
-          <Step key="puzzle-5">
+          {/* <Step key="puzzle-5">
             <StepLabel/>
-          </Step>
+          </Step> */}
         </Stepper>
         {handleContent()}
       </Box>
