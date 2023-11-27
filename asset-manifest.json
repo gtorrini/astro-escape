@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/astro-escape/static/css/main.309c5653.css",
-    "main.js": "/astro-escape/static/js/main.c9416ae8.js",
+    "main.css": "/astro-escape/static/css/main.1eebfec5.css",
+    "main.js": "/astro-escape/static/js/main.dc66b8ec.js",
     "static/js/769.411b321f.chunk.js": "/astro-escape/static/js/769.411b321f.chunk.js",
     "static/js/406.a028de9b.chunk.js": "/astro-escape/static/js/406.a028de9b.chunk.js",
-    "static/js/838.df8a335a.chunk.js": "/astro-escape/static/js/838.df8a335a.chunk.js",
+    "static/js/268.2589c14c.chunk.js": "/astro-escape/static/js/268.2589c14c.chunk.js",
     "static/js/787.fe0efb8f.chunk.js": "/astro-escape/static/js/787.fe0efb8f.chunk.js",
-    "static/js/322.bbea5ac1.chunk.js": "/astro-escape/static/js/322.bbea5ac1.chunk.js",
+    "static/js/279.929d48be.chunk.js": "/astro-escape/static/js/279.929d48be.chunk.js",
     "static/media/star-field-pixel-large.png": "/astro-escape/static/media/star-field-pixel-large.d3e2f9b79a162de917d6.png",
     "index.html": "/astro-escape/index.html",
-    "main.309c5653.css.map": "/astro-escape/static/css/main.309c5653.css.map",
-    "main.c9416ae8.js.map": "/astro-escape/static/js/main.c9416ae8.js.map",
+    "main.1eebfec5.css.map": "/astro-escape/static/css/main.1eebfec5.css.map",
+    "main.dc66b8ec.js.map": "/astro-escape/static/js/main.dc66b8ec.js.map",
     "769.411b321f.chunk.js.map": "/astro-escape/static/js/769.411b321f.chunk.js.map",
     "406.a028de9b.chunk.js.map": "/astro-escape/static/js/406.a028de9b.chunk.js.map",
-    "838.df8a335a.chunk.js.map": "/astro-escape/static/js/838.df8a335a.chunk.js.map",
+    "268.2589c14c.chunk.js.map": "/astro-escape/static/js/268.2589c14c.chunk.js.map",
     "787.fe0efb8f.chunk.js.map": "/astro-escape/static/js/787.fe0efb8f.chunk.js.map",
-    "322.bbea5ac1.chunk.js.map": "/astro-escape/static/js/322.bbea5ac1.chunk.js.map"
+    "279.929d48be.chunk.js.map": "/astro-escape/static/js/279.929d48be.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.309c5653.css",
-    "static/js/main.c9416ae8.js"
+    "static/css/main.1eebfec5.css",
+    "static/js/main.dc66b8ec.js"
   ]
 }
