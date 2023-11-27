@@ -26,7 +26,7 @@ function ViewportProvider({children}) {
 }
 
 ViewportProvider.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.array.isRequired
 }
 
 export { ViewportContext, ViewportProvider };
