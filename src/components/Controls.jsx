@@ -248,7 +248,7 @@ export default function Controls(props) {
           error={error !== null}
           disabled={activated === false}
           id="distress-signal"
-          label='Distress signal'
+          label='Message'
           inputProps={{ maxLength: 25 }}
           helperText = {error}
           onChange={(e) => {
@@ -260,6 +260,7 @@ export default function Controls(props) {
               handleSubmit(message);
             }
           }}
+          sx={{ mx: 1 }}
           size={(width <= 480) ? 'medium' : 'large'}
         />
         <Button 
@@ -268,7 +269,7 @@ export default function Controls(props) {
             label="Submit"
             variant="contained"
             onClick={() => {handleSubmit(message)}}
-            sx={{ ml: ((width <= 395) ? 0 : 2), mt: 1 }}
+            sx={{ mx: 1, mt: 1 }}
             size={(width <= 480) ? 'medium' : 'large'}
         >Submit</Button>
       </Box>

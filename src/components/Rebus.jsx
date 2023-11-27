@@ -49,17 +49,18 @@ function Puzzle(props) {
                 handleSubmit(answer);
               }
             }}
-            size={(props.width <= 480) ? 'small' : 'large'}
+            sx={{ mx: 1 }}
+            size={(props.width <= 480) ? 'medium' : 'large'}
           />
           <Button 
             aria-label="submit"
             disabled={answer === null || explain}
-            display={(window.innerWidth <= 480) ? 'block' : 'inline'}
+            display={(props.width <= 480) ? 'block' : 'inline'}
             label='Submit'
             variant='contained'
             onClick={() => {handleSubmit(answer)}}
-            sx={{ ml: ((props.width < 424) ? 0 : 2), mt: ((props.width <= 480) ? 0.5 : 1) }}
-            size={(props.width <= 480) ? 'small' : 'large'}
+            sx={{ mx: 1, mt: 1 }}
+            size={(props.width <= 480) ? 'medium' : 'large'}
           >
             Submit
           </Button>
