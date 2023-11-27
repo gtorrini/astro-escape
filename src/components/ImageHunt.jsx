@@ -37,8 +37,8 @@ const itemData = [
     title: 'Camera',
   },
   {
-    img: 'https://live.staticflickr.com/3208/2763488097_56bf92b0ea_k_d.jpg',
-    title: 'Eye mask',
+    img: 'https://clipground.com/images/manual-clipart-2.jpg',
+    title: 'Instruction manual',
   }, 
   {
     img: 'https://live.staticflickr.com/5246/5297985633_2d26ffc29b_k_d.jpg',
@@ -49,8 +49,8 @@ const itemData = [
     title: 'Knitting needles',
   },
   {
-    img: 'https://clipground.com/images/manual-clipart-2.jpg',
-    title: 'Instruction manual',
+    img: 'https://live.staticflickr.com/3208/2763488097_56bf92b0ea_k_d.jpg',
+    title: 'Eye mask',
   },
   {
     img: 'https://images.unsplash.com/photo-1585849835117-1446a1514ea6',
