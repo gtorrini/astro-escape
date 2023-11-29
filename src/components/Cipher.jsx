@@ -131,7 +131,7 @@ const CipherKey = memo(
           backgroundColor: screen,
           border: (props.width <= 650) ? 10 : 20,
           borderColor: frame,
-          maxWidth: 410,
+          maxWidth: 500,
           mx: 'auto',
           mb: 3,
           padding: 1,
@@ -142,9 +142,10 @@ const CipherKey = memo(
         <div style={{ overflow: 'auto' }}>
           <table className="screen">
             <tbody>
-              {(props.width > 480) && 
+              {(props.width > 550) && 
                 <>
                   <tr>
+                    <th scope="row">PLAIN</th>
                     <td>A</td>
                     <td>B</td>
                     <td>C</td>
@@ -173,6 +174,7 @@ const CipherKey = memo(
                     <td>Z</td>
                   </tr>
                   <tr>
+                    <th scope="row">CIPHER</th>
                     <td/>
                     <td/>
                     <td/>
@@ -202,9 +204,10 @@ const CipherKey = memo(
                   </tr>
                 </>
               }
-              {(props.width <= 480) &&
+              {(props.width <= 550) &&
                 <>
                   <tr>
+                    <th scope="row">PLAIN</th>
                     <td>A</td>
                     <td>B</td>
                     <td>C</td>
@@ -220,6 +223,7 @@ const CipherKey = memo(
                     <td>M</td>
                   </tr>
                   <tr>
+                    <th scope="row">CIPHER</th>
                     <td/>
                     <td/>
                     <td/>
@@ -235,6 +239,7 @@ const CipherKey = memo(
                     <td/>
                   </tr>
                   <tr>
+                    <th scope="row">PLAIN</th>
                     <td>N</td>
                     <td>O</td>
                     <td>P</td>
@@ -250,6 +255,7 @@ const CipherKey = memo(
                     <td>Z</td>
                   </tr>
                   <tr>
+                    <th scope="row"> CIPHER </th>
                     <td>U</td>
                     <td/>
                     <td/>
